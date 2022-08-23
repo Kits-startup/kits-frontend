@@ -1,10 +1,17 @@
 <template>
-  <div id="app">hi kiper!</div>
+  <div id="app">
+    <MainHeader></MainHeader>
+    hi kiper!
+  </div>
 </template>
 
-<script>
-export default {
 
+<script>
+import MainHeader from './components/PersonalUser/MainHeader/MainHeader.vue'
+export default {
+  components:{
+    MainHeader,
+  }
 }
 </script>
 
