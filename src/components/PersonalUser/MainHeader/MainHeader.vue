@@ -1,11 +1,10 @@
 <template>
   <div class="header">
-    <div>kits</div>
+    <router-link to="/">kits</router-link>
     <div>프로필</div>
     <div>검색창</div>
-    <Button>회원가입/로그인</Button>
     <div>
-      <button id="show-modal" @click="showModal = true">Show Modal</button>
+      <button id="show-modal" @click="showModal = true">회원가입/로그인</button>
 
       <div>
         <!-- use the modal component, pass in the prop -->
@@ -20,7 +19,7 @@
 </template>
 
 <script>
-import Modal from "./LoginModal.vue";
+import Modal from "../../Login/LoginModal.vue";
 
 export default {
   components: {

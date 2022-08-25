@@ -1,8 +1,7 @@
 <template>
-<div>
-    mainBody
-
-</div>
+  <div>
+    resisterForm
+  </div>
 </template>
 
 <script>
