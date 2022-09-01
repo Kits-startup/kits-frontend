@@ -14,6 +14,8 @@ export const router = new VueRouter({
         component: MainBody
     },{
         path:'/resister',
-        component: ResisterBody
+        component: ResisterBody,
+        name:'Resister',
+        props:true
     }]
 });

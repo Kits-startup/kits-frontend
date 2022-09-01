@@ -23,12 +23,12 @@ export default {
       return this.test ? "올바른 이메일 형식을 입력해 주세요." : "";
     },
   },
-  methods:{
-    goResister(){
-      this.$router.push("/resister"); //이미 resister form일때 오류발생
-
-    }
-  }
+  methods: {
+    goResister() {
+      this.$emit('close');
+      this.$router.push({name:"Resister",params:{emailFrom:this.inputEmail}}).catch(()=>{}); //이미 resister form일때 오류발생
+    },
+  },
 };
 </script>
 
@@ -56,7 +56,12 @@ export default {
                 type="text"
               />
               <div id="unvalidEmail">{{ validEmailMessage }}</div>
-              <input class="submit" type="submit" @click="goResister()" value="바로가기" />
+              <input
+                class="submit"
+                type="submit"
+                @click="goResister()"
+                value="바로가기"
+              />
             </div>
           </div>
           <div v-show="!$store.state.isPerson" class="EasyLoginContainer">
@@ -98,7 +103,7 @@ export default {
   margin-top: 39px;
 }
 .EnterpriseSwitch div {
-  font-family: "Noto Sans CJK KR";
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -133,20 +138,25 @@ export default {
 .emailForm .input {
   box-sizing: border-box;
   height: 57px;
+  padding-left: 22px;
   background: #ffffff;
   /* 메인 */
 
   border: 1px solid #0376db;
   border-radius: 3px;
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
 }
 
-.emailForm .wrongEmailForm.wrongEmailForm:focus {
+.emailForm .wrongEmailForm,.wrongEmailForm:focus {
   border: 1px solid #e60505;
   outline-color: #e60505;
 }
 
 #unvalidEmail {
-  font-family: "Noto Sans CJK KR";
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -171,7 +181,7 @@ export default {
 }
 
 .modal-container .title {
-  font-family: "Noto Sans CJK KR";
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
@@ -182,7 +192,7 @@ export default {
 .modal-container .default {
   margin: 0;
   margin-top: 7px;
-  font-family: "Noto Sans CJK KR";
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
