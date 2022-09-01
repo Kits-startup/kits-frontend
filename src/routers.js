@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import MainBody from './components/PersonalUser/MainBody.vue'
+import MainBody from './components/EmployerUser/MainBody.vue'
 import ResisterBody from './components/Login/ResisterBody.vue'
 Vue.use(VueRouter);
 

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import MainHeader from "./components/PersonalUser/MainHeader/MainHeader.vue";
+import MainHeader from "./components/EmployerUser/MainHeader/MainHeader.vue";
 export default {
   components: {
     MainHeader,

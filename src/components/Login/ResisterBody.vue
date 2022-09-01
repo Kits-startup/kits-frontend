@@ -59,7 +59,6 @@
           <input
             class="inputBox certificationInput"
             type="text"
-            v-bind:class="{ wrongEmailForm: this.test }"
             placeholder="예시) 01012345678"
           />
           <input class="submit" type="submit" value="인증번호 받기" />

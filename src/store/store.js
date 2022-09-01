@@ -5,12 +5,11 @@ Vue.use(Vuex);
 
 export const store=new Vuex.Store({
     state:{
-        isPerson:true,
-        tempEmail:''
+        isEmployer:true,
     },
     mutations:{
         changeUserType(state){
-            state.isPerson = !state.isPerson;
+            state.isEmployer = !state.isEmployer;
         }
     }
 })
