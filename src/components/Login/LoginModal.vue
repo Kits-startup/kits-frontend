@@ -12,6 +12,11 @@ export default {
     test() {
       let re =
         /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+      console.log(
+        this.inputEmail != "" &&
+          this.inputEmail != "undefined" &&
+          !re.test(this.inputEmail)
+      );
       return (
         this.inputEmail != "" &&
         this.inputEmail != "undefined" &&
@@ -25,8 +30,10 @@ export default {
   },
   methods: {
     goResister() {
-      this.$emit('close');
-      this.$router.push({name:"Resister",params:{emailFrom:this.inputEmail}}).catch(()=>{}); //이미 resister form일때 오류발생
+      this.$emit("close");
+      this.$router
+        .push({ name: "Resister", params: { emailFrom: this.inputEmail } })
+        .catch(() => {}); //이미 resister form일때 오류발생
     },
   },
 };
@@ -150,7 +157,8 @@ export default {
   font-size: 18px;
 }
 
-.emailForm .wrongEmailForm,.wrongEmailForm:focus {
+.emailForm .wrongEmailForm,
+.wrongEmailForm:focus {
   border: 1px solid #e60505;
   outline-color: #e60505;
 }
