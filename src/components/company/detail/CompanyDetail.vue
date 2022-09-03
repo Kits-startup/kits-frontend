@@ -26,7 +26,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   display: flex;
-  border: 1px solid black;
-  min-width: 80%;
+  align-items: flex-start;
+  // border: 1px solid black;
 }
 </style>
