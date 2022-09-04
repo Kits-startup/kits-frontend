@@ -27,15 +27,66 @@
               class="star"
               v-for="i in companyInfo.rateStarNum"
               v-bind:key="i"
-            >
-              <!-- ⭐ -->
-              ★
-            </div>
+            ></div>
           </div>
           <div class="reviewNum">리뷰 ({{ companyInfo.reviewNum }})</div>
         </div>
       </div>
       <div class="submitBtn">리뷰 등록 하기</div>
+    </div>
+    <div class="bottomContainer">
+      <div class="comment good">
+        <span style="font-weight: 700"
+          >{{ companyInfo.goodComment.percent }}%</span
+        >의 사람들이 {{ companyInfo.goodComment.content }}을(를) 칭찬합니다.
+      </div>
+      <div class="comment bad">
+        <span style="font-weight: 700"
+          >{{ companyInfo.badComment.percent }}%</span
+        >의 사람들이 {{ companyInfo.goodComment.content }}을(를) 아쉬워합니다.
+      </div>
+      <div class="rateDetailContainer">
+        <div class="eachRate">
+          <div class="star">⭐⭐⭐⭐⭐</div>
+          <div class="percentBox">
+            <div class="percentBar blue" />
+            <div class="percentBar gray" />
+          </div>
+          <div class="percent">{{ companyInfo.rateDetail[0] }}%</div>
+        </div>
+        <div class="eachRate">
+          <div class="star">⭐⭐⭐⭐</div>
+          <div class="percentBox">
+            <div class="percentBar blue" />
+            <div class="percentBar gray" />
+          </div>
+          <div class="percent">{{ companyInfo.rateDetail[1] }}%</div>
+        </div>
+        <div class="eachRate">
+          <div class="star">⭐⭐⭐</div>
+          <div class="percentBox">
+            <div class="percentBar blue" />
+            <div class="percentBar gray" />
+          </div>
+          <div class="percent">{{ companyInfo.rateDetail[2] }}%</div>
+        </div>
+        <div class="eachRate">
+          <div class="star">⭐⭐</div>
+          <div class="percentBox">
+            <div class="percentBar blue" />
+            <div class="percentBar gray" />
+          </div>
+          <div class="percent">{{ companyInfo.rateDetail[3] }}%</div>
+        </div>
+        <div class="eachRate">
+          <div class="star">⭐</div>
+          <div class="percentBox">
+            <div class="percentBar blue" />
+            <div class="percentBar gray" />
+          </div>
+          <div class="percent">{{ companyInfo.rateDetail[4] }}%</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +107,9 @@ export default {
         rateNum: "4.0",
         rateStarNum: 5,
         reviewNum: 200,
+        goodComment: { percent: 93, content: "근무환경" },
+        badComment: { percent: 80, content: "직장동료" },
+        rateDetail: [50, 20, 15, 10, 5],
       },
     };
   },
@@ -159,6 +213,42 @@ export default {
     font-weight: 500;
     font-size: 22px;
     line-height: 33px;
+  }
+}
+.bottomContainer {
+  margin-top: 30px;
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 30px;
+  .comment {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 10px;
+  }
+  .strong {
+    font-weight: 700;
+  }
+}
+.rateDetailContainer {
+  margin-top: 30px;
+  .eachRate {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    .star {
+      width: 15%;
+    }
+  }
+  .percentBox {
+    margin-left: 20px;
+    margin-right: 10px;
+    display: flex;
+    width: 300px;
+    background: #9b9b9b;
+    height: 10px;
+    .blue {
+      background: #0376db;
+      width: 50%;
+    }
   }
 }
 </style>
