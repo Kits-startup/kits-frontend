@@ -17,7 +17,9 @@
       {{ companyInfo.description }}<br />홈페이지:
       <a v-bind:href="companyInfo.link" class="link">{{ companyInfo.link }}</a>
     </p>
+    <KakaoMap />
     <div class="map">지도가 들어갈 부분입니다..</div>
+    <!-- <CompanyMap /> -->
     <div class="rateContainer">
       <div class="rate">
         <div class="rateNum">{{ companyInfo.rateNum }}</div>
@@ -46,45 +48,19 @@
         >의 사람들이 {{ companyInfo.goodComment.content }}을(를) 아쉬워합니다.
       </div>
       <div class="rateDetailContainer">
-        <div class="eachRate">
-          <div class="star">⭐⭐⭐⭐⭐</div>
+        <div
+          class="eachRate"
+          v-for="(item, index) in companyInfo.rateDetail"
+          v-bind:key="index"
+        >
+          <div class="star">
+            <span v-for="i in 5 - index" v-bind:key="i">⭐</span>
+          </div>
           <div class="percentBox">
             <div class="percentBar blue" />
             <div class="percentBar gray" />
           </div>
-          <div class="percent">{{ companyInfo.rateDetail[0] }}%</div>
-        </div>
-        <div class="eachRate">
-          <div class="star">⭐⭐⭐⭐</div>
-          <div class="percentBox">
-            <div class="percentBar blue" />
-            <div class="percentBar gray" />
-          </div>
-          <div class="percent">{{ companyInfo.rateDetail[1] }}%</div>
-        </div>
-        <div class="eachRate">
-          <div class="star">⭐⭐⭐</div>
-          <div class="percentBox">
-            <div class="percentBar blue" />
-            <div class="percentBar gray" />
-          </div>
-          <div class="percent">{{ companyInfo.rateDetail[2] }}%</div>
-        </div>
-        <div class="eachRate">
-          <div class="star">⭐⭐</div>
-          <div class="percentBox">
-            <div class="percentBar blue" />
-            <div class="percentBar gray" />
-          </div>
-          <div class="percent">{{ companyInfo.rateDetail[3] }}%</div>
-        </div>
-        <div class="eachRate">
-          <div class="star">⭐</div>
-          <div class="percentBox">
-            <div class="percentBar blue" />
-            <div class="percentBar gray" />
-          </div>
-          <div class="percent">{{ companyInfo.rateDetail[4] }}%</div>
+          <div class="percent">{{ item }}%</div>
         </div>
       </div>
     </div>
@@ -92,6 +68,8 @@
 </template>
 
 <script>
+// import CompanyMap from "./CompanyMap.vue";
+import KakaoMap from "./KaKaoMap.vue";
 export default {
   data() {
     return {
@@ -113,6 +91,7 @@ export default {
       },
     };
   },
+  components: { KakaoMap },
 
   mounted() {},
 
