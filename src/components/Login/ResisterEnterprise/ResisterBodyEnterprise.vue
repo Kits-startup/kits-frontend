@@ -1,26 +1,32 @@
 <template>
   <div class="body">
-    <div class="title">간편가입</div>
+    <div class="title">간편가입(이메일 인증) - 기업용</div>
     <div class="oneInputSet">
       <div class="inputTitle">이메일</div>
-      <input
-        type="text"
-        v-model="inputEmail"
-        class="inputBox"
-        v-bind:class="{ wrongEmailForm: this.test }"
-        placeholder="이메일을 입력해 주세요."
-      />
+      <div class="certificationBox">
+        <input
+          type="text"
+          v-model="inputEmail"
+          class="inputBox certificationInput"
+          v-bind:class="{ wrongEmailForm: this.test }"
+          placeholder="이메일을 입력해 주세요."
+        />
+        <input class="submit" type="submit" value="인증번호 받기" />
+      </div>
       <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
     </div>
     <div class="oneInputSet">
       <div class="inputTitle">이메일 인증번호 입력</div>
-      <input
-        type="text"
-        class="inputBox"
-        placeholder="이메일 인증번호를 입력해 주세요."
-      />
+      <div class="CertificationBox">
+        <input
+          type="text"
+          class="inputBox certificationInput"
+          placeholder="이메일 인증번호를 입력해 주세요."
+        />
         <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
 
+        <input class="submit" type="submit" value="인증번호 확인" />
+      </div>
       <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
     </div>
 
@@ -31,10 +37,14 @@
         class="inputBox passwordBox"
         placeholder="비밀번호를 입력해 주세요."
       />
-        <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
+      <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
 
-      <div class="passwordCaution" v-bind:class="{wrongFormWarn:this.test}">
-        {{test?"비밀번호가 올바르지 않습니다":"영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."}}
+      <div class="passwordCaution" v-bind:class="{ wrongFormWarn: this.test }">
+        {{
+          test
+            ? "비밀번호가 올바르지 않습니다"
+            : "영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."
+        }}
       </div>
     </div>
 
@@ -46,36 +56,15 @@
         class="inputBox"
         placeholder="휴대폰 번호를 입력해 주세요."
       />
-      <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
-    </div>
+      <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
 
-    <div class="phoneCertification">
-      <div class="title">휴대폰 인증</div>
-      <div class="certificationBox">
-        <div class="getCertificationBox">
-          <input
-            class="inputBox certificationInput"
-            type="text"
-            placeholder="예시) 01012345678"
-          />
-          <input class="submit" type="submit" value="인증번호 받기" />
-        </div>
-        <input
-          class="inputBox certificationInput"
-          type="text"
-          placeholder="인증번호를 입력해 주세요"
-        />
-      </div>
+      <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
     </div>
 
     <div class="agree">
       <div class="title">이용약관 내용동의</div>
       <div class="checkBoxText agreeALlcss">
         <input type="checkbox" v-model="allSelected" value="agreeAll" />전체동의
-      </div>
-      <div class="checkBoxText">
-        <input type="checkbox" v-model="selectList" value="age" />만 14세 이상
-        입니다
       </div>
       <div class="checkBoxText">
         <input type="checkbox" v-model="selectList" value="service" />
@@ -104,12 +93,8 @@
           </div>
         </div>
       </div>
-      <div class="checkBoxText">
-        <input type="checkbox" v-model="selectList" value="agree" />
-        <div class="textAlign">위내용을 확인하였으며 동의 합니다.</div>
-      </div>
 
-      <button class="submit" id="finalSubmit" @click="checkArr()">
+      <button class="submit" id="finalSubmit" @click="goInfoPage()">
         화원가입하기
       </button>
 
@@ -138,10 +123,10 @@
 </template>
 
 <script>
-import DetailModal from "./DetailModal";
-import PersonalData from "./DetailText/PersonalData.vue";
-import ThirdPartyAgree from "./DetailText/ThirdPartyAgree.vue";
-import ServiceTermAgree from "./DetailText/ServiceTermAgree.vue";
+import DetailModal from "../DetailModal";
+import PersonalData from "../DetailText/PersonalData.vue";
+import ThirdPartyAgree from "../DetailText/ThirdPartyAgree.vue";
+import ServiceTermAgree from "../DetailText/ServiceTermAgree.vue";
 
 export default {
   components: {
@@ -163,12 +148,14 @@ export default {
       showThirdPartyModal: false,
       inputEmail: this.emailFrom,
       selectList: [],
-      checkList: ["age", "service", "private", "offer", "agree"],
+      checkList: ["service", "private", "offer"],
     };
   },
   methods: {
-    checkArr: function () {
-      console.log(this.selectList);
+    goInfoPage: function () {
+      this.$router
+        .push({ name: "ResisterEnterpriseInfo", params: {} })
+        .catch(() => {});
     },
   },
   computed: {
@@ -254,7 +241,7 @@ export default {
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
-  margin-top:4px;
+  margin-top: 4px;
   color: #515151;
   margin-bottom: 5px;
 }
@@ -352,8 +339,8 @@ export default {
   font-size: 12px;
   line-height: 18px;
   height: 18px;
-  margin-top:4px;
-  margin-bottom:5px;
+  margin-top: 4px;
+  margin-bottom: 5px;
   color: #e60505;
 }
 </style>

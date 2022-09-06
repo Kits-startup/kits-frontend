@@ -25,8 +25,19 @@ export default {
   },
   methods: {
     goResister() {
-      this.$emit('close');
-      this.$router.push({name:"Resister",params:{emailFrom:this.inputEmail}}).catch(()=>{}); //이미 resister form일때 오류발생
+      this.$emit("close");
+      if (this.$store.state.isEmployer) {
+        this.$router
+          .push({ name: "Resister", params: { emailFrom: this.inputEmail } })
+          .catch(() => {});
+      } else {
+        this.$router
+          .push({
+            name: "ResisterEnterprise",
+            params: { emailFrom: this.inputEmail },
+          })
+          .catch(() => {});
+      }
     },
   },
 };
@@ -45,7 +56,7 @@ export default {
           <div>
             <div class="logo">Logo</div>
           </div>
-          <div class="title">안녕하세요!</div>
+          <div class="title">안녕하세요! {{($store.state.isEmployer?"개인":"기업")}} 고객님!</div>
           <div class="default">키츠에 오신걸 환영합니다.</div>
           <div>
             <div class="emailForm">
@@ -64,19 +75,19 @@ export default {
               />
             </div>
           </div>
-          <div v-show="!$store.state.isEmployer" class="EasyLoginContainer">
+          <div v-show="$store.state.isEmployer" class="EasyLoginContainer">
             카카오 네이버 구글
           </div>
           <div class="EnterpriseSwitch">
             <div>
-              {{ $store.state.isEmployer ? "개인" : "기업" }}고객이 이렇습니까?
+              {{ !$store.state.isEmployer ? "개인" : "기업" }}고객이 이렇습니까?
             </div>
             <div
               @click="$store.commit('changeUserType')"
               class="pointer"
               id="Link"
             >
-              {{ $store.state.isEmployer ? "개인" : "기업" }}서비스 바로가기
+              {{ !$store.state.isEmployer ? "개인" : "기업" }}서비스 바로가기
             </div>
           </div>
           <div class="EnterpriseSwitch" id="FindID">
@@ -150,7 +161,8 @@ export default {
   font-size: 18px;
 }
 
-.emailForm .wrongEmailForm,.wrongEmailForm:focus {
+.emailForm .wrongEmailForm,
+.wrongEmailForm:focus {
   border: 1px solid #e60505;
   outline-color: #e60505;
 }

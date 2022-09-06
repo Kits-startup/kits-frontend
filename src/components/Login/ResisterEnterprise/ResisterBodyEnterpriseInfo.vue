@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <div class="title">간편가입</div>
+    <div class="title">기업정보 등록</div>
     <div class="oneInputSet">
       <div class="inputTitle">이메일</div>
       <input
@@ -113,42 +113,13 @@
         화원가입하기
       </button>
 
-      <div>
-        <DetailModal :show="showServiceModal" @close="showServiceModal = false">
-          <h1 slot="title">서비스 이용 약관</h1>
-          <ServiceTermAgree slot="innerText"></ServiceTermAgree>
-        </DetailModal>
-        <DetailModal
-          :show="showPersonalModal"
-          @close="showPersonalModal = false"
-        >
-          <h1 slot="title">개인정보처리방침</h1>
-          <PersonalData slot="innerText"></PersonalData>
-        </DetailModal>
-        <DetailModal
-          :show="showThirdPartyModal"
-          @close="showThirdPartyModal = false"
-        >
-          <h1 slot="title">개인정보제3자 제공</h1>
-          <ThirdPartyAgree slot="innerText"></ThirdPartyAgree>
-        </DetailModal>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import DetailModal from "./DetailModal";
-import PersonalData from "./DetailText/PersonalData.vue";
-import ThirdPartyAgree from "./DetailText/ThirdPartyAgree.vue";
-import ServiceTermAgree from "./DetailText/ServiceTermAgree.vue";
-
 export default {
   components: {
-    DetailModal,
-    PersonalData,
-    ThirdPartyAgree,
-    ServiceTermAgree,
   },
   props: {
     emailFrom: {
