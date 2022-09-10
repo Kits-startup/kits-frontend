@@ -56,11 +56,51 @@
           <div class="star">
             <span v-for="i in 5 - index" v-bind:key="i">⭐</span>
           </div>
-          <div class="percentBox">
+          <b-progress :value="item" :max="100"></b-progress>
+          <div class="percent">{{ item }}%</div>
+          <!-- <div class="percentBox">
             <div class="percentBar blue" />
             <div class="percentBar gray" />
           </div>
-          <div class="percent">{{ item }}%</div>
+          <div class="percent">{{ item }}%</div> -->
+        </div>
+      </div>
+    </div>
+    <div class="reviewPageContainer">
+      <div class="reviewTitleContainer">
+        <div class="title">4.0 배울게 많은 회사</div>
+        <div class="star">
+          <span v-for="i in 4" v-bind:key="i">⭐</span>
+        </div>
+        <div class="date">2022.01.01</div>
+      </div>
+      <div class="pros proNcon">
+        <div class="title">장점</div>
+        <div class="content">
+          우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고
+          네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서
+          좋고 어째서 좋고 그래서 좋고
+          네네네네네네네네네네네네네네네네네네네네네네네네
+        </div>
+      </div>
+      <div class="cons proNcon">
+        <div class="title">단점</div>
+        <div class="content">
+          우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고
+          네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서
+          좋고 어째서 좋고 그래서 좋고
+          네네네네네네네네네네네네네네네네네네네네네네네네
+        </div>
+      </div>
+      <div class="paginationBox">
+        <div
+          class="page"
+          :class="{ active: clickedPage === i }"
+          v-for="i in 5"
+          v-bind:key="i"
+          @click="clickPage(i)"
+        >
+          {{ i }}
         </div>
       </div>
     </div>
@@ -89,13 +129,18 @@ export default {
         badComment: { percent: 80, content: "직장동료" },
         rateDetail: [50, 20, 15, 10, 5],
       },
+      clickedPage: 1,
     };
   },
   components: { KakaoMap },
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    clickPage: function (index) {
+      this.clickedPage = index;
+    },
+  },
 };
 </script>
 
@@ -216,6 +261,12 @@ export default {
     .star {
       width: 15%;
     }
+    .progress {
+      width: 300px;
+    }
+    .percent {
+      margin-left: 10px;
+    }
   }
   .percentBox {
     margin-left: 20px;
@@ -227,6 +278,59 @@ export default {
     .blue {
       background: #0376db;
       width: 50%;
+    }
+  }
+}
+.reviewPageContainer {
+  margin-top: 20px;
+  .reviewTitleContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 30px;
+      margin-right: 10px;
+    }
+    .star {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+    .date {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #9b9b9b;
+    }
+  }
+  .proNcon {
+    margin-top: 20px;
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 30px;
+    }
+  }
+  .paginationBox {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    .page {
+      width: 26px;
+      height: 26px;
+      border: 0.5px solid #e3e6e8;
+      border-radius: 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 4px;
+      color: #1042f1;
+      cursor: pointer;
+    }
+    .active {
+      color: white;
+      background-color: #0376db;
     }
   }
 }
