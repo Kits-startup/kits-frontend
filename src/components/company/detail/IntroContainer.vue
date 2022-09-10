@@ -67,29 +67,37 @@
       </div>
     </div>
     <div class="reviewPageContainer">
-      <div class="reviewTitleContainer">
-        <div class="title">4.0 배울게 많은 회사</div>
-        <div class="star">
-          <span v-for="i in 4" v-bind:key="i">⭐</span>
-        </div>
-        <div class="date">2022.01.01</div>
-      </div>
-      <div class="pros proNcon">
-        <div class="title">장점</div>
-        <div class="content">
-          우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고
-          네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서
-          좋고 어째서 좋고 그래서 좋고
-          네네네네네네네네네네네네네네네네네네네네네네네네
+      <div class="popupContainer" :class="{ show: !login }">
+        <div class="popup">
+          <p>로그인을 하시면 더 많은 정보를 보실 수 있습니다.</p>
+          <div class="loginBtn" @click="changeToLogin()">로그인 하러 가기</div>
         </div>
       </div>
-      <div class="cons proNcon">
-        <div class="title">단점</div>
-        <div class="content">
-          우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고
-          네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서
-          좋고 어째서 좋고 그래서 좋고
-          네네네네네네네네네네네네네네네네네네네네네네네네
+      <div class="blurPart" :class="{ blur: !login }">
+        <div class="reviewTitleContainer">
+          <div class="title">4.0 배울게 많은 회사</div>
+          <div class="star">
+            <span v-for="i in 4" v-bind:key="i">⭐</span>
+          </div>
+          <div class="date">2022.01.01</div>
+        </div>
+        <div class="pros proNcon">
+          <div class="title">장점</div>
+          <div class="content">
+            우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고
+            네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가
+            이래서 좋고 어째서 좋고 그래서 좋고
+            네네네네네네네네네네네네네네네네네네네네네네네네
+          </div>
+        </div>
+        <div class="cons proNcon">
+          <div class="title">단점</div>
+          <div class="content">
+            우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고
+            네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가
+            이래서 좋고 어째서 좋고 그래서 좋고
+            네네네네네네네네네네네네네네네네네네네네네네네네
+          </div>
         </div>
       </div>
       <div class="paginationBox">
@@ -130,6 +138,7 @@ export default {
         rateDetail: [50, 20, 15, 10, 5],
       },
       clickedPage: 1,
+      login: false,
     };
   },
   components: { KakaoMap },
@@ -139,6 +148,9 @@ export default {
   methods: {
     clickPage: function (index) {
       this.clickedPage = index;
+    },
+    changeToLogin: function () {
+      this.login = !this.login;
     },
   },
 };
@@ -281,8 +293,51 @@ export default {
     }
   }
 }
+.blur {
+  filter: blur(5px);
+  position: relative;
+  z-index: -1;
+}
+.popupContainer {
+  display: none;
+  z-index: 10;
+  position: absolute;
+}
+.popup {
+  width: 460px;
+  border: 1px solid #0376db;
+  border-radius: 15px;
+  background: #fff;
+  padding: 27px 0;
+  p {
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #515151;
+    margin-bottom: 21px;
+  }
+  .loginBtn {
+    text-align: center;
+    background: #0376db;
+    color: white;
+    width: 175px;
+    margin: auto;
+    padding: 13px 0;
+    border-radius: 29.5px;
+    cursor: pointer;
+  }
+}
+.show {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
 .reviewPageContainer {
   margin-top: 20px;
+  position: relative;
   .reviewTitleContainer {
     display: flex;
     align-items: center;
