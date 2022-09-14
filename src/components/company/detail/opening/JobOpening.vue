@@ -1,9 +1,11 @@
 <template>
   <div class="jobContainer">
     <div class="title">이 회사가 진행 중인 공고</div>
-    <job-posting />
-    <job-posting />
-    <job-posting />
+    <job-posting
+      v-for="(item, index) in postLists"
+      :key="index"
+      :jobInfo="item"
+    />
     <div class="moreBtn">채용 공고 더 보기</div>
   </div>
 </template>
@@ -13,7 +15,13 @@ import JobPosting from "./JobPosting.vue";
 export default {
   components: { JobPosting },
   data() {
-    return {};
+    return {
+      postLists: [
+        { leftDay: 7, position: "프론트" },
+        { leftDay: 5, position: "백엔드" },
+        { leftDay: 10, position: "기획자" },
+      ],
+    };
   },
 
   mounted() {},

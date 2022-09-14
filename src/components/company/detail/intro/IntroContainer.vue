@@ -1,25 +1,6 @@
 <template>
   <div class="infoContainer">
-    <div class="name">{{ companyInfo.name }}</div>
-    <div class="sub">
-      <div class="subname">{{ companyInfo.sub_name }}</div>
-      <div class="location">{{ companyInfo.location }}</div>
-    </div>
-    <div class="tagContainer">
-      <div v-for="(tag, i) in companyInfo.tags" v-bind:key="i" class="tag">
-        #{{ tag }}
-      </div>
-    </div>
-    <h5 style="font-size: 24px; line-height: 36px; font-weight: 500">
-      내용소개
-    </h5>
-    <p class="description">
-      {{ companyInfo.description }}<br />홈페이지:
-      <a v-bind:href="companyInfo.link" class="link">{{ companyInfo.link }}</a>
-    </p>
-    <KakaoMap />
-    <div class="map">지도가 들어갈 부분입니다..</div>
-    <!-- <CompanyMap /> -->
+    <IntroInfoContainer :companyInfo="companyInfo" />
     <div class="rateContainer">
       <div class="rate">
         <div class="rateNum">{{ companyInfo.rateNum }}</div>
@@ -36,36 +17,7 @@
       </div>
       <div class="submitBtn">리뷰 등록 하기</div>
     </div>
-    <div class="bottomContainer">
-      <div class="comment good">
-        <span style="font-weight: 700"
-          >{{ companyInfo.goodComment.percent }}%</span
-        >의 사람들이 {{ companyInfo.goodComment.content }}을(를) 칭찬합니다.
-      </div>
-      <div class="comment bad">
-        <span style="font-weight: 700"
-          >{{ companyInfo.badComment.percent }}%</span
-        >의 사람들이 {{ companyInfo.goodComment.content }}을(를) 아쉬워합니다.
-      </div>
-      <div class="rateDetailContainer">
-        <div
-          class="eachRate"
-          v-for="(item, index) in companyInfo.rateDetail"
-          v-bind:key="index"
-        >
-          <div class="star">
-            <span v-for="i in 5 - index" v-bind:key="i">⭐</span>
-          </div>
-          <b-progress :value="item" :max="100"></b-progress>
-          <div class="percent">{{ item }}%</div>
-          <!-- <div class="percentBox">
-            <div class="percentBar blue" />
-            <div class="percentBar gray" />
-          </div>
-          <div class="percent">{{ item }}%</div> -->
-        </div>
-      </div>
-    </div>
+    <RateContainer :companyInfo="companyInfo" />
     <div class="reviewPageContainer">
       <div class="popupContainer" :class="{ show: !login }">
         <div class="popup">
@@ -74,29 +26,45 @@
         </div>
       </div>
       <div class="blurPart" :class="{ blur: !login }">
+        <div
+          class="myReview"
+          v-if="companyInfo.review[clickedPage - 1].userId === 'kits'"
+        >
+          내가 쓴 댓글
+        </div>
         <div class="reviewTitleContainer">
-          <div class="title">4.0 배울게 많은 회사</div>
-          <div class="star">
-            <span v-for="i in 4" v-bind:key="i">⭐</span>
+          <div class="leftPart">
+            <div class="title">
+              <span
+                >{{ companyInfo.review[clickedPage - 1].rate.toFixed(1)
+                }}{{ " " }}</span
+              >{{ companyInfo.review[clickedPage - 1].title }}
+            </div>
+            <div class="star">
+              <span v-for="i in 4" v-bind:key="i">⭐</span>
+            </div>
+            <div class="date">
+              {{ companyInfo.review[clickedPage - 1].date }}
+            </div>
           </div>
-          <div class="date">2022.01.01</div>
+          <div
+            class="rightPart"
+            v-if="companyInfo.review[clickedPage - 1].userId === 'kits'"
+          >
+            <div class="btn edit">수정하기</div>
+            <div class="btn delete">삭제하기</div>
+          </div>
         </div>
         <div class="pros proNcon">
           <div class="title">장점</div>
           <div class="content">
-            우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고
-            네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가
-            이래서 좋고 어째서 좋고 그래서 좋고
-            네네네네네네네네네네네네네네네네네네네네네네네네
+            {{ companyInfo.review[clickedPage - 1].cons }}
           </div>
         </div>
         <div class="cons proNcon">
           <div class="title">단점</div>
           <div class="content">
-            우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고
-            네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가
-            이래서 좋고 어째서 좋고 그래서 좋고
-            네네네네네네네네네네네네네네네네네네네네네네네네
+            {{ companyInfo.review[clickedPage - 1].pros }}
           </div>
         </div>
       </div>
@@ -117,7 +85,9 @@
 
 <script>
 // import CompanyMap from "./CompanyMap.vue";
-import KakaoMap from "./KaKaoMap.vue";
+// import KakaoMap from "./KaKaoMap.vue";
+import IntroInfoContainer from "./IntroInfoContainer.vue";
+import RateContainer from "./RateContainer.vue";
 export default {
   data() {
     return {
@@ -136,17 +106,64 @@ export default {
         goodComment: { percent: 93, content: "근무환경" },
         badComment: { percent: 80, content: "직장동료" },
         rateDetail: [50, 20, 15, 10, 5],
+        review: [
+          {
+            userId: "kits",
+            rate: 4,
+            title: "1번 리뷰)배울게 많은 회사",
+            date: "2022.01.01",
+            pros: " 우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+            cons: " 우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+          },
+          {
+            userId: "kits2",
+            rate: 2,
+            title: "2번 리뷰)최악인 많은 회사",
+            date: "2022.10.01",
+            pros: " 우리회사는 좋은 점이 없고 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+            cons: " 우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+          },
+          {
+            userId: "kits3",
+            rate: 3,
+            title: "3번 리뷰)단점이 많은 회사",
+            date: "2021.10.01",
+            pros: " 우리회사는 좋은 점이 없고 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+            cons: " 우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+          },
+          {
+            userId: "kits4",
+            rate: 4,
+            title: "4번 리뷰)최악인 많은 회사",
+            date: "2022.10.01",
+            pros: " 우리회사는 좋은 점이 없고 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+            cons: " 우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+          },
+          {
+            userId: "kits5",
+            rate: 5,
+            title: "5번 리뷰)최악인 많은 회사",
+            date: "2022.10.01",
+            pros: " 우리회사는 좋은 점이 없고 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+            cons: " 우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네우리회사는 뭐가 이래서 좋고 어째서 좋고 그래서 좋고 네네네네네네네네네네네네네네네네네네네네네네네네",
+          },
+        ],
       },
       clickedPage: 1,
       login: false,
     };
   },
-  components: { KakaoMap },
+  components: {
+    IntroInfoContainer,
+    RateContainer,
+    // KakaoMap
+  },
 
   mounted() {},
 
   methods: {
     clickPage: function (index) {
+      console.log(index);
       this.clickedPage = index;
     },
     changeToLogin: function () {
@@ -164,54 +181,7 @@ export default {
   padding: 50px;
   font-family: "Noto Sans CJK KR";
 }
-.name {
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 59px;
-}
-.sub {
-  display: flex;
-  align-items: center;
-  margin-top: 12px;
-  margin-bottom: 22px;
-  .subname {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    margin-right: 15px;
-  }
-  .location {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    color: #9b9b9b;
-  }
-}
-.tagContainer {
-  display: flex;
-  margin-bottom: 35px;
-  .tag {
-    border: 1px solid #0376db;
-    border-radius: 28.5px;
-    padding: 10px 25px;
-    margin-right: 18px;
-    color: #515151;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-  }
-}
-.description {
-  margin-top: 20px;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  white-space: pre-line;
-  .link {
-    text-decoration: none;
-    color: #0376db;
-  }
-}
+
 .rateContainer {
   display: flex;
   justify-content: space-between;
@@ -251,48 +221,7 @@ export default {
     line-height: 33px;
   }
 }
-.bottomContainer {
-  margin-top: 30px;
-  border-bottom: 1px solid #d9d9d9;
-  padding-bottom: 30px;
-  .comment {
-    font-size: 24px;
-    line-height: 36px;
-    margin-bottom: 10px;
-  }
-  .strong {
-    font-weight: 700;
-  }
-}
-.rateDetailContainer {
-  margin-top: 30px;
-  .eachRate {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    .star {
-      width: 15%;
-    }
-    .progress {
-      width: 300px;
-    }
-    .percent {
-      margin-left: 10px;
-    }
-  }
-  .percentBox {
-    margin-left: 20px;
-    margin-right: 10px;
-    display: flex;
-    width: 300px;
-    background: #9b9b9b;
-    height: 10px;
-    .blue {
-      background: #0376db;
-      width: 50%;
-    }
-  }
-}
+
 .blur {
   filter: blur(5px);
   position: relative;
@@ -341,7 +270,22 @@ export default {
   .reviewTitleContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 30px;
+    .leftPart {
+      display: flex;
+      align-items: center;
+    }
+    .rightPart {
+      display: flex;
+      .btn {
+        color: #0376db;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 27px;
+        text-decoration: underline;
+      }
+    }
     .title {
       font-size: 20px;
       font-weight: 700;
@@ -387,6 +331,12 @@ export default {
       color: white;
       background-color: #0376db;
     }
+  }
+  .myReview {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0376db;
   }
 }
 </style>

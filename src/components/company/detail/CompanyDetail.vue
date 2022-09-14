@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import IntroContainer from "./IntroContainer.vue";
-import JobOpening from "./JobOpening.vue";
+import IntroContainer from "./intro/IntroContainer.vue";
+import JobOpening from "./opening/JobOpening.vue";
 export default {
   components: {
     IntroContainer,

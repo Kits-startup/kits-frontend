@@ -1,19 +1,23 @@
 <template>
   <div class="jopPostingContainer">
-    <div class="d-day">D-{{ leftDay }}</div>
-    <div class="position">{{ position }}를 구합니다.</div>
+    <div class="d-day">D-{{ jobInfo.leftDay }}</div>
+    <div class="position">{{ jobInfo.position }}를 구합니다.</div>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-      leftDay: 7,
-      position: "백엔드 개발자",
-    };
+    return {};
   },
-
+  props: {
+    jobInfo: {
+      type: Object,
+      default: () => {
+        return { leftDay: "미정", position: "미정" };
+      },
+    },
+  },
   mounted() {},
 
   methods: {},
