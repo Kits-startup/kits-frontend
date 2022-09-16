@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style>
-main {
+#app {
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 500;
