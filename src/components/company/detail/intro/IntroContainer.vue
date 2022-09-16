@@ -1,31 +1,14 @@
 <template>
   <div class="infoContainer">
-    <div class="reviewCompleteModal" v-if="showCompleteModal">
-      <div class="complete">
-        <img src="@/assets/check.png" alt="" />
-        <div
-          style="
-            font-weight: 500;
-            font-size: 32px;
-            line-height: 47px;
-            color: #000000;
-          "
-        >
-          리뷰 등록 완료
-        </div>
-        <div
-          style="
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 27px;
-            color: #515151;
-            margin-top: 7px;
-          "
-        >
-          리뷰 등록이 완료 되었습니다!
-        </div>
-      </div>
-    </div>
+    <review-complete
+      v-if="showCompleteModal"
+      :title="modalTitle"
+      :subTitle="modalSubTitle"
+    />
+    <delete-review-modal
+      v-if="showDeleteModal"
+      @emitAnswer="getAnswerFromModal"
+    />
     <b-modal id="reviewModal" hide-footer hide-header centered>
       <div class="reviewModalContainer">
         <div class="closeX" @click="$bvModal.hide('reviewModal')">X</div>
@@ -107,7 +90,7 @@
             submitReview();
           "
         >
-          리뷰 등록하기
+          {{ modalType === "edit" ? "리뷰 수정하기" : "리뷰 등록하기" }}
         </div>
       </div>
     </b-modal>
@@ -166,8 +149,13 @@
             class="rightPart"
             v-if="companyInfo.review[clickedPage - 1].userId === 'kits'"
           >
-            <div class="btn edit">수정하기</div>
-            <div class="btn delete">삭제하기</div>
+            <div
+              class="btn edit"
+              @click="editReview(companyInfo.review[clickedPage - 1])"
+            >
+              수정하기
+            </div>
+            <div class="btn delete" @click="deleteReview">삭제하기</div>
           </div>
         </div>
         <div class="pros proNcon">
@@ -203,6 +191,9 @@
 // import KakaoMap from "./KaKaoMap.vue";
 import IntroInfoContainer from "./IntroInfoContainer.vue";
 import RateContainer from "./RateContainer.vue";
+import ReviewComplete from "../../../modal/ReviewComplete.vue";
+import DeleteReviewModal from "../../../modal/DeleteReviewModal.vue";
+// import ReviewWriteModal from "../../../modal/ReviewWriteModal.vue";
 export default {
   data() {
     return {
@@ -276,11 +267,18 @@ export default {
         cons: "",
       },
       showCompleteModal: false,
+      modalType: "",
+      modalTitle: "리뷰 등록 완료",
+      modalSubTitle: "리뷰 등록이 완료되었습니다",
+      showDeleteModal: false,
     };
   },
   components: {
     IntroInfoContainer,
     RateContainer,
+    ReviewComplete,
+    DeleteReviewModal,
+    // ReviewWriteModal,
     // KakaoMap
   },
 
@@ -322,8 +320,40 @@ export default {
         3;
     },
     submitReview: function () {
+      if (this.modalType === "edit") {
+        this.modalTitle = "수정이 완료되었습니다.";
+        this.modalSubTitle = "리뷰 내용 수정이 완료 되었습니다.";
+        setTimeout(() => {
+          this.showCompleteModal = false;
+        }, 1000);
+      } else {
+        setTimeout(() => this.$router.push("home"), 3000);
+      }
       this.showCompleteModal = true;
-      setTimeout(() => this.$router.push("home"), 3000);
+    },
+    editReview: function (data) {
+      console.log(data);
+      this.write_review.pros = data.pros;
+      this.write_review.cons = data.cons;
+      this.modalType = "edit";
+      this.$bvModal.show("reviewModal");
+    },
+    deleteReview: function () {
+      this.showDeleteModal = true;
+    },
+    getAnswerFromModal: function (value) {
+      console.log(value);
+      if (value) {
+        this.modalTitle = "삭제되었습니다.";
+        this.modalSubTitle = "리뷰가 삭제 되었습니다.";
+        this.showDeleteModal = false;
+        this.showCompleteModal = true;
+        setTimeout(() => {
+          this.showCompleteModal = false;
+        }, 1000);
+      } else {
+        this.showDeleteModal = false;
+      }
     },
   },
 };
@@ -336,6 +366,7 @@ export default {
   border-radius: 15px;
   padding: 50px;
   font-family: "Noto Sans CJK KR";
+  margin-bottom: 100px;
 }
 
 .rateContainer {
@@ -581,29 +612,6 @@ export default {
     font-weight: 500;
     font-size: 18px;
     line-height: 27px;
-  }
-}
-.reviewCompleteModal {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgb(85, 85, 85);
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .complete {
-    background: white;
-    width: 628px;
-    height: 275px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    justify-content: center;
   }
 }
 </style>
