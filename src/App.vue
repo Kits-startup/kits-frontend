@@ -11,7 +11,6 @@
     </header>
     <MainHeader></MainHeader>
     <router-view></router-view>
-    hi kiper!
     <test-vue></test-vue>
   </div>
 </template>
@@ -22,7 +21,7 @@ import testVue from "./testVue.vue";
 export default {
   components: {
     MainHeader,
-    testVue
+    testVue,
   },
 };
 </script>
