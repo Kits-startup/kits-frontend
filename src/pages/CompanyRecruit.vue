@@ -4,7 +4,7 @@
       <left-container-vue :id="id" :companyInfo="companyInfo" />
       <right-card-vue :workInfo="workInfo" />
     </div>
-    <similar-recruit-vue />
+    <similar-recruit-vue :similarLists="similarLists" />
   </div>
 </template>
 
@@ -70,6 +70,40 @@ export default {
         { label: "직무", value: "백엔드 개발자" },
         { label: "고용형태", value: "정규직" },
         { label: "연봉", value: "3,200만원" },
+      ],
+      similarLists: [
+        {
+          id: 1,
+          name: "아비즈",
+          sub_name: "온라인 쇼핑몰",
+          location: "경기 한국",
+          thumbnail:
+            "https://img.danawa.com/new/danawa_corp/img/img_rolling_bnr3_2.jpg",
+        },
+        {
+          id: 2,
+          name: "카이퍼",
+          sub_name: "웹개발 회사",
+          location: "서울 한국",
+          thumbnail:
+            "https://img.danawa.com/new/danawa_corp/img/img_rolling_bnr3_2.jpg",
+        },
+        {
+          id: 3,
+          name: "비아즈",
+          sub_name: "오프라인 쇼핑몰",
+          location: "전주 한국",
+          thumbnail:
+            "https://img.danawa.com/new/danawa_corp/img/img_rolling_bnr3_2.jpg",
+        },
+        {
+          id: 4,
+          name: "아비즈",
+          sub_name: "온라인 쇼핑몰",
+          location: "경기 한국",
+          thumbnail:
+            "https://img.danawa.com/new/danawa_corp/img/img_rolling_bnr3_2.jpg",
+        },
       ],
     };
   },
