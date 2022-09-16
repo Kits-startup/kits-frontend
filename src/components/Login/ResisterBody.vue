@@ -17,9 +17,10 @@
       <input
         type="text"
         class="inputBox"
-        v-bind:class="{ wrongEmailForm: this.test }"
         placeholder="이메일 인증번호를 입력해 주세요."
       />
+        <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
+
       <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
     </div>
 
@@ -28,15 +29,12 @@
       <input
         type="password"
         class="inputBox passwordBox"
-        v-bind:class="{ wrongEmailForm: this.test }"
         placeholder="비밀번호를 입력해 주세요."
       />
-      <div class="passwordCaution" v-bind:class="{ wrongFormWarn: this.test }">
-        {{
-          test
-            ? "비밀번호가 올바르지 않습니다"
-            : "영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."
-        }}
+        <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
+
+      <div class="passwordCaution" v-bind:class="{wrongFormWarn:this.test}">
+        {{test?"비밀번호가 올바르지 않습니다":"영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."}}
       </div>
     </div>
 
@@ -46,7 +44,6 @@
       <input
         type="password"
         class="inputBox"
-        v-bind:class="{ wrongEmailForm: this.test }"
         placeholder="휴대폰 번호를 입력해 주세요."
       />
       <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
@@ -237,11 +234,12 @@ export default {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #515151;
   padding: 0;
   padding-left: 19px;
 }
-
+.inputBox::placeholder{
+    color: #515151;
+}
 .oneInputSet {
   display: flex;
   flex-direction: column;
@@ -257,7 +255,7 @@ export default {
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
-  margin-top: 4px;
+  margin-top:4px;
   color: #515151;
   margin-bottom: 5px;
 }
@@ -355,8 +353,8 @@ export default {
   font-size: 12px;
   line-height: 18px;
   height: 18px;
-  margin-top: 4px;
-  margin-bottom: 5px;
+  margin-top:4px;
+  margin-bottom:5px;
   color: #e60505;
 }
 </style>
