@@ -12,14 +12,17 @@
     <MainHeader></MainHeader>
     <router-view></router-view>
     hi kiper!
+    <test-vue></test-vue>
   </div>
 </template>
 
 <script>
 import MainHeader from "./components/EmployerUser/MainHeader/MainHeader.vue";
+import testVue from "./testVue.vue";
 export default {
   components: {
     MainHeader,
+    testVue
   },
 };
 </script>
