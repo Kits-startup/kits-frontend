@@ -221,9 +221,11 @@ export default {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #515151;
   padding: 0;
   padding-left: 19px;
+}
+.inputBox::placeholder{
+    color: #515151;
 }
 
 .oneInputSet {
