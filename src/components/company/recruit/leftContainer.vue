@@ -7,10 +7,17 @@
       :label="item.label"
       :lists="item.lists"
     />
+    <div class="sep" />
+    <bottom-container-vue
+      :date="companyInfo.date"
+      :etc="companyInfo.etc"
+      :location="companyInfo.work_location"
+    />
   </div>
 </template>
 
 <script>
+import BottomContainerVue from "./BottomContainer.vue";
 import DetailVue from "./Detail.vue";
 import InfoContainerVue from "./InfoContainer.vue";
 export default {
@@ -21,6 +28,7 @@ export default {
   components: {
     InfoContainerVue,
     DetailVue,
+    BottomContainerVue,
   },
 };
 </script>
@@ -28,10 +36,14 @@ export default {
 <style lang="scss" scoped>
 .leftContainer {
   width: 881px;
-  height: 1945px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   padding: 50px;
   margin-bottom: 100px;
+}
+.sep {
+  width: 100%;
+  height: 1px;
+  background: #d9d9d9;
 }
 </style>

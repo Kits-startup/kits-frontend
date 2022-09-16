@@ -1,17 +1,23 @@
 <template>
-  <div style="display: flex; justify-content: center">
+  <div style="display: flex; align-items: center; flex-direction: column">
     <div class="wholeContainer">
       <left-container-vue :id="id" :companyInfo="companyInfo" />
-      <right-card-vue />
+      <right-card-vue :workInfo="workInfo" />
     </div>
+    <similar-recruit-vue />
   </div>
 </template>
 
 <script>
 import leftContainerVue from "@/components/company/recruit/leftContainer.vue";
 import rightCardVue from "@/components/company/recruit/rightCard.vue";
+import SimilarRecruitVue from "@/components/company/recruit/SimilarRecruit.vue";
 export default {
-  components: { leftContainerVue, rightCardVue },
+  components: {
+    leftContainerVue,
+    rightCardVue,
+    SimilarRecruitVue,
+  },
   props: ["id"],
   data: () => {
     return {
@@ -55,7 +61,16 @@ export default {
             ],
           },
         ],
+        date: "2022.08.09",
+        etc: "기타사항...",
+        work_location: "경기도 성남시 분당구 느티로51번길 4-11 (정자동)",
       },
+      workInfo: [
+        { label: "직군", value: "개발자" },
+        { label: "직무", value: "백엔드 개발자" },
+        { label: "고용형태", value: "정규직" },
+        { label: "연봉", value: "3,200만원" },
+      ],
     };
   },
 };
