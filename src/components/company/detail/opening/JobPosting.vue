@@ -1,5 +1,5 @@
 <template>
-  <div class="jopPostingContainer">
+  <div class="jopPostingContainer" @click="gotoDetail">
     <div class="d-day">D-{{ jobInfo.leftDay }}</div>
     <div class="position">{{ jobInfo.position }}를 구합니다.</div>
   </div>
@@ -14,13 +14,17 @@ export default {
     jobInfo: {
       type: Object,
       default: () => {
-        return { leftDay: "미정", position: "미정" };
+        return { leftDay: "미정", position: "미정", id: null };
       },
     },
   },
   mounted() {},
 
-  methods: {},
+  methods: {
+    gotoDetail() {
+      this.$router.push(`/company_recruit/${this.jobInfo.id}`);
+    },
+  },
 };
 </script>
 

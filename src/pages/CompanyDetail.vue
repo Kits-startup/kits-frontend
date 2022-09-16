@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import IntroContainer from "./intro/IntroContainer.vue";
-import JobOpening from "./opening/JobOpening.vue";
+import IntroContainer from "../components/company/detail/intro/IntroContainer.vue";
+import JobOpening from "../components/company/detail/opening/JobOpening.vue";
 export default {
   components: {
     IntroContainer,
@@ -18,7 +18,7 @@ export default {
   data() {
     return {};
   },
-
+  props: ["id"],
   methods: {},
 };
 </script>

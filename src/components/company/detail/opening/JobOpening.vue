@@ -17,9 +17,9 @@ export default {
   data() {
     return {
       postLists: [
-        { leftDay: 7, position: "프론트" },
-        { leftDay: 5, position: "백엔드" },
-        { leftDay: 10, position: "기획자" },
+        { id: 1, leftDay: 7, position: "프론트" },
+        { id: 2, leftDay: 5, position: "백엔드" },
+        { id: 3, leftDay: 10, position: "기획자" },
       ],
     };
   },

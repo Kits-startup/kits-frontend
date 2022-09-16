@@ -14,7 +14,10 @@
         </modal>
       </div>
     </div>
-    <div class="gotoCompany" @click="() => this.$router.push('company_detail')">
+    <div
+      class="gotoCompany"
+      @click="() => this.$router.push('/company_detail/1')"
+    >
       기업 소개 페이지 확인하러 가기
     </div>
   </div>
