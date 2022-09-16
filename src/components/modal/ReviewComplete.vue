@@ -2,14 +2,7 @@
   <div class="reviewCompleteModal">
     <div class="complete">
       <img src="@/assets/check.png" alt="check btn" />
-      <div
-        style="
-          font-weight: 500;
-          font-size: 32px;
-          line-height: 47px;
-          color: #000000;
-        "
-      >
+      <div style="font-size: 32px; line-height: 47px; color: #000000">
         {{ title }}
       </div>
       <div

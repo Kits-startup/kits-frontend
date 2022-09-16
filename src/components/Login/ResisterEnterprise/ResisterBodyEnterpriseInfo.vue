@@ -228,7 +228,6 @@ export default {
 
 <style scoped>
 * {
-  font-family: "Noto Sans KR";
 }
 
 .body {
@@ -248,9 +247,6 @@ export default {
 }
 
 .title {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 500;
   font-size: 26px;
 
   line-height: 38px;
@@ -259,9 +255,6 @@ export default {
 }
 
 .inputTitle {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 500;
   font-size: 20px;
   line-height: 30px;
   margin-bottom: 10px;
@@ -273,7 +266,7 @@ export default {
   height: 55px;
   border: 1px solid #0376db;
   border-radius: 3px;
-  font-style: normal;
+
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -296,8 +289,6 @@ export default {
   margin-bottom: 4px;
 }
 .passwordCaution {
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -328,8 +319,7 @@ export default {
   outline: 0;
   border: 0;
   border-radius: 3px;
-  font-style: normal;
-  font-weight: 500;
+
   font-size: 18px;
   line-height: 27px;
   color: #ffffff;
@@ -347,8 +337,7 @@ export default {
 .checkBoxText {
   display: flex;
   margin-bottom: 10px;
-  font-family: "Noto Sans KR";
-  font-style: normal;
+
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -360,7 +349,6 @@ export default {
 }
 
 .agreeALlcss {
-  font-weight: 500;
   color: #0376db;
 }
 
@@ -372,7 +360,7 @@ export default {
 
 .detail {
   margin-right: 39px;
-  font-weight: 500;
+
   font-size: 18px;
   line-height: 27px;
   text-decoration-line: underline;
@@ -386,8 +374,6 @@ export default {
 }
 
 .wrongFormWarn {
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -423,7 +409,7 @@ export default {
 
 .introLimit {
   text-align: right;
-  font-style: normal;
+
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
@@ -459,7 +445,6 @@ export default {
 }
 
 .imgTitle {
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   height: 27px;

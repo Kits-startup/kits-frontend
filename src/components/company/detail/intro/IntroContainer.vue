@@ -365,7 +365,6 @@ export default {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   padding: 50px;
-  font-family: "Noto Sans CJK KR";
   margin-bottom: 100px;
 }
 
@@ -381,7 +380,6 @@ export default {
     align-items: center;
   }
   .rateNum {
-    font-weight: 500;
     font-size: 40px;
     line-height: 59px;
     margin-right: 10px;
@@ -394,7 +392,6 @@ export default {
     }
   }
   .reviewNum {
-    font-weight: 500;
     font-size: 20px;
     line-height: 30px;
   }
@@ -403,7 +400,7 @@ export default {
     border-radius: 29.5px;
     padding: 15px 60px;
     color: white;
-    font-weight: 500;
+
     font-size: 22px;
     line-height: 33px;
   }
@@ -427,7 +424,7 @@ export default {
   padding: 27px 0;
   p {
     text-align: center;
-    font-weight: 500;
+
     font-size: 18px;
     line-height: 27px;
     color: #515151;
@@ -467,7 +464,7 @@ export default {
       display: flex;
       .btn {
         color: #0376db;
-        font-weight: 500;
+
         font-size: 18px;
         line-height: 27px;
         text-decoration: underline;
@@ -484,7 +481,6 @@ export default {
       margin-right: 10px;
     }
     .date {
-      font-weight: 500;
       font-size: 16px;
       line-height: 24px;
       color: #9b9b9b;
@@ -520,7 +516,6 @@ export default {
     }
   }
   .myReview {
-    font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     color: #0376db;
@@ -543,7 +538,7 @@ export default {
   }
   .label {
     width: 50%;
-    font-weight: 500;
+
     font-size: 22px;
     line-height: 33px;
     color: #0376db;
@@ -560,7 +555,7 @@ export default {
   }
   .totalPotint {
     align-self: flex-end;
-    font-weight: 500;
+
     font-size: 16px;
     line-height: 24px;
     color: #878787;
@@ -576,7 +571,7 @@ export default {
   }
   .inputLabel {
     margin-top: 30px;
-    font-weight: 500;
+
     font-size: 18px;
     line-height: 27px;
     color: #878787;
@@ -609,7 +604,7 @@ export default {
     margin: auto;
     color: white;
     cursor: pointer;
-    font-weight: 500;
+
     font-size: 18px;
     line-height: 27px;
   }

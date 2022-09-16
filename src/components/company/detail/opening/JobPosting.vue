@@ -33,8 +33,6 @@ export default {
   border: 1px solid #0376db;
   border-radius: 15px;
   padding: 17px 22px;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;

@@ -2,14 +2,7 @@
   <div class="deleteContainer">
     <div class="box">
       <img src="@/assets/warning.png" alt="" />
-      <div
-        style="
-          font-weight: 500;
-          font-size: 28px;
-          line-height: 41px;
-          color: #515151;
-        "
-      >
+      <div style="font-size: 28px; line-height: 41px; color: #515151">
         리뷰를 삭제 하시겠습니까?
       </div>
       <div class="btnContainer">

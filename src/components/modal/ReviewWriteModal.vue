@@ -135,7 +135,7 @@ export default {
   }
   .label {
     width: 50%;
-    font-weight: 500;
+
     font-size: 22px;
     line-height: 33px;
     color: #0376db;
@@ -152,7 +152,7 @@ export default {
   }
   .totalPotint {
     align-self: flex-end;
-    font-weight: 500;
+
     font-size: 16px;
     line-height: 24px;
     color: #878787;
@@ -168,7 +168,7 @@ export default {
   }
   .inputLabel {
     margin-top: 30px;
-    font-weight: 500;
+
     font-size: 18px;
     line-height: 27px;
     color: #878787;
@@ -201,7 +201,7 @@ export default {
     margin: auto;
     color: white;
     cursor: pointer;
-    font-weight: 500;
+
     font-size: 18px;
     line-height: 27px;
   }

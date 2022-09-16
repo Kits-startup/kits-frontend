@@ -19,7 +19,7 @@
         class="inputBox"
         placeholder="이메일 인증번호를 입력해 주세요."
       />
-        <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
+      <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
 
       <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
     </div>
@@ -31,10 +31,14 @@
         class="inputBox passwordBox"
         placeholder="비밀번호를 입력해 주세요."
       />
-        <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
+      <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
 
-      <div class="passwordCaution" v-bind:class="{wrongFormWarn:this.test}">
-        {{test?"비밀번호가 올바르지 않습니다":"영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."}}
+      <div class="passwordCaution" v-bind:class="{ wrongFormWarn: this.test }">
+        {{
+          test
+            ? "비밀번호가 올바르지 않습니다"
+            : "영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."
+        }}
       </div>
     </div>
 
@@ -205,9 +209,6 @@ export default {
 }
 
 .title {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 500;
   font-size: 26px;
 
   line-height: 38px;
@@ -216,8 +217,6 @@ export default {
 }
 
 .inputTitle {
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -230,15 +229,15 @@ export default {
   height: 55px;
   border: 1px solid #0376db;
   border-radius: 3px;
-  font-style: normal;
+
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   padding: 0;
   padding-left: 19px;
 }
-.inputBox::placeholder{
-    color: #515151;
+.inputBox::placeholder {
+  color: #515151;
 }
 .oneInputSet {
   display: flex;
@@ -250,12 +249,10 @@ export default {
   margin-bottom: 4px;
 }
 .passwordCaution {
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
-  margin-top:4px;
+  margin-top: 4px;
   color: #515151;
   margin-bottom: 5px;
 }
@@ -282,8 +279,7 @@ export default {
   outline: 0;
   border: 0;
   border-radius: 3px;
-  font-style: normal;
-  font-weight: 500;
+
   font-size: 18px;
   line-height: 27px;
   color: #ffffff;
@@ -302,8 +298,7 @@ export default {
 .checkBoxText {
   display: flex;
   margin-bottom: 10px;
-  font-family: "Noto Sans KR";
-  font-style: normal;
+
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -315,7 +310,6 @@ export default {
 }
 
 .agreeALlcss {
-  font-weight: 500;
   color: #0376db;
 }
 
@@ -327,7 +321,7 @@ export default {
 
 .detail {
   margin-right: 39px;
-  font-weight: 500;
+
   font-size: 18px;
   line-height: 27px;
   text-decoration-line: underline;
@@ -347,14 +341,12 @@ export default {
 }
 
 .wrongFormWarn {
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
   height: 18px;
-  margin-top:4px;
-  margin-bottom:5px;
+  margin-top: 4px;
+  margin-bottom: 5px;
   color: #e60505;
 }
 </style>

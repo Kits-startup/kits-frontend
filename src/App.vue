@@ -26,4 +26,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+main {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+}
+</style>

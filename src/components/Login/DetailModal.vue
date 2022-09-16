@@ -56,8 +56,6 @@ export default {
   margin-top: 18px;
 }
 .modal-header h1 {
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 24px;
   margin-left: 8px;
