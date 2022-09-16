@@ -8,7 +8,6 @@
         rel="stylesheet"
       />
       <!-- font -->
-      
     </header>
     <MainHeader></MainHeader>
     <router-view></router-view>

@@ -12,6 +12,11 @@ export default {
     test() {
       let re =
         /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+      console.log(
+        this.inputEmail != "" &&
+          this.inputEmail != "undefined" &&
+          !re.test(this.inputEmail)
+      );
       return (
         this.inputEmail != "" &&
         this.inputEmail != "undefined" &&
@@ -26,6 +31,7 @@ export default {
   methods: {
     goResister() {
       this.$emit("close");
+<<<<<<< HEAD
       if (this.$store.state.isEmployer) {
         this.$router
           .push({ name: "Resister", params: { emailFrom: this.inputEmail } })
@@ -38,6 +44,11 @@ export default {
           })
           .catch(() => {});
       }
+=======
+      this.$router
+        .push({ name: "Resister", params: { emailFrom: this.inputEmail } })
+        .catch(() => {}); //이미 resister form일때 오류발생
+>>>>>>> 053c22dee1f0b4491515702e74bf46848ee24b1a
     },
   },
 };
