@@ -191,7 +191,7 @@
 // import KakaoMap from "./KaKaoMap.vue";
 import IntroInfoContainer from "./IntroInfoContainer.vue";
 import RateContainer from "./RateContainer.vue";
-import ReviewComplete from "../../../modal/ReviewComplete.vue";
+import ReviewComplete from "../../../modal/CompleteModal.vue";
 import DeleteReviewModal from "../../../modal/DeleteReviewModal.vue";
 // import ReviewWriteModal from "../../../modal/ReviewWriteModal.vue";
 export default {

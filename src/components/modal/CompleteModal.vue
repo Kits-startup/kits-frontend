@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "ReviewComplete",
+  name: "CompleteModal",
   props: {
     title: String,
     subTitle: String,

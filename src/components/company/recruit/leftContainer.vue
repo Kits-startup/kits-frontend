@@ -7,6 +7,25 @@
       :label="item.label"
       :lists="item.lists"
     />
+    <div
+      class="label"
+      style="font-size: 24px; line-height: 33px; margin-bottom: 20px"
+    >
+      선호성향
+    </div>
+    <div class="listbox">
+      <div
+        class="list"
+        style="
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 27px;
+          color: #515151;
+        "
+      >
+        • 내향성 100%
+      </div>
+    </div>
     <div class="sep" />
     <bottom-container-vue
       :date="companyInfo.date"
@@ -45,5 +64,6 @@ export default {
   width: 100%;
   height: 1px;
   background: #d9d9d9;
+  margin-top: 53px;
 }
 </style>
