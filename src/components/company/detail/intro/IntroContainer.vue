@@ -1,5 +1,99 @@
 <template>
   <div class="infoContainer">
+    <review-complete
+      v-if="showCompleteModal"
+      :title="modalTitle"
+      :subTitle="modalSubTitle"
+    />
+    <delete-review-modal
+      v-if="showDeleteModal"
+      @emitAnswer="getAnswerFromModal"
+    />
+    <b-modal id="reviewModal" hide-footer hide-header centered>
+      <div class="reviewModalContainer">
+        <div class="closeX" @click="$bvModal.hide('reviewModal')">X</div>
+        <div class="rateNTotal">
+          <div class="ratingBoxes">
+            <div class="ratingBox">
+              <div class="label">일과 삶의 균형</div>
+              <div class="starBox">
+                <div
+                  class="star"
+                  v-for="i in 5"
+                  v-bind:key="i"
+                  @click="rateChange_balance(i)"
+                  v-bind:class="i <= write_review.balance ? 'color' : null"
+                >
+                  ★
+                </div>
+              </div>
+            </div>
+            <div class="ratingBox">
+              <div class="label">보상과 복지</div>
+              <div class="starBox">
+                <div
+                  class="star"
+                  v-for="i in 5"
+                  v-bind:key="i"
+                  @click="rateChange_reward(i)"
+                  v-bind:class="i <= write_review.reward ? 'color' : null"
+                >
+                  ★
+                </div>
+              </div>
+            </div>
+            <div class="ratingBox">
+              <div class="label">동료와 문화</div>
+              <div class="starBox">
+                <div
+                  class="star"
+                  v-for="i in 5"
+                  v-bind:key="i"
+                  @click="rateChange_culture(i)"
+                  v-bind:class="i <= write_review.culture ? 'color' : null"
+                >
+                  ★
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="totalPotint"
+            >나의 점수:
+            <span class="blue"> {{ write_review.total.toFixed(1) }}</span></span
+          >
+        </div>
+        <div class="inputLabel">장점</div>
+        <textarea
+          name="pros"
+          id="pros"
+          class="proNCon"
+          cols="50"
+          placeholder="리뷰를 남겨주세요. (장점)"
+          v-model="write_review.pros"
+        />
+        <div class="letterNum">{{ write_review.pros.length }}/500</div>
+        <div class="inputLabel">단점</div>
+        <textarea
+          name="cons"
+          id="cons"
+          class="proNCon"
+          cols="50"
+          placeholder="리뷰를 남겨주세요. (단점)"
+          v-model="write_review.cons"
+        />
+        <div class="letterNum">{{ write_review.cons.length }}/500</div>
+        <div class="warn">ℹ️허위사실로 작성시 불이익이 가해질 수 있습니다.</div>
+        <div
+          class="review_submit"
+          @click="
+            $bvModal.hide('reviewModal');
+            submitReview();
+          "
+        >
+          {{ modalType === "edit" ? "리뷰 수정하기" : "리뷰 등록하기" }}
+        </div>
+      </div>
+    </b-modal>
     <IntroInfoContainer :companyInfo="companyInfo" />
     <div class="rateContainer">
       <div class="rate">
@@ -10,12 +104,16 @@
               class="star"
               v-for="i in companyInfo.rateStarNum"
               v-bind:key="i"
-            ></div>
+            >
+              ⭐
+            </div>
           </div>
           <div class="reviewNum">리뷰 ({{ companyInfo.reviewNum }})</div>
         </div>
       </div>
-      <div class="submitBtn">리뷰 등록 하기</div>
+      <div class="submitBtn" @click="$bvModal.show('reviewModal')">
+        리뷰 등록 하기
+      </div>
     </div>
     <RateContainer :companyInfo="companyInfo" />
     <div class="reviewPageContainer">
@@ -51,8 +149,13 @@
             class="rightPart"
             v-if="companyInfo.review[clickedPage - 1].userId === 'kits'"
           >
-            <div class="btn edit">수정하기</div>
-            <div class="btn delete">삭제하기</div>
+            <div
+              class="btn edit"
+              @click="editReview(companyInfo.review[clickedPage - 1])"
+            >
+              수정하기
+            </div>
+            <div class="btn delete" @click="deleteReview">삭제하기</div>
           </div>
         </div>
         <div class="pros proNcon">
@@ -88,6 +191,9 @@
 // import KakaoMap from "./KaKaoMap.vue";
 import IntroInfoContainer from "./IntroInfoContainer.vue";
 import RateContainer from "./RateContainer.vue";
+import ReviewComplete from "../../../modal/ReviewComplete.vue";
+import DeleteReviewModal from "../../../modal/DeleteReviewModal.vue";
+// import ReviewWriteModal from "../../../modal/ReviewWriteModal.vue";
 export default {
   data() {
     return {
@@ -151,11 +257,28 @@ export default {
       },
       clickedPage: 1,
       login: false,
+      reviewModalVisible: false,
+      write_review: {
+        balance: 0,
+        reward: 0,
+        culture: 0,
+        total: 0,
+        pros: "",
+        cons: "",
+      },
+      showCompleteModal: false,
+      modalType: "",
+      modalTitle: "리뷰 등록 완료",
+      modalSubTitle: "리뷰 등록이 완료되었습니다",
+      showDeleteModal: false,
     };
   },
   components: {
     IntroInfoContainer,
     RateContainer,
+    ReviewComplete,
+    DeleteReviewModal,
+    // ReviewWriteModal,
     // KakaoMap
   },
 
@@ -169,6 +292,69 @@ export default {
     changeToLogin: function () {
       this.login = !this.login;
     },
+    registerReview: function () {
+      this.reviewModalVisible = true;
+    },
+    rateChange_balance: function (rate) {
+      this.write_review.balance = rate;
+      this.write_review.total =
+        (this.write_review.balance +
+          this.write_review.reward +
+          this.write_review.culture) /
+        3;
+    },
+    rateChange_reward: function (rate) {
+      this.write_review.reward = rate;
+      this.write_review.total =
+        (this.write_review.balance +
+          this.write_review.reward +
+          this.write_review.culture) /
+        3;
+    },
+    rateChange_culture: function (rate) {
+      this.write_review.culture = rate;
+      this.write_review.total =
+        (this.write_review.balance +
+          this.write_review.reward +
+          this.write_review.culture) /
+        3;
+    },
+    submitReview: function () {
+      if (this.modalType === "edit") {
+        this.modalTitle = "수정이 완료되었습니다.";
+        this.modalSubTitle = "리뷰 내용 수정이 완료 되었습니다.";
+        setTimeout(() => {
+          this.showCompleteModal = false;
+        }, 1000);
+      } else {
+        setTimeout(() => this.$router.push("home"), 3000);
+      }
+      this.showCompleteModal = true;
+    },
+    editReview: function (data) {
+      console.log(data);
+      this.write_review.pros = data.pros;
+      this.write_review.cons = data.cons;
+      this.modalType = "edit";
+      this.$bvModal.show("reviewModal");
+    },
+    deleteReview: function () {
+      this.showDeleteModal = true;
+    },
+    getAnswerFromModal: function (value) {
+      console.log(value);
+      if (value) {
+        this.modalTitle = "삭제되었습니다.";
+        this.modalSubTitle = "리뷰가 삭제 되었습니다.";
+        this.showDeleteModal = false;
+        this.showCompleteModal = true;
+        setTimeout(() => {
+          this.showCompleteModal = false;
+        }, 1000);
+      } else {
+        this.showDeleteModal = false;
+      }
+    },
   },
 };
 </script>
@@ -179,7 +365,7 @@ export default {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   padding: 50px;
-  font-family: "Noto Sans CJK KR";
+  margin-bottom: 100px;
 }
 
 .rateContainer {
@@ -194,7 +380,6 @@ export default {
     align-items: center;
   }
   .rateNum {
-    font-weight: 500;
     font-size: 40px;
     line-height: 59px;
     margin-right: 10px;
@@ -207,7 +392,6 @@ export default {
     }
   }
   .reviewNum {
-    font-weight: 500;
     font-size: 20px;
     line-height: 30px;
   }
@@ -216,7 +400,7 @@ export default {
     border-radius: 29.5px;
     padding: 15px 60px;
     color: white;
-    font-weight: 500;
+
     font-size: 22px;
     line-height: 33px;
   }
@@ -240,7 +424,7 @@ export default {
   padding: 27px 0;
   p {
     text-align: center;
-    font-weight: 500;
+
     font-size: 18px;
     line-height: 27px;
     color: #515151;
@@ -280,7 +464,7 @@ export default {
       display: flex;
       .btn {
         color: #0376db;
-        font-weight: 500;
+
         font-size: 18px;
         line-height: 27px;
         text-decoration: underline;
@@ -297,7 +481,6 @@ export default {
       margin-right: 10px;
     }
     .date {
-      font-weight: 500;
       font-size: 16px;
       line-height: 24px;
       color: #9b9b9b;
@@ -333,10 +516,97 @@ export default {
     }
   }
   .myReview {
-    font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     color: #0376db;
+  }
+}
+#reviewModal {
+  .reviewModalContainer {
+    padding: 20px;
+  }
+  position: relative;
+  .rateNTotal {
+    display: flex;
+  }
+  .ratingBoxes {
+    width: 74%;
+  }
+  .ratingBox {
+    display: flex;
+    margin-top: 23px;
+  }
+  .label {
+    width: 50%;
+
+    font-size: 22px;
+    line-height: 33px;
+    color: #0376db;
+  }
+  .starBox {
+    display: flex;
+  }
+  .star {
+    font-size: 22px;
+    color: gray;
+  }
+  .color {
+    color: #f1c40f;
+  }
+  .totalPotint {
+    align-self: flex-end;
+
+    font-size: 16px;
+    line-height: 24px;
+    color: #878787;
+    .blue {
+      color: #0376db;
+    }
+  }
+  .closeX {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+  }
+  .inputLabel {
+    margin-top: 30px;
+
+    font-size: 18px;
+    line-height: 27px;
+    color: #878787;
+    margin-bottom: 3px;
+  }
+  .proNCon {
+    border: 1px solid #878787;
+    width: 100%;
+    height: 125px;
+    border-radius: 5px;
+    padding: 10px 16px;
+  }
+  .letterNum {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #878787;
+  }
+  .warn {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .review_submit {
+    background: #0376db;
+    border-radius: 29.5px;
+    padding: 15px 50px;
+    width: max-content;
+    margin: auto;
+    color: white;
+    cursor: pointer;
+
+    font-size: 18px;
+    line-height: 27px;
   }
 }
 </style>

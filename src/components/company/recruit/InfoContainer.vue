@@ -10,25 +10,14 @@
         #{{ tag }}
       </div>
     </div>
-    <h5 style="font-size: 24px; line-height: 36px; font-weight: 500">
-      내용소개
-    </h5>
-    <p class="description">
-      {{ companyInfo.description }}<br />홈페이지:
-      <a v-bind:href="companyInfo.link" class="link">{{ companyInfo.link }}</a>
-    </p>
-    <KaKaoMap />
-    <!-- <CompanyMap /> -->
   </div>
 </template>
 
 <script>
-import KaKaoMap from "./KaKaoMap.vue";
 export default {
   props: {
     companyInfo: Object,
   },
-  components: { KaKaoMap },
 };
 </script>
 

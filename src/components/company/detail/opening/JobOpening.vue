@@ -17,9 +17,9 @@ export default {
   data() {
     return {
       postLists: [
-        { leftDay: 7, position: "프론트" },
-        { leftDay: 5, position: "백엔드" },
-        { leftDay: 10, position: "기획자" },
+        { id: 1, leftDay: 7, position: "프론트" },
+        { id: 2, leftDay: 5, position: "백엔드" },
+        { id: 3, leftDay: 10, position: "기획자" },
       ],
     };
   },
@@ -38,9 +38,7 @@ export default {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   padding: 20px;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 500;
+
   .title {
     font-size: 20px;
     line-height: 30px;
@@ -52,7 +50,7 @@ export default {
     margin-top: 30px;
     font-size: 18px;
     line-height: 27px;
-    font-weight: 500;
+
     color: white;
     text-align: center;
     padding: 14px;

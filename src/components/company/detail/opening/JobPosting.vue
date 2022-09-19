@@ -1,5 +1,5 @@
 <template>
-  <div class="jopPostingContainer">
+  <div class="jopPostingContainer" @click="gotoDetail">
     <div class="d-day">D-{{ jobInfo.leftDay }}</div>
     <div class="position">{{ jobInfo.position }}를 구합니다.</div>
   </div>
@@ -14,13 +14,17 @@ export default {
     jobInfo: {
       type: Object,
       default: () => {
-        return { leftDay: "미정", position: "미정" };
+        return { leftDay: "미정", position: "미정", id: null };
       },
     },
   },
   mounted() {},
 
-  methods: {},
+  methods: {
+    gotoDetail() {
+      this.$router.push(`/company_recruit/${this.jobInfo.id}`);
+    },
+  },
 };
 </script>
 
@@ -29,8 +33,6 @@ export default {
   border: 1px solid #0376db;
   border-radius: 15px;
   padding: 17px 22px;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;

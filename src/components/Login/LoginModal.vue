@@ -61,7 +61,9 @@ export default {
           <div>
             <div class="logo">Logo</div>
           </div>
-          <div class="title">안녕하세요! {{($store.state.isEmployer?"개인":"기업")}} 고객님!</div>
+          <div class="title">
+            안녕하세요! {{ $store.state.isEmployer ? "개인" : "기업" }} 고객님!
+          </div>
           <div class="default">키츠에 오신걸 환영합니다.</div>
           <div>
             <div class="emailForm">
@@ -119,8 +121,6 @@ export default {
   margin-top: 39px;
 }
 .EnterpriseSwitch div {
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   color: #515151;
@@ -160,8 +160,6 @@ export default {
 
   border: 1px solid #0376db;
   border-radius: 3px;
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
 }
@@ -173,8 +171,6 @@ export default {
 }
 
 #unvalidEmail {
-  font-family: "Noto Sans KR";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   color: #e60505;
@@ -188,8 +184,7 @@ export default {
   border: 0;
   border-radius: 3px;
   height: 57px;
-  font-style: normal;
-  font-weight: 500;
+
   font-size: 18px;
   line-height: 27px;
   /* identical to box height */
@@ -198,9 +193,6 @@ export default {
 }
 
 .modal-container .title {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 500;
   font-size: 32px;
 
   margin: 0;
@@ -209,8 +201,7 @@ export default {
 .modal-container .default {
   margin: 0;
   margin-top: 7px;
-  font-family: "Noto Sans KR";
-  font-style: normal;
+
   font-weight: 400;
   font-size: 18px;
   /* identical to box height */

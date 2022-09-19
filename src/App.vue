@@ -11,7 +11,6 @@
     </header>
     <MainHeader></MainHeader>
     <router-view></router-view>
-    hi kiper!
     <test-vue></test-vue>
   </div>
 </template>
@@ -22,9 +21,15 @@ import testVue from "./testVue.vue";
 export default {
   components: {
     MainHeader,
-    testVue
+    testVue,
   },
 };
 </script>
 
-<style></style>
+<style>
+#app {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+}
+</style>
