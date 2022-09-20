@@ -10,7 +10,8 @@
       <!-- font -->
     </header>
     <MainHeader></MainHeader>
-    <router-view></router-view>
+    <router-view>
+    </router-view>
     <test-vue></test-vue>
   </div>
 </template>

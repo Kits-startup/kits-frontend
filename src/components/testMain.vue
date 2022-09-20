@@ -1,8 +1,5 @@
 <template>
-<div>
-    mainBody
-
-</div>
+  <div>tempMain</div>
 </template>
 
 <script>

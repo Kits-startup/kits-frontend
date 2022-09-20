@@ -45,7 +45,7 @@ export default {
   </Transition>
 </template>
 
-<style>
+<style scoped>
 .pointer {
   cursor: pointer;
 }
