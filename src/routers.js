@@ -10,6 +10,7 @@ import testMain from "./components/testMain.vue";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
 import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
 import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue"
+import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue"
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
@@ -30,7 +31,8 @@ export const router = new VueRouter({
       children: [
         { path: "activity",name:"Mypage-Activity", component: MyActivity },
         { path: "profile",name:"Mypage-Profile", component: MyProfile },
-        { path: "profile",name:"Mypage-Alarm", component:  MyAlarm},
+        { path: "alarm",name:"Mypage-Alarm", component:  MyAlarm},
+        { path: "profile",name:"Mypage-Setting", component:  MySetting},
 
       ],
     },

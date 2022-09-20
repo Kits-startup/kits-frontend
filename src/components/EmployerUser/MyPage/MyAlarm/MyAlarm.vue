@@ -66,7 +66,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .innerText {
   font-size: 18px;
   line-height: 25px;
@@ -89,8 +89,8 @@ export default {
 }
 
 .title {
-  font-size: 20px;
-  line-height: 27px;
+  font-size: 26px;
+  line-height: 35px;
   color: #1f1f1f;
   margin-bottom: 11px;
 }

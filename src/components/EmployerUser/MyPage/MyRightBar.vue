@@ -69,7 +69,11 @@
 
       <div class="menuText">알람</div>
     </div>
-    <div class="myPageMenu" v-bind:style="{ color: colorList[3] }">
+    <div
+      class="myPageMenu"
+      @click="goSetting()"
+      v-bind:style="{ color: colorList[3] }"
+    >
       <div class="blueBar" v-show="colorList[3] == blue"></div>
 
       <div class="svgContainer">
@@ -103,7 +107,7 @@
 export default {
   data() {
     return {
-      colorList: ["#1F1F1F", "#0376DB", "#1F1F1F", "#1F1F1F"],
+      colorList: ["#0376DB", "#1F1F1F", "#1F1F1F", "#1F1F1F"],
       black: "#1F1F1F",
       blue: "#0376DB",
     };
@@ -141,6 +145,14 @@ export default {
         })
         .catch(() => {});
       this.makeItBlue(2);
+    },
+    goSetting() {
+      this.$router
+        .push({
+          name: "Mypage-Setting",
+        })
+        .catch(() => {});
+      this.makeItBlue(3);
     },
   },
 };
