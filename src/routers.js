@@ -3,16 +3,21 @@ import VueRouter from "vue-router";
 import MyMainBody from "./components/EmployerUser/MyPage/MyPage.vue";
 import ResisterBody from "./components/Login/ResisterBody.vue";
 import CompanyDetail from "./pages/CompanyDetail.vue";
+import CompanyManagement from "./pages/CompanyManagement";
 import ResisterBodyEnterprise from "./components/Login/ResisterEnterprise/ResisterBodyEnterprise";
 import ResisterBodyEnterpriseInfo from "./components/Login/ResisterEnterprise/ResisterBodyEnterpriseInfo";
 import CompanyRecruit from "./pages/CompanyRecruit.vue";
 import testMain from "./components/testMain.vue";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
 import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
-import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue"
-import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue"
+import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue";
+import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue";
+import EditInfo from "./components/company/management/contents/EditInfo.vue";
+import JobPosting from "./components/company/management/contents/JobPosting.vue";
+import TalentPool from "./components/company/management/contents/TalentPool.vue";
+import Payment from "./components/company/management/contents/MPayment.vue";
+import MSetting from "./components/company/management/contents/MSetting.vue";
 Vue.use(VueRouter);
-
 export const router = new VueRouter({
   mode: "history", //해쉬값 제거 방식
   routes: [
@@ -29,11 +34,10 @@ export const router = new VueRouter({
       component: MyMainBody,
       name: "Mypage",
       children: [
-        { path: "activity",name:"Mypage-Activity", component: MyActivity },
-        { path: "profile",name:"Mypage-Profile", component: MyProfile },
-        { path: "alarm",name:"Mypage-Alarm", component:  MyAlarm},
-        { path: "profile",name:"Mypage-Setting", component:  MySetting},
-
+        { path: "activity", name: "Mypage-Activity", component: MyActivity },
+        { path: "profile", name: "Mypage-Profile", component: MyProfile },
+        { path: "alarm", name: "Mypage-Alarm", component: MyAlarm },
+        { path: "profile", name: "Mypage-Setting", component: MySetting },
       ],
     },
     {
@@ -67,6 +71,30 @@ export const router = new VueRouter({
       component: CompanyRecruit,
       name: "Company Recruit",
       props: true,
+    },
+    {
+      path: "/company_management",
+      component: CompanyManagement,
+      name: "Comapny Management",
+      children: [
+        {
+          path: "job-posting",
+          name: "management-job-posting",
+          component: JobPosting,
+        },
+        {
+          path: "edit-info",
+          name: "management-edit-info",
+          component: EditInfo,
+        },
+        {
+          path: "talent-pool",
+          name: "management-talent-pool",
+          component: TalentPool,
+        },
+        { path: "payment", name: "management-payment", component: Payment },
+        { path: "setting", name: "management-setting", component: MSetting },
+      ],
     },
   ],
 });
