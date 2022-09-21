@@ -132,9 +132,11 @@
         </div>
       </div>
     </div>
-    <button class="submit" id="finalSubmit" @click="checkArr()">
-      화원가입하기
-    </button>
+    <div class="finalContainer">
+      <button class="submit" id="finalSubmit" @click="checkArr()">
+        화원가입하기
+      </button>
+    </div>
   </div>
 </template>
 
@@ -227,8 +229,8 @@ export default {
 </script>
 
 <style scoped>
-* {
-}
+/* * {
+} */
 
 .body {
   display: flex;
@@ -368,7 +370,7 @@ export default {
 }
 
 #finalSubmit {
-  width: 100%;
+  width: 171px;
   border-radius: 28.5px;
   margin-top: 41px;
 }
@@ -449,5 +451,12 @@ export default {
   font-size: 18px;
   height: 27px;
   margin-bottom: 16px;
+}
+
+.finalContainer{
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
