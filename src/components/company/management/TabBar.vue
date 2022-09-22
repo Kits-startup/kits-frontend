@@ -9,6 +9,8 @@
       :id="e.id"
       @click="clickTab"
       :fill="tab_now === e.id"
+      @subClick="clickSubTab"
+      :tab_sub="tab_sub"
     />
   </div>
 </template>
@@ -18,10 +20,8 @@ import EachTabBarVue from "./EachTabBar.vue";
 export default {
   data() {
     return {
-      colorList: ["#0376DB", "#1F1F1F", "#1F1F1F", "#1F1F1F"],
-      black: "#1F1F1F",
-      blue: "#0376DB",
       tab_now: "edit-info",
+      tab_sub: "in-progress",
       tabList: [
         {
           label: "기업 정보 수정",
@@ -76,6 +76,11 @@ export default {
       console.log(param);
       this.tab_now = param;
       this.$router.push({ name: `management-${param}` });
+    },
+    clickSubTab(param) {
+      console.log(param);
+      this.tab_sub = param;
+      // this.$router.push({ name: `management-${param}` });
     },
   },
   components: {
