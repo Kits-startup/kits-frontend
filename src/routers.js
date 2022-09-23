@@ -7,6 +7,7 @@ import CompanyManagement from "./pages/CompanyManagement";
 import ResisterBodyEnterprise from "./components/Login/ResisterEnterprise/ResisterBodyEnterprise";
 import ResisterBodyEnterpriseInfo from "./components/Login/ResisterEnterprise/ResisterBodyEnterpriseInfo";
 import CompanyRecruit from "./pages/CompanyRecruit.vue";
+import CompanyRecruitRegister from "./pages/CompanyRecruitRegister.vue";
 import testMain from "./components/testMain.vue";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
 import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
@@ -78,8 +79,8 @@ export const router = new VueRouter({
       name: "Comapny Management",
       children: [
         {
-          path: "job-posting",
-          name: "management-job-posting",
+          path: "job-posting/:subtab",
+          name: "management-job-posting-detail",
           component: JobPosting,
         },
         {
@@ -95,6 +96,12 @@ export const router = new VueRouter({
         { path: "payment", name: "management-payment", component: Payment },
         { path: "setting", name: "management-setting", component: MSetting },
       ],
+    },
+    {
+      path: "/company_recruit_register",
+      component: CompanyRecruitRegister,
+      name: "Company Recruit Register",
+      props: true,
     },
   ],
 });

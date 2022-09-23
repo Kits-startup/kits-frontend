@@ -75,16 +75,29 @@ export default {
     clickTab(param) {
       console.log(param);
       this.tab_now = param;
-      this.$router.push({ name: `management-${param}` });
+      console.log(`/company_management/${param}/in-progress`);
+      if (param === "job-posting") {
+        this.$router.push(`/company_management/${param}/in-progress`);
+      } else {
+        this.$router.push({ name: `management-${param}` });
+      }
     },
     clickSubTab(param) {
       console.log(param);
       this.tab_sub = param;
-      // this.$router.push({ name: `management-${param}` });
+      this.$router.push(`/company_management/job-posting/${param}`);
+    },
+    checkURL: function () {
+      const route = this.$router.currentRoute.path.split("/");
+      console.log(route);
+      if (route[2]) this.tab_now = route[2];
     },
   },
   components: {
     EachTabBarVue,
+  },
+  mounted() {
+    this.checkURL();
   },
 };
 </script>
