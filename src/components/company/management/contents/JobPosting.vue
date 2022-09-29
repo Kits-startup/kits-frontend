@@ -7,7 +7,8 @@
           <span class="register" @click="onRegisterClick">+공고 등록</span>
         </div>
         <p class="subline">
-          내 기업에서 현재 진행 중인 채용 공고의 리스트를 확인할 수 있습니다.
+          내 기업에서 {{ subline[mode] }} 채용 공고의 리스트를 확인할 수
+          있습니다.
         </p>
         <div class="searchBox">
           <select-box-vue
@@ -24,8 +25,40 @@
       </div>
       <div class="bottomContainer">
         <table class="kTable">
-          <th v-for="(item, idx) in fields" :key="idx" :class="item.key">
-            {{ item.label }}
+          <th v-for="(item, idx) in field1" :key="idx" :class="item.key">
+            {{ item.label
+            }}<svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M7 9.5L12 14.5L17 9.5H7Z" fill="black" />
+            </svg>
+          </th>
+          <th v-if="mode === 'in-progress'" class="date">
+            등록일<svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M7 9.5L12 14.5L17 9.5H7Z" fill="black" />
+            </svg>
+          </th>
+          <th v-for="(item, idx) in field2" :key="idx" :class="item.key">
+            {{ item.label
+            }}<svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M7 9.5L12 14.5L17 9.5H7Z" fill="black" />
+            </svg>
           </th>
           <tr v-for="(item, idx) in items" :key="idx">
             <td class="name">
@@ -37,13 +70,13 @@
             <td class="job">
               <div class="tData">{{ item.job }}</div>
             </td>
-            <td class="date">
+            <td class="date" v-if="mode === 'in-progress'">
               <div class="tData">{{ item.date }}</div>
             </td>
             <td class="update">
               <div class="tData">{{ item.update }}</div>
             </td>
-            <td class="state">
+            <td class="state" v-if="mode === 'in-progress'">
               <div class="tData stateChange" @click="clickStateChange(idx)">
                 {{ item.state
                 }}<svg
@@ -71,9 +104,16 @@
                 <img src="@/assets/warning.png" alt="" />
                 <div>해당 공고를 마감시키겠습니까?</div>
                 <div class="btnContainer">
-                  <div class="left checkBtn">예</div>
-                  <div class="right checkBtn">아니오</div>
+                  <div class="left checkBtn" @click="changeBtnClicked">예</div>
+                  <div class="right checkBtn" @click="changeBtnClicked">
+                    아니오
+                  </div>
                 </div>
+              </div>
+            </td>
+            <td class="state" v-if="mode !== 'in-progress'">
+              <div class="stateBtn" @click="stateBtnClicked">
+                {{ mode === "finish" ? "지원자관리" : "수정 및 등록" }}
               </div>
             </td>
           </tr>
@@ -118,7 +158,7 @@ export default {
       ],
       mode: "in-progress",
       clickedPage: 1,
-      fields: [
+      field1: [
         {
           key: "name",
           label: "공고명",
@@ -131,10 +171,8 @@ export default {
           key: "job",
           label: "직무",
         },
-        {
-          key: "date",
-          label: "등록일",
-        },
+      ],
+      field2: [
         {
           key: "update",
           label: "수정일",
@@ -193,6 +231,11 @@ export default {
         finish: "마감된 공고목록",
         temp: "임시보관함",
       },
+      subline: {
+        "in-progress": "진행 중인",
+        finish: "마감된",
+        temp: "임시 보관 중인",
+      },
     };
   },
   methods: {
@@ -214,11 +257,26 @@ export default {
       console.log(idx);
       this.checkStateChange = idx;
     },
+    changeBtnClicked() {
+      this.checkStateChange = null;
+      this.changeStateModal = null;
+    },
+    stateBtnClicked() {
+      if (this.mode === "finish") {
+        this.$router.push("/company_applier_management");
+      } else {
+        this.onRegisterClick();
+      }
+    },
   },
   watch: {
     $route(to) {
       this.mode = to.params.subtab;
     },
+  },
+  mounted() {
+    const route = this.$router.currentRoute.path.split("/");
+    this.mode = route[3];
   },
 };
 </script>
@@ -247,6 +305,8 @@ export default {
   .register {
     color: #0376db;
     cursor: pointer;
+    font-size: 18px;
+    line-height: 25px;
   }
   .subline {
     font-weight: 400;
@@ -313,6 +373,7 @@ export default {
   width: 100%;
   text-align: center;
   margin-top: 33px;
+
   th {
     font-weight: 500;
     font-size: 14px;
@@ -352,6 +413,17 @@ export default {
   .state {
     width: 100px;
     position: relative;
+    .stateBtn {
+      background: #0376db;
+      border-radius: 3px;
+      color: white;
+      padding: 10px 0;
+      font-size: 16px;
+      line-height: 22px;
+      width: 124px;
+      margin: auto;
+      cursor: pointer;
+    }
   }
   .stateChange {
     width: 80px;

@@ -95,6 +95,9 @@ export default {
       const route = this.$router.currentRoute.path.split("/");
       console.log(route);
       if (route[2]) this.tab_now = route[2];
+      if (route[2] === "job-posting") {
+        this.tab_sub = route[3];
+      }
     },
   },
   components: {
