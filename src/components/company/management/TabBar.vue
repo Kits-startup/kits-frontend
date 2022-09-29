@@ -85,7 +85,11 @@ export default {
     clickSubTab(param) {
       console.log(param);
       this.tab_sub = param;
-      this.$router.push(`/company_management/job-posting/${param}`);
+      if (param === "applicant") {
+        this.$router.push("/company_applier_management");
+      } else {
+        this.$router.push(`/company_management/job-posting/${param}`);
+      }
     },
     checkURL: function () {
       const route = this.$router.currentRoute.path.split("/");
@@ -112,5 +116,6 @@ export default {
   align-items: flex-start;
   padding: 22px 0 9px 17px;
   width: 270px;
+  height: max-content;
 }
 </style>

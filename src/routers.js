@@ -4,6 +4,7 @@ import MyMainBody from "./components/EmployerUser/MyPage/MyPage.vue";
 import ResisterBody from "./components/Login/ResisterBody.vue";
 import CompanyDetail from "./pages/CompanyDetail.vue";
 import CompanyManagement from "./pages/CompanyManagement";
+import ApplierManagement from "./pages/ApplierManagement";
 import ResisterBodyEnterprise from "./components/Login/ResisterEnterprise/ResisterBodyEnterprise";
 import ResisterBodyEnterpriseInfo from "./components/Login/ResisterEnterprise/ResisterBodyEnterpriseInfo";
 import CompanyRecruit from "./pages/CompanyRecruit.vue";
@@ -101,6 +102,12 @@ export const router = new VueRouter({
       path: "/company_recruit_register",
       component: CompanyRecruitRegister,
       name: "Company Recruit Register",
+      props: true,
+    },
+    {
+      path: "/company_applier_management",
+      component: ApplierManagement,
+      name: "Company Applier Management",
       props: true,
     },
   ],
