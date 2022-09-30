@@ -50,3 +50,37 @@ export const work_type = [
   { value: "contract", text: "계약직" },
   { value: "part-time", text: "파트타임" },
 ];
+export const opt_name = [
+  { value: null, text: "공고명" },
+  { value: 0, text: "KIPER에서 백엔드 개발자를 모집하고 있습니다" },
+  { value: 1, text: "KIPER에서 백엔드 개발자를 모집하고 있습니다" },
+  { value: 2, text: "KIPER에서 프론트엔드 개발자를 모집하고 있습니다" },
+  { value: 3, text: "KIPER에서 데브옵스 개발자를 모집하고 있습니다" },
+];
+export const opt_spec = [
+  { value: null, text: "경력선택" },
+  { value: "<6", text: "6개월 미만" },
+  { value: ">6", text: "6개월 이상" },
+  { value: "<1", text: "1년 미만" },
+  { value: ">1", text: "1년 이상" },
+];
+export const opt_academy = [
+  { value: null, text: "학력선택" },
+  { value: "middleschool", text: "중학교 졸업" },
+  { value: "highschool", text: "고등학교 졸업" },
+  { value: "univ_2", text: "대학교 졸업 (2년제)" },
+  { value: "univ_4", text: "대학교 졸업 (4년제)" },
+  { value: "ms", text: "석사 졸업" },
+  { value: "phd", text: "박사 졸업" },
+];
+export const opt_mbti = [
+  { value: null, text: "성향선택" },
+  { value: "e", text: "외향성 높은순" },
+  { value: "i", text: "내향성 높은순" },
+  { value: "f", text: "감정형 높은순" },
+  { value: "t", text: "사고형 높은순" },
+  { value: "s", text: "감각형 높은순" },
+  { value: "n", text: "직관형 높은순" },
+  { value: "p", text: "인식형 높은순" },
+  { value: "j", text: "판단형 높은순" },
+];
