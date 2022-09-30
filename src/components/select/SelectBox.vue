@@ -5,7 +5,7 @@
       :options="options"
       @change="$emit('choose', select)"
     />
-    <svg
+    <!-- <svg
       width="15"
       height="9"
       viewBox="0 0 15 9"
@@ -16,7 +16,7 @@
         d="M1.34091 9.69664e-07L9.1046e-08 1.36504L7.5 9L15 1.36504L13.6591 1.11656e-06L7.5 6.26992L1.34091 9.69664e-07Z"
         fill="#1F1F1F"
       />
-    </svg>
+    </svg> -->
   </div>
 </template>
 
@@ -41,6 +41,9 @@ export default {
   select {
     outline: none;
     margin-right: 5px;
+  }
+  option {
+    background: red;
   }
 }
 </style>

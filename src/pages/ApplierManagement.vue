@@ -1,6 +1,6 @@
 <template>
   <div style="width: 1296px; margin: auto">
-    <about-person-vue v-if="modalVisible" />
+    <about-person-vue v-if="modalVisible" @close="closeModal" />
     <h1 style="font-size: 40px; line-height: 54px; margin-bottom: 90px">
       지원자 현황 및 관리<br />현재 진행 중 및 마감된 공고의 지원자 현황을
       확인할 수 있습니다.
@@ -104,6 +104,9 @@ export default {
     showPersonModal() {
       console.log("click!");
       this.modalVisible = true;
+    },
+    closeModal() {
+      this.modalVisible = false;
     },
   },
 };
