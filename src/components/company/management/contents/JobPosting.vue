@@ -316,6 +316,7 @@ export default {
   }
   .searchBox {
     display: flex;
+    align-items: center;
     .search {
       border: 1px solid #0376db;
       border-radius: 3px;
@@ -323,6 +324,7 @@ export default {
       display: flex;
       padding: 12px 20px;
       width: 346px;
+      height: 57px;
       .label {
         font-weight: 400;
         font-size: 15px;
@@ -344,7 +346,8 @@ export default {
       display: flex;
       align-items: center;
       margin-left: 8px;
-      padding: 0 34px;
+      padding: 10px 34px;
+      height: 57px;
     }
   }
 }

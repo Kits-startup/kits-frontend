@@ -78,6 +78,8 @@ export default {
       console.log(`/company_management/${param}/in-progress`);
       if (param === "job-posting") {
         this.$router.push(`/company_management/${param}/in-progress`);
+      } else if (param === "talent-pool") {
+        this.$router.push("/talent_search");
       } else {
         this.$router.push({ name: `management-${param}` });
       }
