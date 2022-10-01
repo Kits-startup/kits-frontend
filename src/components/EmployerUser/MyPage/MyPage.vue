@@ -1,7 +1,7 @@
 <template>
 <div class="bodyMypage">
     <div class="forFlex leftSort">
-        <Rightbar></Rightbar>
+        <LeftBar></LeftBar>
     </div>
     <div class="forFlex center">
         <router-view></router-view>
@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Rightbar from './MyRightBar.vue';
+import LeftBar from './MyLeftBar.vue';
 export default {
-    components: { Rightbar }
+    components: { LeftBar }
 }
 </script>
 

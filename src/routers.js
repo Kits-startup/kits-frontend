@@ -11,14 +11,15 @@ import CompanyRecruit from "./pages/CompanyRecruit.vue";
 import CompanyRecruitRegister from "./pages/CompanyRecruitRegister.vue";
 import testMain from "./components/testMain.vue";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
-import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
-import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue";
-import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue";
 import EditInfo from "./components/company/management/contents/EditInfo.vue";
 import JobPosting from "./components/company/management/contents/JobPosting.vue";
 import TalentPool from "./components/company/management/contents/TalentPool.vue";
 import Payment from "./components/company/management/contents/MPayment.vue";
 import MSetting from "./components/company/management/contents/MSetting.vue";
+// import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
+import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue"
+import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue"
+import BodyForProfile from "./components/EmployerUser/MyPage/MyProfile/BodyForProfile.vue"
 Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: "history", //해쉬값 제거 방식
@@ -36,11 +37,17 @@ export const router = new VueRouter({
       component: MyMainBody,
       name: "Mypage",
       children: [
-        { path: "activity", name: "Mypage-Activity", component: MyActivity },
-        { path: "profile", name: "Mypage-Profile", component: MyProfile },
-        { path: "alarm", name: "Mypage-Alarm", component: MyAlarm },
-        { path: "profile", name: "Mypage-Setting", component: MySetting },
+        { path: "activity",name:"Mypage-Activity", component: MyActivity },
+        // { path: "profile",name:"Mypage-Profile", component: MyProfile },
+        { path: "alarm",name:"Mypage-Alarm", component:  MyAlarm},
+        { path: "setting",name:"Mypage-Setting", component:  MySetting},
+
       ],
+    },
+    {
+      path: "/mypage/profile",
+      component: BodyForProfile,
+      name: "Mypage-Profile", 
     },
     {
       //별칭 이용할 것 추후

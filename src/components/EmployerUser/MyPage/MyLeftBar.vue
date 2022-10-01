@@ -107,7 +107,7 @@
 export default {
   data() {
     return {
-      colorList: ["#0376DB", "#1F1F1F", "#1F1F1F", "#1F1F1F"],
+      colorList: ["#1F1F1F","#0376DB",  "#1F1F1F", "#1F1F1F"],
       black: "#1F1F1F",
       blue: "#0376DB",
     };
