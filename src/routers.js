@@ -8,9 +8,10 @@ import ResisterBodyEnterpriseInfo from "./components/Login/ResisterEnterprise/Re
 import CompanyRecruit from "./pages/CompanyRecruit.vue";
 import testMain from "./components/testMain.vue";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
-import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
+// import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
 import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue"
 import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue"
+import BodyForProfile from "./components/EmployerUser/MyPage/MyProfile/BodyForProfile.vue"
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
@@ -30,11 +31,16 @@ export const router = new VueRouter({
       name: "Mypage",
       children: [
         { path: "activity",name:"Mypage-Activity", component: MyActivity },
-        { path: "profile",name:"Mypage-Profile", component: MyProfile },
+        // { path: "profile",name:"Mypage-Profile", component: MyProfile },
         { path: "alarm",name:"Mypage-Alarm", component:  MyAlarm},
-        { path: "profile",name:"Mypage-Setting", component:  MySetting},
+        { path: "setting",name:"Mypage-Setting", component:  MySetting},
 
       ],
+    },
+    {
+      path: "/mypage/profile",
+      component: BodyForProfile,
+      name: "Mypage-Profile", 
     },
     {
       //별칭 이용할 것 추후
