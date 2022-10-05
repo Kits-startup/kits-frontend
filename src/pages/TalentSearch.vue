@@ -150,6 +150,7 @@ import {
 import EachPersonVue from "@/components/company/applicant/EachPerson.vue";
 import TabBar_largeVue from "@/components/company/applicant/TabBar_large.vue";
 import AboutTalentPersonVue from "@/components/modal/AboutTalentPerson.vue";
+import { getCoins } from "@/components/api/api.js";
 export default {
   name: "talent_search",
   components: {
@@ -190,7 +191,15 @@ export default {
       type_tab: null,
       checkAll: false,
       checkList: [],
+      coin_name: [],
     };
+  },
+  mounted() {
+    console.log("hi");
+    getCoins().then((res) => {
+      console.log(res.data);
+      this.coin_name = res.data.slice(0, 100);
+    });
   },
   methods: {
     clickTab(param) {
