@@ -327,7 +327,7 @@ export default {
           this.showCompleteModal = false;
         }, 1000);
       } else {
-        setTimeout(() => this.$router.push("home"), 3000);
+        setTimeout(() => this.$router.push("/home"), 3000);
       }
       this.showCompleteModal = true;
     },

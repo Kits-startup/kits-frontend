@@ -5,6 +5,7 @@ import ResisterBody from "./components/Login/ResisterBody.vue";
 import CompanyDetail from "./pages/CompanyDetail.vue";
 import CompanyManagement from "./pages/CompanyManagement";
 import ApplierManagement from "./pages/ApplierManagement";
+import TalentSearch from "./pages/TalentSearch";
 import ResisterBodyEnterprise from "./components/Login/ResisterEnterprise/ResisterBodyEnterprise";
 import ResisterBodyEnterpriseInfo from "./components/Login/ResisterEnterprise/ResisterBodyEnterpriseInfo";
 import CompanyRecruit from "./pages/CompanyRecruit.vue";
@@ -13,7 +14,6 @@ import testMain from "./components/testMain.vue";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
 import EditInfo from "./components/company/management/contents/EditInfo.vue";
 import JobPosting from "./components/company/management/contents/JobPosting.vue";
-import TalentPool from "./components/company/management/contents/TalentPool.vue";
 import Payment from "./components/company/management/contents/MPayment.vue";
 import MSetting from "./components/company/management/contents/MSetting.vue";
 // import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
@@ -96,11 +96,6 @@ export const router = new VueRouter({
           name: "management-edit-info",
           component: EditInfo,
         },
-        {
-          path: "talent-pool",
-          name: "management-talent-pool",
-          component: TalentPool,
-        },
         { path: "payment", name: "management-payment", component: Payment },
         { path: "setting", name: "management-setting", component: MSetting },
       ],
@@ -115,6 +110,12 @@ export const router = new VueRouter({
       path: "/company_applier_management",
       component: ApplierManagement,
       name: "Company Applier Management",
+      props: true,
+    },
+    {
+      path: "/talent_search",
+      component: TalentSearch,
+      name: "Talent Search",
       props: true,
     },
   ],
