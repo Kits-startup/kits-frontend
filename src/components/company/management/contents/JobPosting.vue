@@ -13,7 +13,7 @@
         <div class="searchBox">
           <select-box-vue
             :options="options_position"
-            @choose="onSelectReturn"
+            @choose="onSelectJobReturn"
           />
           <select-box-vue :options="options_job" @choose="onSelectReturn" />
           <div class="search">
@@ -25,7 +25,11 @@
       </div>
       <div class="bottomContainer">
         <table class="kTable">
-          <th v-for="(item, idx) in field1" :key="idx" :class="item.key">
+          <th
+            v-for="(item, idx) in field1"
+            :key="'field1' + idx"
+            :class="item.key"
+          >
             {{ item.label
             }}<svg
               width="24"
@@ -48,7 +52,11 @@
               <path d="M7 9.5L12 14.5L17 9.5H7Z" fill="black" />
             </svg>
           </th>
-          <th v-for="(item, idx) in field2" :key="idx" :class="item.key">
+          <th
+            v-for="(item, idx) in field2"
+            :key="'field2' + idx"
+            :class="item.key"
+          >
             {{ item.label
             }}<svg
               width="24"
@@ -136,6 +144,8 @@
 
 <script>
 import SelectBoxVue from "@/components/select/SelectBox.vue";
+import { getJobs, getJobTypes } from "@/components/api/static";
+import { field, table_items } from "@/data/options";
 export default {
   components: {
     SelectBoxVue,
@@ -144,86 +154,13 @@ export default {
     return {
       sel_position: null,
       sel_job: null,
-      options_position: [
-        { value: null, text: "직군 선택" },
-        { value: "developer", text: "개발자" },
-        { value: "design", text: "디자이너" },
-        { value: "planner", text: "기획자" },
-      ],
-      options_job: [
-        { value: null, text: "직무 선택" },
-        { value: "front", text: "프론트엔드" },
-        { value: "back", text: "백엔드" },
-        { value: "devops", text: "데브 옵스" },
-      ],
+      options_position: [{ value: null, text: "직군 선택" }],
+      options_job: [{ value: null, text: "직무 선택" }],
       mode: "in-progress",
       clickedPage: 1,
-      field1: [
-        {
-          key: "name",
-          label: "공고명",
-        },
-        {
-          key: "position",
-          label: "직군",
-        },
-        {
-          key: "job",
-          label: "직무",
-        },
-      ],
-      field2: [
-        {
-          key: "update",
-          label: "수정일",
-        },
-        {
-          key: "state",
-          label: "상태변경",
-        },
-      ],
-      items: [
-        {
-          name: "KIPER에서 개발자를 모집합니다",
-          position: "개발자",
-          job: "프론트엔드 개발자",
-          date: "2022.02.01",
-          update: "2022.02.01 18:00",
-          state: "진행 중",
-        },
-        {
-          name: "KIPER에서 개발자를 모집합니다",
-          position: "개발자",
-          job: "프론트엔드 개발자",
-          date: "2022.02.01",
-          update: "2022.02.01 18:00",
-          state: "진행 중",
-        },
-        {
-          name: "KIPER에서 개발자를 모집합니다",
-          position: "개발자",
-          job: "프론트엔드 개발자",
-          date: "2022.02.01",
-          update: "2022.02.01 18:00",
-          state: "진행 중",
-        },
-        {
-          name: "KIPER에서 개발자를 모집합니다",
-          position: "개발자",
-          job: "프론트엔드 개발자",
-          date: "2022.02.01",
-          update: "2022.02.01 18:00",
-          state: "진행 중",
-        },
-        {
-          name: "KIPER에서 개발자를 모집합니다",
-          position: "개발자",
-          job: "프론트엔드 개발자",
-          date: "2022.02.01",
-          update: "2022.02.01 18:00",
-          state: "진행 중",
-        },
-      ],
+      field1: field.slice(0, 3),
+      field2: field.slice(3),
+      items: table_items,
       changeStateModal: null,
       checkStateChange: null,
       title: {
@@ -236,6 +173,7 @@ export default {
         finish: "마감된",
         temp: "임시 보관 중인",
       },
+      options_jobTypes_All: [],
     };
   },
   methods: {
@@ -245,6 +183,10 @@ export default {
     },
     onRegisterClick() {
       this.$router.push({ name: "Company Recruit Register" });
+    },
+    onSelectJobReturn(selected) {
+      console.log(selected);
+      this.switchJobId(selected);
     },
     onSelectReturn(selected) {
       console.log(selected);
@@ -268,6 +210,14 @@ export default {
         this.onRegisterClick();
       }
     },
+    switchJobId(value) {
+      let newArr = [];
+      this.options_jobTypes_All.map((e) =>
+        e.job_id == value ? newArr.push(e) : null
+      );
+      console.log(newArr);
+      this.options_job = [this.options_job[0], ...newArr];
+    },
   },
   watch: {
     $route(to) {
@@ -277,6 +227,14 @@ export default {
   mounted() {
     const route = this.$router.currentRoute.path.split("/");
     this.mode = route[3];
+    getJobs().then((res) => {
+      console.log(res.data);
+      this.options_position = [...this.options_position, ...res.data];
+    });
+    getJobTypes().then((res) => {
+      console.log(res.data);
+      this.options_jobTypes_All = res.data;
+    });
   },
 };
 </script>
