@@ -1,14 +1,20 @@
 <template>
   <div class="headerContainer">
     <div class="gray">
-      <img src="@/assets/kits_logo.png" alt="logo" />
+      <img src="@/assets/kits_logo.png" alt="logo" @click="gotoHomepage" />
     </div>
     <div class="logoutBtn">로그아웃</div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    gotoHomepage() {
+      this.$router.push("/admin");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

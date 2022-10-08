@@ -22,6 +22,13 @@ import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue"
 import BodyForProfile from "./components/EmployerUser/MyPage/MyProfile/BodyForProfile.vue";
 import Admin from "./admin/adminIndex.vue";
 import Admin_Management from "./admin/components/contents/adminManagement.vue";
+import User_Management from "./admin/components/contents/userManagement.vue";
+import approval_Management from "./admin/components/contents/approvalManagement.vue";
+import jobOpening_Management from "./admin/components/contents/jobOpeningManagement.vue";
+import payment_Management from "./admin/components/contents/paymentManagement.vue";
+import notice_Management from "./admin/components/contents/noticeManagement.vue";
+import banner_Management from "./admin/components/contents/bannerManagement.vue";
+import qna_Management from "./admin/components/contents/qnaManagement.vue";
 Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: "history", //해쉬값 제거 방식
@@ -32,9 +39,44 @@ export const router = new VueRouter({
       name: "Admin Index",
       children: [
         {
-          path: "admin_management",
-          name: "Admin-Management",
+          path: "management/:id",
+          name: "Admin-management",
           component: Admin_Management,
+        },
+        {
+          path: "user",
+          name: "Admin-user",
+          component: User_Management,
+        },
+        {
+          path: "approval",
+          name: "Admin-approval",
+          component: approval_Management,
+        },
+        {
+          path: "job-opening",
+          name: "Admin-job-opening",
+          component: jobOpening_Management,
+        },
+        {
+          path: "payment",
+          name: "Admin-payment",
+          component: payment_Management,
+        },
+        {
+          path: "notice",
+          name: "Admin-notice",
+          component: notice_Management,
+        },
+        {
+          path: "banner",
+          name: "Admin-banner",
+          component: banner_Management,
+        },
+        {
+          path: "qna",
+          name: "Admin-qna",
+          component: qna_Management,
         },
       ],
     },
