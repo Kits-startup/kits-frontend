@@ -5,3 +5,4 @@ const api = axios.create({
 });
 export const getJobs = () => api.get("/jobs");
 export const getJobTypes = () => api.get("/jobTypes");
+export const getSkills = () => api.get("/skills");
