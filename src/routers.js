@@ -17,13 +17,27 @@ import JobPosting from "./components/company/management/contents/JobPosting.vue"
 import Payment from "./components/company/management/contents/MPayment.vue";
 import MSetting from "./components/company/management/contents/MSetting.vue";
 // import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
-import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue"
-import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue"
-import BodyForProfile from "./components/EmployerUser/MyPage/MyProfile/BodyForProfile.vue"
+import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue";
+import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue";
+import BodyForProfile from "./components/EmployerUser/MyPage/MyProfile/BodyForProfile.vue";
+import Admin from "./admin/adminIndex.vue";
+import Admin_Management from "./admin/components/contents/adminManagement.vue";
 Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: "history", //해쉬값 제거 방식
   routes: [
+    {
+      path: "/admin",
+      component: Admin,
+      name: "Admin Index",
+      children: [
+        {
+          path: "admin_management",
+          name: "Admin-Management",
+          component: Admin_Management,
+        },
+      ],
+    },
     {
       path: "/",
       redirect: "/home",
@@ -37,17 +51,16 @@ export const router = new VueRouter({
       component: MyMainBody,
       name: "Mypage",
       children: [
-        { path: "activity",name:"Mypage-Activity", component: MyActivity },
+        { path: "activity", name: "Mypage-Activity", component: MyActivity },
         // { path: "profile",name:"Mypage-Profile", component: MyProfile },
-        { path: "alarm",name:"Mypage-Alarm", component:  MyAlarm},
-        { path: "setting",name:"Mypage-Setting", component:  MySetting},
-
+        { path: "alarm", name: "Mypage-Alarm", component: MyAlarm },
+        { path: "setting", name: "Mypage-Setting", component: MySetting },
       ],
     },
     {
       path: "/mypage/profile",
       component: BodyForProfile,
-      name: "Mypage-Profile", 
+      name: "Mypage-Profile",
     },
     {
       //별칭 이용할 것 추후

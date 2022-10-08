@@ -9,20 +9,27 @@
       />
       <!-- font -->
     </header>
-    <MainHeader></MainHeader>
-    <router-view>
-    </router-view>
-    <test-vue></test-vue>
+    <MainHeader v-if="!isAdmin" />
+    <router-view />
   </div>
 </template>
 
 <script>
 import MainHeader from "./components/EmployerUser/MainHeader/MainHeader.vue";
-import testVue from "./testVue.vue";
 export default {
   components: {
     MainHeader,
-    testVue,
+  },
+  data() {
+    return {
+      isAdmin: false,
+    };
+  },
+  mounted() {
+    const url = this.$route.fullPath.split("/");
+    if (url[1] === "admin") {
+      this.isAdmin = true;
+    }
   },
 };
 </script>
