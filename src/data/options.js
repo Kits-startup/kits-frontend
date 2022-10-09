@@ -138,3 +138,68 @@ export const dsgn_skill = [
   { value: "ProtoPie", text: "ProtoPie" },
   { value: "CSS", text: "CSS" },
 ];
+
+export const field = [
+  {
+    key: "name",
+    label: "공고명",
+  },
+  {
+    key: "position",
+    label: "직군",
+  },
+  {
+    key: "job",
+    label: "직무",
+  },
+  {
+    key: "update",
+    label: "수정일",
+  },
+  {
+    key: "state",
+    label: "상태변경",
+  },
+];
+export const table_items = [
+  {
+    name: "KIPER에서 개발자를 모집합니다",
+    position: "개발자",
+    job: "프론트엔드 개발자",
+    date: "2022.02.01",
+    update: "2022.02.01 18:00",
+    state: "진행 중",
+  },
+  {
+    name: "KIPER에서 개발자를 모집합니다",
+    position: "개발자",
+    job: "프론트엔드 개발자",
+    date: "2022.02.01",
+    update: "2022.02.01 18:00",
+    state: "진행 중",
+  },
+  {
+    name: "KIPER에서 개발자를 모집합니다",
+    position: "개발자",
+    job: "프론트엔드 개발자",
+    date: "2022.02.01",
+    update: "2022.02.01 18:00",
+    state: "진행 중",
+  },
+  {
+    name: "KIPER에서 개발자를 모집합니다",
+    position: "개발자",
+    job: "프론트엔드 개발자",
+    date: "2022.02.01",
+    update: "2022.02.01 18:00",
+    state: "진행 중",
+  },
+  {
+    name: "KIPER에서 개발자를 모집합니다",
+    position: "개발자",
+    job: "프론트엔드 개발자",
+    date: "2022.02.01",
+    update: "2022.02.01 18:00",
+    state: "진행 중",
+  },
+];

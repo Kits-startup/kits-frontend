@@ -1,6 +1,6 @@
 <template>
   <div style="display: flex; justify-content: center">
-    <div class="container">
+    <div class="kContainer">
       <intro-container />
       <job-opening />
     </div>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.kContainer {
   display: flex;
   align-items: flex-start;
   // border: 1px solid black;

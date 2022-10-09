@@ -396,7 +396,7 @@ export default {
   .modalBox {
     width: 895px;
     height: 800px;
-    //overflow: auto;
+    overflow: auto;
     background: white;
     padding: 100px 140px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
