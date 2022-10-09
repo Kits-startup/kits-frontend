@@ -21,14 +21,14 @@ import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue";
 import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue";
 import BodyForProfile from "./components/EmployerUser/MyPage/MyProfile/BodyForProfile.vue";
 import Admin from "./admin/adminIndex.vue";
-import Admin_Management from "./admin/components/contents/adminManagement.vue";
-import User_Management from "./admin/components/contents/userManagement.vue";
-import approval_Management from "./admin/components/contents/approvalManagement.vue";
-import jobOpening_Management from "./admin/components/contents/jobOpeningManagement.vue";
-import payment_Management from "./admin/components/contents/paymentManagement.vue";
-import notice_Management from "./admin/components/contents/noticeManagement.vue";
-import banner_Management from "./admin/components/contents/bannerManagement.vue";
-import qna_Management from "./admin/components/contents/qnaManagement.vue";
+import Admin_Management from "./admin/components/contents/admin/adminManagement.vue";
+import User_Management from "./admin/components/contents/user/userManagement.vue";
+import approval_Management from "./admin/components/contents/approval/approvalManagement.vue";
+import jobOpening_Management from "./admin/components/contents/jobOpening/jobOpeningManagement.vue";
+import payment_Management from "./admin/components/contents/payment/paymentManagement.vue";
+import notice_Management from "./admin/components/contents/notice/noticeManagement.vue";
+import banner_Management from "./admin/components/contents/banner/bannerManagement.vue";
+import qna_Management from "./admin/components/contents/qna/qnaManagement.vue";
 Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: "history", //해쉬값 제거 방식
