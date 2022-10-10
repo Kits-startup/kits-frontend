@@ -11,7 +11,6 @@
     </header>
     <MainHeader v-if="!isAdmin" />
     <router-view> </router-view>
-    <test-vue></test-vue>
     <MainFooter></MainFooter>
   </div>
 </template>
@@ -19,11 +18,9 @@
 <script>
 import MainHeader from "./components/EmployerUser/MainHeader/MainHeader.vue";
 import MainFooter from "./components/EmployerUser/MainHeader/MainFooter.vue";
-import testVue from "./testVue.vue";
 export default {
   components: {
     MainHeader,
-    testVue,
     MainFooter,
   },
   data() {

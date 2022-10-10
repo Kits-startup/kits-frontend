@@ -94,6 +94,7 @@ export default {
   width: 100%;
   height: 1px;
   background-color: #d9d9d9;
+  margin-bottom:55px;
 }
 #L2search {
   margin-right: 43px;
