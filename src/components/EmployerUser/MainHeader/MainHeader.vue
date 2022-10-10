@@ -1,31 +1,39 @@
 <template>
-  <div class="header">
-    <router-link to="/">kits</router-link>
-    <div>프로필</div>
-    <div>검색창</div>
-    <div>
-      <button id="show-modal" @click="showModal = true">회원가입/로그인</button>
-      <div>
-        <!-- use the modal component, pass in the prop -->
-        <modal :show="showModal" @close="showModal = false">
-          <!-- <template #header>
-            <h3>custom header</h3>
-          </template> -->
-        </modal>
+  <div>
+    <div class="header">
+      <div id="left">
+        <router-link to="/">
+          <img
+            src="../../../assets/kitsLogoNew.png"
+            alt="Kits"
+            id="headerLogo"
+          />
+        </router-link>
+        <div id="L2search">프로필</div>
+        <div id="L1search">채용공고</div>
+      </div>
+      <div id="search">
+        <img src="../../../assets/search-normal.svg" alt="search" />
+        <div id="searchText">지역, 직무, 회사, 키워드 검색</div>
+      </div>
+      <div id="right">
+        <div id="R1search">
+          <button id="show-modal" @click="showModal = true">
+            회원가입/로그인
+          </button>
+          <div>
+            <!-- use the modal component, pass in the prop -->
+            <modal :show="showModal" @close="showModal = false">
+              <!-- <template #header>
+              <h3>custom header</h3>
+            </template> -->
+            </modal>
+          </div>
+        </div>
+        <div id="R2search">기업서비스</div>
       </div>
     </div>
-    <div
-      class="gotoCompany"
-      @click="() => this.$router.push('/company_detail/1')"
-    >
-      기업 소개 페이지 확인하러 가기
-    </div>
-    <div
-      class="gotoManagement"
-      @click="() => this.$router.push('/company_management')"
-    >
-      기업 관리 페이지로 이동
-    </div>
+    <div id="bottomLine"></div>
   </div>
 </template>
 
@@ -44,4 +52,77 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.header {
+  height: 96px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+
+  color: #000000;
+}
+
+#headerLogo {
+  height: 40px;
+  margin-right: 33px;
+}
+
+.header div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#search {
+  width: 565px;
+  height: 50px;
+  border: 1px solid #0376db;
+  border-radius: 25px;
+  justify-content: flex-start;
+}
+
+#search img, #searchText{
+  margin-left:18px;
+}
+
+#bottomLine {
+  width: 100%;
+  height: 1px;
+  background-color: #d9d9d9;
+}
+#L2search {
+  margin-right: 43px;
+}
+
+#L1search {
+  margin-right: 38px;
+}
+
+#R1search {
+  margin-left: 66px;
+}
+
+#R2search {
+  margin-left: 40px;
+}
+#searchText {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  color: #0376db;
+}
+
+#left{
+  flex:1;
+  justify-content: flex-end;
+}
+#right{
+  flex:1;
+  justify-content: flex-start;
+}
+</style>

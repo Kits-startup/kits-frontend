@@ -163,7 +163,7 @@ export default {
   padding: 26px;
   .topRight {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
