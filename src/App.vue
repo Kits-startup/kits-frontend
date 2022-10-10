@@ -10,19 +10,21 @@
       <!-- font -->
     </header>
     <MainHeader></MainHeader>
-    <router-view>
-    </router-view>
+    <router-view> </router-view>
     <test-vue></test-vue>
+    <MainFooter></MainFooter>
   </div>
 </template>
 
 <script>
 import MainHeader from "./components/EmployerUser/MainHeader/MainHeader.vue";
 import testVue from "./testVue.vue";
+import MainFooter from "./components/EmployerUser/MainHeader/MainFooter.vue";
 export default {
   components: {
     MainHeader,
     testVue,
+    MainFooter,
   },
 };
 </script>

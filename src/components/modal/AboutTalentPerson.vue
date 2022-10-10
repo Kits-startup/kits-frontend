@@ -411,7 +411,7 @@ export default {
   .topContainer {
     display: flex;
     width: 100%;
-    justify-content: start;
+    justify-content: flex-start;
     .profile {
       background: #eeeeee;
       border-radius: 5px;
@@ -451,7 +451,7 @@ export default {
       display: flex;
       flex-direction: column;
       width: 20%;
-      justify-content: start;
+      justify-content: flex-start;
       position: relative;
       .stateModal {
         top: 5px;

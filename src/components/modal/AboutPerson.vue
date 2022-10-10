@@ -303,7 +303,7 @@ export default {
   .topContainer {
     display: flex;
     width: 100%;
-    justify-content: start;
+    justify-content: flex-start;
     .profile {
       background: #eeeeee;
       border-radius: 5px;
