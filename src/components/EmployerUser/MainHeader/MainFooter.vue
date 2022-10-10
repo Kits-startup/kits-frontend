@@ -28,6 +28,7 @@ export default {};
 
 <style scoped>
 .footer {
+  margin-top:135px;
   height: 242px;
   padding-top: 40px;
   padding-left: 316px;
