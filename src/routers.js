@@ -1,22 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import MyMainBody from "./components/EmployerUser/MyPage/MyPage.vue";
-import ResisterBody from "./components/Login/ResisterBody.vue";
 import CompanyDetail from "./pages/CompanyDetail.vue";
 import CompanyManagement from "./pages/CompanyManagement";
 import ApplierManagement from "./pages/ApplierManagement";
 import TalentSearch from "./pages/TalentSearch";
-import ResisterBodyEnterprise from "./components/Login/ResisterEnterprise/ResisterBodyEnterprise";
-import ResisterBodyEnterpriseInfo from "./components/Login/ResisterEnterprise/ResisterBodyEnterpriseInfo";
+import MainPage from "./pages/MainPage";
 import CompanyRecruit from "./pages/CompanyRecruit.vue";
 import CompanyRecruitRegister from "./pages/CompanyRecruitRegister.vue";
-import testMain from "./components/testMain.vue";
+import MyMainBody from "./components/EmployerUser/MyPage/MyPage.vue";
+import ResisterBody from "./components/Login/ResisterBody.vue";
+import ResisterBodyEnterprise from "./components/Login/ResisterEnterprise/ResisterBodyEnterprise";
+import ResisterBodyEnterpriseInfo from "./components/Login/ResisterEnterprise/ResisterBodyEnterpriseInfo";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
 import EditInfo from "./components/company/management/contents/EditInfo.vue";
 import JobPosting from "./components/company/management/contents/JobPosting.vue";
 import Payment from "./components/company/management/contents/MPayment.vue";
 import MSetting from "./components/company/management/contents/MSetting.vue";
-// import MyProfile from "./components/EmployerUser/MyPage/MyProfile/MyProfile.vue";
 import MyAlarm from "./components/EmployerUser/MyPage/MyAlarm/MyAlarm.vue";
 import MySetting from "./components/EmployerUser/MyPage/MySetting/MySetting.vue";
 import BodyForProfile from "./components/EmployerUser/MyPage/MyProfile/BodyForProfile.vue";
@@ -86,7 +85,7 @@ export const router = new VueRouter({
     },
     {
       path: "/home",
-      component: testMain,
+      component: MainPage,
     },
     {
       path: "/mypage",
