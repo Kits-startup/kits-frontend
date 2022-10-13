@@ -2,12 +2,12 @@
   <div class="themeContainer">
     <div class="header">
       <div class="title">테마로 보는 요즘 채용</div>
-      <span>더보기</span>
+      <span @click="gotoPostingLists" style="cursor: pointer">더보기</span>
     </div>
     <div class="contentContainer">
       <b-row>
         <b-col cols="3" v-for="(item, index) in 8" :key="index">
-          <each-posting-vue />
+          <each-posting-vue :id="index" />
         </b-col>
       </b-row>
     </div>
@@ -19,6 +19,11 @@ import eachPostingVue from "./eachPosting.vue";
 export default {
   components: {
     eachPostingVue,
+  },
+  methods: {
+    gotoPostingLists() {
+      this.$router.push("/posting_list");
+    },
   },
 };
 </script>

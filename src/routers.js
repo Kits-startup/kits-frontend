@@ -6,6 +6,7 @@ import ApplierManagement from "./pages/ApplierManagement";
 import TalentSearch from "./pages/TalentSearch";
 import MainPage from "./pages/MainPage";
 import CompanyRecruit from "./pages/CompanyRecruit.vue";
+import PostingLists from "./pages/PostingLists.vue";
 import CompanyRecruitRegister from "./pages/CompanyRecruitRegister.vue";
 import MyMainBody from "./components/EmployerUser/MyPage/MyPage.vue";
 import ResisterBody from "./components/Login/ResisterBody.vue";
@@ -170,6 +171,12 @@ export const router = new VueRouter({
       path: "/talent_search",
       component: TalentSearch,
       name: "Talent Search",
+      props: true,
+    },
+    {
+      path: "/posting_list",
+      component: PostingLists,
+      name: "Posting List",
       props: true,
     },
   ],

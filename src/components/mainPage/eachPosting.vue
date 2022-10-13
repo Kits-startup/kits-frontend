@@ -1,5 +1,5 @@
 <template>
-  <div class="eContainer">
+  <div class="eContainer" @click="gotoDetail">
     <div class="thumbnail">
       <img class="kImage" :src="exam.src" alt="thumbnail" />
       <div class="heart">
@@ -30,6 +30,12 @@ export default {
   },
   props: {
     companyInfo: Object,
+    id: Number,
+  },
+  methods: {
+    gotoDetail() {
+      this.$router.push(`/company_detail/${this.id}`);
+    },
   },
 };
 </script>

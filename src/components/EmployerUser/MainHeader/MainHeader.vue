@@ -10,7 +10,7 @@
           />
         </router-link>
         <div id="L2search">프로필</div>
-        <div id="L1search">채용공고</div>
+        <div id="L1search" @click="gotoPostLists">채용공고</div>
       </div>
       <div id="search">
         <img src="../../../assets/search-normal.svg" alt="search" />
@@ -49,6 +49,11 @@ export default {
       showModal: false,
     };
   },
+  methods: {
+    gotoPostLists() {
+      this.$router.push("/posting_list");
+    },
+  },
 };
 </script>
 
@@ -86,15 +91,16 @@ export default {
   justify-content: flex-start;
 }
 
-#search img, #searchText{
-  margin-left:18px;
+#search img,
+#searchText {
+  margin-left: 18px;
 }
 
 #bottomLine {
   width: 100%;
   height: 1px;
   background-color: #d9d9d9;
-  margin-bottom:55px;
+  margin-bottom: 55px;
 }
 #L2search {
   margin-right: 43px;
@@ -118,12 +124,12 @@ export default {
   color: #0376db;
 }
 
-#left{
-  flex:1;
+#left {
+  flex: 1;
   justify-content: flex-end;
 }
-#right{
-  flex:1;
+#right {
+  flex: 1;
   justify-content: flex-start;
 }
 </style>
