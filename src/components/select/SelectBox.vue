@@ -31,5 +31,8 @@ select {
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
 }
 </style>

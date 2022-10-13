@@ -1,5 +1,5 @@
 <template>
-  <div class="skillSelectModal">
+  <div class="regionSelectModal">
     <div class="mainSelect">
       <div class="leftTab">
         <b-row style="margin: 0">
@@ -53,7 +53,12 @@
           </div>
         </div>
         <div class="selectBox">
-          <b-form-checkbox-group id="region" name="region" v-model="checkList">
+          <b-form-checkbox-group
+            id="region"
+            name="region"
+            v-model="checkList"
+            @change="getChange"
+          >
             <b-row>
               <b-col
                 class="kCol"
@@ -89,6 +94,7 @@ export default {
     specific: Object,
     tab: String,
     selectTypeTab: Function,
+    searchOptSend: Function,
   },
   methods: {
     selectAll(checkAll) {
@@ -99,12 +105,15 @@ export default {
         this.checkAll == false;
       }
     },
+    getChange(e) {
+      this.$emit("searchOptSend", "region", this.checkList);
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.skillSelectModal {
+.regionSelectModal {
   position: absolute;
   top: 70px;
   left: 0px;
