@@ -8,21 +8,39 @@
         rel="stylesheet"
       />
       <!-- font -->
-      
     </header>
-    <MainHeader></MainHeader>
-    <router-view></router-view>
-    hi kiper!
+    <MainHeader v-if="!isAdmin" />
+    <router-view> </router-view>
+    <MainFooter></MainFooter>
   </div>
 </template>
 
 <script>
-import MainHeader from "./components/PersonalUser/MainHeader/MainHeader.vue";
+import MainHeader from "./components/EmployerUser/MainHeader/MainHeader.vue";
+import MainFooter from "./components/EmployerUser/MainHeader/MainFooter.vue";
 export default {
   components: {
     MainHeader,
+    MainFooter,
+  },
+  data() {
+    return {
+      isAdmin: false,
+    };
+  },
+  mounted() {
+    const url = this.$route.fullPath.split("/");
+    if (url[1] === "admin") {
+      this.isAdmin = true;
+    }
   },
 };
 </script>
 
-<style></style>
+<style>
+#app {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+}
+</style>
