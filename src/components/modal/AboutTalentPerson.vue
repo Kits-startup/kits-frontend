@@ -90,7 +90,8 @@
       </div>
       <div class="introduce">
         <div class="firstLine">
-          <span>자기소개</span><span class="blue">+더보기</span>
+          <span>자기소개</span>
+          <!-- <span class="blue">+더보기</span> -->
         </div>
         <p>
           안녕하세요저는 이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
