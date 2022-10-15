@@ -7,18 +7,15 @@
         <router-view />
       </div>
     </div>
-    <admin-footer />
   </div>
 </template>
 
 <script>
-import AdminFooter from "./components/layout/adminFooter.vue";
 import adminHeaderVue from "./components/layout/adminHeader.vue";
 import LeftTabBar from "./components/layout/leftTabBar.vue";
 export default {
   components: {
     adminHeaderVue,
-    AdminFooter,
     LeftTabBar,
   },
 };

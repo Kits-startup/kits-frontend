@@ -8,21 +8,23 @@
       </div>
       <theme-posting-vue />
     </div>
-    <div class="forCompany" v-if="isCompany"><div>회사일때만 보이게</div></div>
+    <div class="forCompany" v-if="isCompany"><talent-search /></div>
   </div>
 </template>
 
 <script>
 import mainBannerVue from "@/components/mainPage/mainBanner.vue";
 import themePostingVue from "@/components/mainPage/themePosting.vue";
+import TalentSearch from "./TalentSearch.vue";
 export default {
   components: {
     mainBannerVue,
     themePostingVue,
+    TalentSearch,
   },
   data() {
     return {
-      isCompany: false,
+      isCompany: true,
     };
   },
 };

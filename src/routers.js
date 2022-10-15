@@ -33,6 +33,7 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: "history", //해쉬값 제거 방식
   routes: [
+    //for admin
     {
       path: "/admin",
       component: Admin,
@@ -80,6 +81,7 @@ export const router = new VueRouter({
         },
       ],
     },
+    //for both(worker)
     {
       path: "/",
       redirect: "/home",
@@ -87,6 +89,12 @@ export const router = new VueRouter({
     {
       path: "/home",
       component: MainPage,
+    },
+    //for worker
+    {
+      path: "/mypage/profile",
+      component: BodyForProfile,
+      name: "Mypage-Profile",
     },
     {
       path: "/mypage",
@@ -99,11 +107,7 @@ export const router = new VueRouter({
         { path: "setting", name: "Mypage-Setting", component: MySetting },
       ],
     },
-    {
-      path: "/mypage/profile",
-      component: BodyForProfile,
-      name: "Mypage-Profile",
-    },
+    //for company
     {
       //별칭 이용할 것 추후
       path: "/resister",
