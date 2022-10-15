@@ -58,6 +58,7 @@
         :specific="options.specificSkill"
         :tab="tabs.skill"
         @searchOptSend="getSearchOpt"
+        @close="closeSkillModal"
       />
     </div>
     <div class="contentContainer">
@@ -149,6 +150,9 @@ export default {
     };
   },
   methods: {
+    closeSkillModal() {
+      this.modals.skill = false;
+    },
     selectModalOn(element) {
       if (element === "region") {
         this.modals.region = !this.modals.region;

@@ -121,7 +121,7 @@ export default {
 .jobSelectModal {
   position: absolute;
   top: 70px;
-  left: 200px;
+  left: 205px;
   border: 1px solid #0376db;
   width: 888px;
   background: white;
