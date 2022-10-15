@@ -150,7 +150,6 @@ import {
 import EachPersonVue from "@/components/company/applicant/EachPerson.vue";
 import TabBar_largeVue from "@/components/company/applicant/TabBar_large.vue";
 import AboutTalentPersonVue from "@/components/modal/AboutTalentPerson.vue";
-import { getCoins } from "@/components/api/api.js";
 export default {
   name: "talent_search",
   components: {
@@ -289,6 +288,9 @@ export default {
       url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%274%27 height=%275%27 viewBox=%270 0 4 5%27%3e%3cpath fill=%27%23343a40%27 d=%27M2 0L0 2h4zm0 5L0 3h4z%27/%3e%3c/svg%3e")
       right 0.75rem center/8px 10px no-repeat;
     cursor: default;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
   }
   .skillSelectModal {
     position: absolute;
