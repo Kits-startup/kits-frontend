@@ -89,6 +89,7 @@ export const router = new VueRouter({
     {
       path: "/home",
       component: MainPage,
+      props: true,
     },
     //for worker
     {

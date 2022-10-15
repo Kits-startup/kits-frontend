@@ -9,8 +9,14 @@
       />
       <!-- font -->
     </header>
-    <MainHeader v-if="!isAdmin" />
-    <router-view> </router-view>
+    <MainHeader
+      v-if="!isAdmin"
+      @toCompanyUser="changeToCompany"
+      :isCompany="isCompany"
+    />
+    <router-view v-slot="{ MainPage }">
+      <componet :is="MainPage" :isCompany="isCompany" />
+    </router-view>
     <MainFooter></MainFooter>
   </div>
 </template>
@@ -26,12 +32,20 @@ export default {
   data() {
     return {
       isAdmin: false,
+      isCompany: false,
     };
+  },
+  methods: {
+    changeToCompany(company) {
+      company ? (this.isCompany = true) : (this.isCompany = false);
+    },
   },
   mounted() {
     const url = this.$route.fullPath.split("/");
     if (url[1] === "admin") {
       this.isAdmin = true;
+    } else if (url[1] === "company") {
+      this.isCompany = true;
     }
   },
 };

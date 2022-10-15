@@ -1,5 +1,6 @@
 <template>
   <div class="mainContainer">
+    {{ isCompany }}
     <div class="forUser" v-if="!isCompany">
       <main-banner-vue /><theme-posting-vue />
       <div class="newsletter">
@@ -22,10 +23,11 @@ export default {
     themePostingVue,
     TalentSearch,
   },
+  props: {
+    isCompany: Boolean,
+  },
   data() {
-    return {
-      isCompany: true,
-    };
+    return {};
   },
 };
 </script>

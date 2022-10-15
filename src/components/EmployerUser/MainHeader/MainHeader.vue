@@ -30,7 +30,13 @@
             </modal>
           </div>
         </div>
-        <div id="R2search">기업서비스</div>
+        <div
+          id="R2search"
+          @click="$emit('toCompanyUser', isCompany ? false : true)"
+          style="cursor: pointer"
+        >
+          {{ isCompany ? "기업" : "개인" }}서비스
+        </div>
       </div>
     </div>
     <div id="bottomLine"></div>
@@ -53,6 +59,10 @@ export default {
     gotoPostLists() {
       this.$router.push("/posting_list");
     },
+  },
+  props: {
+    toCompanyUser: Function,
+    isCompany: Boolean,
   },
 };
 </script>
