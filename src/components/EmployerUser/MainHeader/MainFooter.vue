@@ -10,13 +10,11 @@
         <div class="title">지원</div>
         <div class="innerText">이용약관</div>
         <div class="innerText">개인정보처리방침</div>
-
       </div>
       <div class="oneColumn">
         <div class="title">LGO</div>
         <div class="innerText">031-1123-1234</div>
         <div class="innerText">asdf@asdf.asdf</div>
-
       </div>
     </div>
   </div>
@@ -28,7 +26,6 @@ export default {};
 
 <style scoped>
 .footer {
-  margin-top:135px;
   height: 242px;
   padding-top: 40px;
   padding-left: 316px;

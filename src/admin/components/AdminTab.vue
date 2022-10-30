@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <span>{{ tab_now }}/{{ tab_sub }}</span>
+    <!-- <span>{{ tab_now }}/{{ tab_sub }}</span> -->
     <admin-each-tab
       v-for="(e, i) in tabList"
       v-bind:key="i"

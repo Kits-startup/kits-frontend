@@ -44,5 +44,6 @@ export default {
   background: #0376db;
   border-radius: 24px;
   padding: 8px 28px;
+  margin-right: 86px;
 }
 </style>

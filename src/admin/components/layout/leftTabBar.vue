@@ -13,10 +13,11 @@ export default {
 .leftTabContainer {
   width: 310px;
   height: 100%;
+  min-height: 700px;
   //border: 1px solid black;
-  min-height: 600px;
   background: #f7f7f7;
   padding-left: 45px;
   padding-top: 36px;
+  margin-right: 100px;
 }
 </style>

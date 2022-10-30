@@ -25,4 +25,7 @@ export default {
 .mainBody {
   display: flex;
 }
+.rightContent {
+  margin-top: 30px;
+}
 </style>

@@ -1,8 +1,7 @@
 <template>
   <div>
-    관리자 관리,{{ tab }}
-    <admin-list-vue v-if="tab === 'list'" />
-    <admin-register v-if="tab === 'register'" />
+    <admin-list-vue v-if="tab.includes('list')" />
+    <admin-register v-if="tab.includes('register')" />
   </div>
 </template>
 
@@ -21,10 +20,9 @@ export default {
   },
   methods: {
     setTab() {
-      console.log("change!");
       const url = this.$route.fullPath.split("/");
-      console.log(url.slice(-1));
-      this.tab = url.slice(-1)[0];
+      this.tab = url[3];
+      console.log(this.tab);
     },
   },
   mounted() {
