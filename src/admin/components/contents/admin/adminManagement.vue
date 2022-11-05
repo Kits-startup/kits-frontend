@@ -1,7 +1,7 @@
 <template>
   <div>
-    <admin-list-vue v-if="tab.includes('list')" />
-    <admin-register v-if="tab.includes('register')" />
+    <admin-list-vue v-if="tab && tab.includes('list')" />
+    <admin-register v-if="tab && tab.includes('register')" />
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
   <div>
     회원 관리 > 홈 > 회원관리 > 회원목록
-    <user-list v-if="tab.includes('list')" />
-    <Approval_userList v-if="tab.includes('register')" />
+    <user-list v-if="tab && tab.includes('user_list')" />
+    <Approval_userList v-if="tab && tab.includes('approval_list')" />
   </div>
 </template>
 
@@ -19,9 +19,7 @@ export default {
   methods: {
     setTab() {
       const url = this.$route.fullPath.split("/");
-      console.log(url);
       this.tab = url[3];
-      console.log(this.tab);
     },
   },
   mounted() {
