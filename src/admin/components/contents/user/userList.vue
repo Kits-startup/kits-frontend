@@ -366,7 +366,7 @@
 
 <script>
 import { companyInfoEx, userField, userInfoEx, userListEx } from "@/data/admin";
-import searchOptionBox from "../../searchOptionBox.vue";
+import searchOptionBox from "../../search/searchOptionBox.vue";
 export default {
   components: { searchOptionBox },
   data() {
