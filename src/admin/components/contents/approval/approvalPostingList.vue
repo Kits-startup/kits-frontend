@@ -1,7 +1,15 @@
 <template>
   <div>
+    <complete-modal-transparent-vue
+      v-if="approvalFinish"
+      title="가입승인 완료"
+      subTitle="가입 승인이 완료 되었습니다."
+    />
+    <approval-false-modal
+      v-if="showApprovalFalseModal"
+      @emitAnswer="getAnswerFromRejectModal"
+    />
     <div class="list">
-      <search-option-approval-user-box />
       총 123,455 명의 사용자가 있습니다.
       <div class="userTable">
         <b-table
@@ -30,7 +38,7 @@
           <template #cell(check)="data">
             <b-check size="sm" class="mr-1" :value="data.value"></b-check>
           </template>
-          <template #cell(link)="data">
+          <template #cell(detail)="data">
             <div
               style="text-decoration: underline"
               @click="gotoLink(data.value)"
@@ -40,8 +48,12 @@
           </template>
         </b-table>
         <div class="btnContainer">
-          <div class="kBtn">가입 미승인</div>
-          <div class="kBtn">가입 승인</div>
+          <div class="kBtn" @click="approval(false)">가입 미승인</div>
+          <div class="kBtn" @click="approval(true)">가입 승인</div>
+          <approval-modal-vue
+            v-if="showApprovalTrueModal"
+            @emitAnswer="getAnswerFromModal"
+          />
         </div>
         <div class="paginationBox">
           <div
@@ -60,15 +72,31 @@
 </template>
 
 <script>
-import { userField_Approval, userListEx_Approval } from "@/data/admin";
+import {
+  userField_ApprovalPosting,
+  userEx_ApprovalPosting,
+} from "@/data/admin";
 import SearchOptionApprovalUserBox from "../../search/searchOptionApprovalUserBox .vue";
+import ApprovalModalVue from "@/components/modal/ApprovalModal.vue";
+import CompleteModalVue from "@/components/modal/CompleteModal.vue";
+import CompleteModalTransparentVue from "@/components/modal/CompleteModalTransparent.vue";
+import ApprovalFalseModal from "@/components/modal/ApprovalFalseModal.vue";
 export default {
-  components: { SearchOptionApprovalUserBox },
+  components: {
+    SearchOptionApprovalUserBox,
+    ApprovalModalVue,
+    CompleteModalVue,
+    CompleteModalTransparentVue,
+    ApprovalFalseModal,
+  },
   data() {
     return {
-      items: userListEx_Approval,
-      fields: userField_Approval,
+      items: userEx_ApprovalPosting,
+      fields: userField_ApprovalPosting,
       clickedPage: 1,
+      showApprovalTrueModal: false,
+      approvalFinish: false,
+      showApprovalFalseModal: false,
     };
   },
   methods: {
@@ -84,6 +112,27 @@ export default {
     gotoLink: function (link) {
       console.log(link);
     },
+    approval: function (param) {
+      if (param) {
+        this.showApprovalTrueModal = true;
+      } else {
+        this.showApprovalFalseModal = true;
+      }
+    },
+    getAnswerFromModal: function (value) {
+      console.log(value);
+      if (value) {
+        this.approvalFinish = true;
+        setTimeout(() => {
+          this.approvalFinish = false;
+        }, 1000);
+      }
+      this.showApprovalTrueModal = false;
+    },
+    getAnswerFromRejectModal: function (value) {
+      console.log(value);
+      this.showApprovalFalseModal = false;
+    },
   },
 };
 </script>
@@ -95,6 +144,7 @@ export default {
 .btnContainer {
   display: flex;
   justify-content: flex-end;
+  position: relative;
   .kBtn {
     width: 155px;
     height: 50px;
