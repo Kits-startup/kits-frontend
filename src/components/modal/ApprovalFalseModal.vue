@@ -2,11 +2,14 @@
   <div class="modalContainer">
     <div class="box">
       <div class="topHeader">
-        <div>가입 미승인 사유</div>
-        <div class="xBtn">X</div>
+        <div>{{ keyword }} 미승인 사유</div>
+        <div class="xBtn" @click="sendBack(false)">X</div>
       </div>
       <div class="content">
-        <textarea rows="15" placeholder="가입 미승인 사유를 작성해주세요." />
+        <textarea
+          rows="15"
+          :placeholder="keyword + ' 미승인 사유를 작성해주세요.'"
+        />
       </div>
       <div class="btnContainer">
         <div class="kBtn cancel" @click="sendBack(false)">취소하기</div>
@@ -18,11 +21,14 @@
 
 <script>
 export default {
-  name: "DeleteReviewModal",
+  name: "ApprovalFalseModal",
   methods: {
     sendBack(value) {
       this.$emit("emitAnswer", value);
     },
+  },
+  props: {
+    keyword: String,
   },
 };
 </script>

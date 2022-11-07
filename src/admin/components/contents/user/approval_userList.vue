@@ -60,7 +60,8 @@
 </template>
 
 <script>
-import { userField_Approval, userListEx_Approval } from "@/data/admin";
+import { userField_Approval } from "@/data/tableFieldData";
+import { userListEx_Approval } from "@/data/admin";
 import SearchOptionApprovalUserBox from "../../search/searchOptionApprovalUserBox .vue";
 export default {
   components: { SearchOptionApprovalUserBox },

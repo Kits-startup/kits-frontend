@@ -5,7 +5,7 @@
         X
       </div>
       <div style="font-size: 22px; line-height: 38px; color: #515151">
-        가입 승인을 진행 하시겠습니까?
+        {{ keyword }} 승인을 진행 하시겠습니까?
       </div>
       <div class="btnContainer">
         <div class="left checkBtn" @click="sendBack(true)">예</div>
@@ -22,6 +22,9 @@ export default {
     sendBack(value) {
       this.$emit("emitAnswer", value);
     },
+  },
+  props: {
+    keyword: String,
   },
 };
 </script>

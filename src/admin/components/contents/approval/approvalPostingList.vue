@@ -8,6 +8,7 @@
     <approval-false-modal
       v-if="showApprovalFalseModal"
       @emitAnswer="getAnswerFromRejectModal"
+      keyword="가입"
     />
     <div class="list">
       총 123,455 명의 사용자가 있습니다.
@@ -53,6 +54,7 @@
           <approval-modal-vue
             v-if="showApprovalTrueModal"
             @emitAnswer="getAnswerFromModal"
+            keyword="가입"
           />
         </div>
         <div class="paginationBox">
@@ -72,15 +74,13 @@
 </template>
 
 <script>
-import {
-  userField_ApprovalPosting,
-  userEx_ApprovalPosting,
-} from "@/data/admin";
+import { userField_ApprovalPosting } from "@/data/tableFieldData";
 import SearchOptionApprovalUserBox from "../../search/searchOptionApprovalUserBox .vue";
 import ApprovalModalVue from "@/components/modal/ApprovalModal.vue";
 import CompleteModalVue from "@/components/modal/CompleteModal.vue";
 import CompleteModalTransparentVue from "@/components/modal/CompleteModalTransparent.vue";
 import ApprovalFalseModal from "@/components/modal/ApprovalFalseModal.vue";
+import { userEx_ApprovalPosting } from "@/data/admin";
 export default {
   components: {
     SearchOptionApprovalUserBox,

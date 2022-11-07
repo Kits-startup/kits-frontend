@@ -134,7 +134,8 @@
 </template>
 
 <script>
-import { adminListEx, fieldData } from "@/data/admin";
+import { adminListEx } from "@/data/admin";
+import { fieldData } from "@/data/tableFieldData";
 export default {
   data() {
     return {
