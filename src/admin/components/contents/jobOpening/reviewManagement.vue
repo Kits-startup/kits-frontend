@@ -1,16 +1,43 @@
 <template>
   <div>
-    <complete-modal-transparent-vue
-      v-if="approvalFinish"
-      title="리뷰승인 완료"
-      subTitle="리뷰 승인이 완료 되었습니다."
-    />
-    <approval-false-modal
-      v-if="showApprovalFalseModal"
-      @emitAnswer="getAnswerFromRejectModal"
-      keyword="리뷰"
-    />
     <div class="list">
+      <div class="searchBox">
+        <div class="eachOption">
+          <div class="label">키워드</div>
+          <div class="content">
+            <input type="text" placeholder="검색어를 입력하세요." />
+          </div>
+        </div>
+        <div class="eachOption">
+          <div class="label">등록일</div>
+          <div class="content">
+            <b-form-datepicker
+              class="datePicker"
+              id="start"
+              v-model="date_start"
+              placeholder="start"
+              :date-format-options="{
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+              }"
+              locale="kr"
+            />-<b-form-datepicker
+              class="datePicker"
+              placeholder="end"
+              id="end"
+              v-model="date_end"
+              :date-format-options="{
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+              }"
+              locale="kr"
+            />
+          </div>
+        </div>
+        <b-button>조회</b-button>
+      </div>
       총 123,455 명의 사용자가 있습니다.
       <div class="userTable">
         <b-table
@@ -33,30 +60,24 @@
               {{ data.value }}
             </div>
           </template>
-          <template #cell(register_date)="data">
+          <!-- <template #cell(register_date)="data">
             <div style="width: 100px">{{ data.value }}</div>
-          </template>
+          </template> -->
           <template #cell(check)="data">
             <b-check size="sm" class="mr-1" :value="data.value"></b-check>
           </template>
-          <template #cell(detail)="data">
+          <template #cell(delete)="data">
+            <b-button size="sm" class="mr-1">{{ data.value }}</b-button>
+          </template>
+          <template #cell(manage)="data">
             <div
               style="text-decoration: underline"
               @click="gotoLink(data.value)"
             >
-              바로가기
+              상세관리
             </div>
           </template>
         </b-table>
-        <div class="btnContainer">
-          <div class="kBtn" @click="approval(false)">리뷰 미승인</div>
-          <div class="kBtn" @click="approval(true)">리뷰 승인</div>
-          <approval-modal-vue
-            v-if="showApprovalTrueModal"
-            @emitAnswer="getAnswerFromModal"
-            keyword="리뷰"
-          />
-        </div>
         <div class="paginationBox">
           <div
             class="page"
@@ -74,29 +95,16 @@
 </template>
 
 <script>
-import { userField_ApprovalReview } from "@/data/tableFieldData";
-import { ex_Approval_Review } from "@/data/tableExData";
+import { ex_Review } from "@/data/admin";
+import { field_review } from "@/data/tableFieldData";
 import SearchOptionApprovalUserBox from "../../search/searchOptionApprovalUserBox .vue";
-import ApprovalModalVue from "@/components/modal/ApprovalModal.vue";
-import CompleteModalVue from "@/components/modal/CompleteModal.vue";
-import CompleteModalTransparentVue from "@/components/modal/CompleteModalTransparent.vue";
-import ApprovalFalseModal from "@/components/modal/ApprovalFalseModal.vue";
 export default {
-  components: {
-    SearchOptionApprovalUserBox,
-    ApprovalModalVue,
-    CompleteModalVue,
-    CompleteModalTransparentVue,
-    ApprovalFalseModal,
-  },
+  components: { SearchOptionApprovalUserBox },
   data() {
     return {
-      items: ex_Approval_Review,
-      fields: userField_ApprovalReview,
+      items: ex_Review,
+      fields: field_review,
       clickedPage: 1,
-      showApprovalTrueModal: false,
-      approvalFinish: false,
-      showApprovalFalseModal: false,
     };
   },
   methods: {
@@ -112,27 +120,6 @@ export default {
     gotoLink: function (link) {
       console.log(link);
     },
-    approval: function (param) {
-      if (param) {
-        this.showApprovalTrueModal = true;
-      } else {
-        this.showApprovalFalseModal = true;
-      }
-    },
-    getAnswerFromModal: function (value) {
-      console.log(value);
-      if (value) {
-        this.approvalFinish = true;
-        setTimeout(() => {
-          this.approvalFinish = false;
-        }, 1000);
-      }
-      this.showApprovalTrueModal = false;
-    },
-    getAnswerFromRejectModal: function (value) {
-      console.log(value);
-      this.showApprovalFalseModal = false;
-    },
   },
 };
 </script>
@@ -144,7 +131,6 @@ export default {
 .btnContainer {
   display: flex;
   justify-content: flex-end;
-  position: relative;
   .kBtn {
     width: 155px;
     height: 50px;
@@ -158,6 +144,41 @@ export default {
     line-height: 25px;
     margin-left: 10px;
     cursor: pointer;
+  }
+}
+.searchBox {
+  display: flex;
+  justify-content: space-between;
+  height: 68px;
+  align-items: center;
+  background: #f6f6f6;
+  padding-left: 20px;
+  padding-right: 10px;
+  font-size: 20px;
+  line-height: 27px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  width: 1300px;
+  .eachOption {
+    display: flex;
+    align-items: center;
+  }
+  .label {
+    margin-right: 26px;
+  }
+  .content {
+    display: flex;
+    input {
+      border: 1px solid #878787;
+      outline: none;
+      background: white;
+      width: 400px;
+      padding: 5px 10px;
+      margin-right: 80px;
+    }
+  }
+  .datePicker {
+    width: 150px;
   }
 }
 </style>
