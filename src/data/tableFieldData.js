@@ -427,3 +427,71 @@ export const userField_ApprovalReview = [
     tdClass: "kCell",
   },
 ];
+export const field_Payment = [
+  {
+    key: "num",
+    label: "NO.",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "check",
+    label: "선택",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "code",
+    label: "결제번호",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "state",
+    label: "결제상태",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "method",
+    label: "결제수단",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "date",
+    label: "결제일",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "amount",
+    label: "결제금액",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "reject_method",
+    label: "환불수단",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "reject_date",
+    label: "환불신청/완료일",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "reject_amount",
+    label: "환불금액",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "detail",
+    label: "상세보기",
+    sortable: false,
+    tdClass: "kCell",
+  },
+];
