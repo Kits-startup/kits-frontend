@@ -495,3 +495,41 @@ export const field_Payment = [
     tdClass: "kCell",
   },
 ];
+export const field_Notice = [
+  {
+    key: "num",
+    label: "NO.",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "check",
+    label: "선택",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "title",
+    label: "제목",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "content",
+    label: "상세내용",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "register_date",
+    label: "등록일",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "detail",
+    label: "상세보기",
+    sortable: false,
+    tdClass: "kCell",
+  },
+];

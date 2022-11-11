@@ -1,9 +1,18 @@
 <template>
-  <div>공지 관리!{{ tab }}</div>
+  <div>
+    <notice-list v-if="tab && tab.includes('list')" />
+    <notice-register v-if="tab && tab.includes('register')" />
+  </div>
 </template>
 
 <script>
+import NoticeList from "./noticeList.vue";
+import NoticeRegister from "./noticeRegister.vue";
 export default {
+  components: {
+    NoticeList,
+    NoticeRegister,
+  },
   data() {
     return {
       tab: null,

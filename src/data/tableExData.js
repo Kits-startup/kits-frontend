@@ -24,3 +24,14 @@ export const ex_Payment = [
     detail: "",
   },
 ];
+export const ex_Notice = [
+  {
+    num: "1",
+    check: false,
+    title: "10월 공지사항 입니다.",
+    content:
+      "공지 사항 내용을 12가지로 요약하는 내용이보여짐 공지 사항 내용을 12가지로 요약하는 내용이보여짐 공지 사항 내용을 12가지로 요약하는 내용이보여짐",
+    register_date: "2022-09-01  13:32:30",
+    detail: "",
+  },
+];
