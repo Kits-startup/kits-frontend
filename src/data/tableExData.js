@@ -35,3 +35,16 @@ export const ex_Notice = [
     detail: "",
   },
 ];
+export const ex_Banner = [
+  {
+    num: "1",
+    check: false,
+    location: "메인",
+    state: "진행",
+    title:
+      "공지 사항 내용을 12가지로 요약하는 내용이보여짐 공지 사항 내용을 12가지로 요약하는 내용이보여짐 공지 사항 내용을 12가지로 요약하는 내용이보여짐",
+    admin: "관리자123",
+    register_date: "2022-09-01  13:32:30",
+    detail: "",
+  },
+];

@@ -533,3 +533,53 @@ export const field_Notice = [
     tdClass: "kCell",
   },
 ];
+export const field_Banner = [
+  {
+    key: "num",
+    label: "NO.",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "check",
+    label: "선택",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "location",
+    label: "위치",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "state",
+    label: "홀로여부",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "title",
+    label: "제목",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "admin",
+    label: "게시자",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "register_date",
+    label: "등록일",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "detail",
+    label: "상세보기",
+    sortable: false,
+    tdClass: "kCell",
+  },
+];
