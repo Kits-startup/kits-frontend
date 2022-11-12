@@ -107,6 +107,7 @@ export default {
 .bottomBtnContainer {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 20px;
   margin-top: 20px;
 }
 .kTbn {
@@ -122,6 +123,7 @@ export default {
   align-items: center;
   display: flex;
   margin-left: 8px;
+  cursor: pointer;
 }
 .cancle {
   background: #0376db;

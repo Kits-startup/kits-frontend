@@ -583,3 +583,53 @@ export const field_Banner = [
     tdClass: "kCell",
   },
 ];
+export const field_QnA = [
+  {
+    key: "num",
+    label: "NO.",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "check",
+    label: "선택",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "state",
+    label: "답변상태",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "title",
+    label: "제목",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "type",
+    label: "문의유형",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "mail",
+    label: "이메일",
+    sortable: false,
+    tdClass: "kCell",
+  },
+  {
+    key: "register_date",
+    label: "등록일",
+    sortable: true,
+    tdClass: "kCell",
+  },
+  {
+    key: "detail",
+    label: "상세보기",
+    sortable: false,
+    tdClass: "kCell",
+  },
+];

@@ -48,3 +48,16 @@ export const ex_Banner = [
     detail: "",
   },
 ];
+export const ex_QnA = [
+  {
+    num: "1",
+    check: false,
+    state: "답변대기",
+    title:
+      "공지 사항 내용을 12가지로 요약하는 내용이보여짐 공지 사항 내용을 12가지로 요약하는 내용이보여짐 공지 사항 내용을 12가지로 요약하는 내용이보여짐",
+    type: "개인고객",
+    mail: "abc@naver.com",
+    register_date: "2022-09-01  13:32:30",
+    detail: "",
+  },
+];
