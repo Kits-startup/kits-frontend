@@ -3,7 +3,7 @@
     <search-option-noticement />
     총 123,455 명의 사용자가 있습니다.
     <b-table
-      class="noticeList"
+      class="noticeList adminTable"
       hover
       :items="items"
       :fields="fields"

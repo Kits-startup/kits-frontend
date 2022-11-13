@@ -96,7 +96,7 @@
     </div>
     <div class="adminListContainer" v-else>
       <b-table
-        class="adminList"
+        class="adminList adminTable"
         hover
         :items="items"
         :fields="fields"
@@ -175,7 +175,6 @@ export default {
 <style lang="scss">
 .adminListContainer {
   margin-bottom: 100px;
-  width: 1000px;
   .adminList {
     text-align: center;
     white-space: pre-wrap;

@@ -29,7 +29,7 @@
       <div class="description">총 123,455 명의 사용자가 있습니다.</div>
       <div class="rejectBtn" @click="reject">환불하기</div>
     </div>
-    <b-table class="userList" hover :items="items" :fields="fields">
+    <b-table class="userList adminTable" hover :items="items" :fields="fields">
       <template #cell(name_company)="data">
         <div
           style="

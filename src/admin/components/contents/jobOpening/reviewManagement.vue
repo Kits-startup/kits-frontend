@@ -39,7 +39,7 @@
         <b-button>조회</b-button>
       </div>
       총 123,455 명의 사용자가 있습니다.
-      <div class="userTable">
+      <div class="userTable adminTable">
         <b-table
           class="userList"
           hover

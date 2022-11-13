@@ -63,4 +63,7 @@ export default {
     margin-right: 16px;
   }
 }
+.adminTable {
+  width: 1500px !important;
+}
 </style>

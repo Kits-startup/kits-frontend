@@ -2,7 +2,7 @@
   <div>
     <search-option-banner />
     <b-table
-      class="noticeList"
+      class="noticeList adminTable"
       hover
       :items="items"
       :fields="fields"
