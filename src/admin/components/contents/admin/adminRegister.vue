@@ -43,16 +43,11 @@
           <b-form-radio
             style="margin-right: 40px"
             v-model="state"
-            :aria-describedby="ariaDescribedby"
             name="state"
             value="active"
             >활성</b-form-radio
           >
-          <b-form-radio
-            v-model="state"
-            :aria-describedby="ariaDescribedby"
-            name="state"
-            value="inactive"
+          <b-form-radio v-model="state" name="state" value="inactive"
             >비활성</b-form-radio
           >
         </div>
@@ -81,7 +76,7 @@
       </div>
     </div>
     <div class="bottom">
-      <div class="kBtn edit" @click="editInfo">취소</div>
+      <div class="kBtn edit">취소</div>
       <div class="kBtn backToList" @click="goBack">등록</div>
     </div>
   </div>
@@ -94,6 +89,12 @@ export default {
       type: "",
       state: "",
     };
+  },
+  methods: {
+    goBack() {
+      this.$router.push(-1);
+      this.edit = false;
+    },
   },
 };
 </script>

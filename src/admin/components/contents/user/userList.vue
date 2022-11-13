@@ -96,16 +96,11 @@
                   <b-form-radio
                     style="margin-right: 40px"
                     v-model="sex"
-                    :aria-describedby="ariaDescribedby"
                     name="men"
                     value="men"
                     >남성</b-form-radio
                   >
-                  <b-form-radio
-                    v-model="sex"
-                    :aria-describedby="ariaDescribedby"
-                    name="women"
-                    value="여"
+                  <b-form-radio v-model="sex" name="women" value="여"
                     >여성</b-form-radio
                   >
                 </div>

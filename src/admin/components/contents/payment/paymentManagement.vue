@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="topHelmet">
+      <div class="blue">결제 관리</div>
+      <div>홈 > 결제 관리 > 결제 목록</div>
+    </div>
     <payment-reject-check-each
       v-if="showEachRejectModal"
       @emitAnswer="getAnswerFromRejectModal"

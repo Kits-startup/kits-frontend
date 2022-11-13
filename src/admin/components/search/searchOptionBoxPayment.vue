@@ -33,12 +33,7 @@
       <div class="line midLine">
         <div class="label">결제상태</div>
         <div class="content type">
-          <b-form-checkbox-group
-            id="state"
-            v-model="state"
-            :aria-describedby="ariaDescribedby"
-            name="state"
-          >
+          <b-form-checkbox-group id="state" v-model="state" name="state">
             <b-form-checkbox
               :value="['pay_done', 'reject_doing', 'reject_done']"
               >전체</b-form-checkbox

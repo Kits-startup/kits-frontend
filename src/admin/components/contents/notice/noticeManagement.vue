@@ -1,7 +1,11 @@
 <template>
   <div>
-    <notice-list v-if="tab && tab.includes('list')" />
-    <notice-register v-if="tab && tab.includes('register')" />
+    <div class="topHelmet">
+      <div class="blue">공지 관리</div>
+      <div>홈 > 공지 관리 {{ tabDetail ? "> " : "" }}{{ tabDetail }}</div>
+    </div>
+    <notice-list v-if="tab.includes('list')" />
+    <notice-register v-if="tab.includes('register')" />
   </div>
 </template>
 
@@ -15,15 +19,19 @@ export default {
   },
   data() {
     return {
-      tab: null,
+      tab: "",
+      tabDetail: null,
     };
   },
   methods: {
     setTab() {
-      console.log("change!");
       const url = this.$route.fullPath.split("/");
-      console.log(url.slice(-1));
       this.tab = url.slice(-1)[0];
+      if (this.tab.includes("list")) {
+        this.tabDetail = "공지 목록";
+      } else if (this.tab.includes("register")) {
+        this.tabDetail = "공지 등록";
+      }
     },
   },
   mounted() {

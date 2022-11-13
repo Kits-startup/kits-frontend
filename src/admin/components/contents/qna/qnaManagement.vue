@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="topHelmet">
+      <div class="blue">문의 관리</div>
+      <div>홈 > 문의 관리 {{ tabDetail ? "> " : "" }}{{ tabDetail }}</div>
+    </div>
     <div class="eachQnA" v-if="num">
       •문의 정보
       <div class="table">
@@ -136,7 +140,8 @@ export default {
   components: { searchOptionBoxQnA },
   data() {
     return {
-      tab: null,
+      tab: "",
+      tabDetail: null,
       items: ex_QnA,
       fields: field_QnA,
       clickedPage: 1,
@@ -147,10 +152,16 @@ export default {
   },
   methods: {
     setTab() {
-      console.log("change!");
       const url = this.$route.fullPath.split("/");
-      console.log(url.slice(-1));
       this.tab = url.slice(-1)[0];
+      const { num } = this.$route.query;
+      if (num) {
+        this.tabDetail = "문의 목록 > 문의 상세";
+      } else {
+        if (this.tab.includes("list")) {
+          this.tabDetail = "문의 목록";
+        }
+      }
     },
     clickPage: function (index) {
       this.clickedPage = index;

@@ -40,7 +40,6 @@
           <b-form-radio
             style="margin-right: 40px"
             v-model="approvalType"
-            :aria-describedby="ariaDescribedby"
             name="all"
             value="all"
             >전체</b-form-radio
@@ -48,7 +47,6 @@
           <b-form-radio
             style="margin-right: 40px"
             v-model="approvalType"
-            :aria-describedby="ariaDescribedby"
             name="true"
             value="true"
             >승인</b-form-radio
@@ -56,7 +54,6 @@
           <b-form-radio
             style="margin-right: 40px"
             v-model="approvalType"
-            :aria-describedby="ariaDescribedby"
             name="false"
             value="false"
             >미승인</b-form-radio

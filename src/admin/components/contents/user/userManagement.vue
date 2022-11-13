@@ -1,8 +1,11 @@
 <template>
   <div>
-    회원 관리 > 홈 > 회원관리 > 회원목록
-    <user-list v-if="tab && tab.includes('user_list')" />
-    <Approval_userList v-if="tab && tab.includes('approval_list')" />
+    <div class="topHelmet">
+      <div class="blue">회원 관리</div>
+      <div>홈 > 회원 관리 {{ tabDetail ? "> " : "" }}{{ tabDetail }}</div>
+    </div>
+    <user-list v-if="tab.includes('user_list')" />
+    <Approval_userList v-if="tab.includes('approval_list')" />
   </div>
 </template>
 
@@ -13,13 +16,24 @@ export default {
   components: { userList, Approval_userList },
   data() {
     return {
-      tab: null,
+      tab: "",
+      tabDetail: null,
     };
   },
   methods: {
     setTab() {
       const url = this.$route.fullPath.split("/");
+      const { id } = this.$route.query;
       this.tab = url[3];
+      if (id) {
+        this.tabDetail = "회원목록 > 회원상세";
+      } else {
+        if (this.tab.includes("approval_list")) {
+          this.tabDetail = "승인목록";
+        } else if (this.tab.includes("user_list")) {
+          this.tabDetail = "회원목록";
+        }
+      }
     },
   },
   mounted() {

@@ -1,7 +1,11 @@
 <template>
   <div>
-    <admin-list-vue v-if="tab && tab.includes('list')" />
-    <admin-register v-if="tab && tab.includes('register')" />
+    <div class="topHelmet">
+      <div class="blue">관리자 관리</div>
+      <div>홈 > 관리자 관리 {{ tabDetail ? "> " : "" }}{{ tabDetail }}</div>
+    </div>
+    <admin-list-vue v-if="tab.includes('list')" />
+    <admin-register v-if="tab.includes('register')" />
   </div>
 </template>
 
@@ -15,14 +19,24 @@ export default {
   },
   data() {
     return {
-      tab: null,
+      tab: "",
+      tabDetail: null,
     };
   },
   methods: {
     setTab() {
       const url = this.$route.fullPath.split("/");
+      const { num } = this.$route.query;
       this.tab = url[3];
-      console.log(this.tab);
+      if (num) {
+        this.tabDetail = "관리자상세";
+      } else {
+        if (this.tab.includes("register")) {
+          this.tabDetail = "관리자등록";
+        } else if (this.tab.includes("list")) {
+          this.tabDetail = "관리자목록";
+        }
+      }
     },
   },
   mounted() {
@@ -36,4 +50,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.topHelmet {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  display: flex;
+  color: #878787;
+  margin-bottom: 33px;
+  .blue {
+    color: #0376db;
+    margin-right: 16px;
+  }
+}
+</style>

@@ -1,9 +1,12 @@
 <template>
   <div>
-    회원 관리 > 홈 > 승인관리 > 승인목록
+    <div class="topHelmet">
+      <div class="blue">승인 관리</div>
+      <div>홈 > 승인 관리 {{ tabDetail ? "> " : "" }}{{ tabDetail }}</div>
+    </div>
     <search-option-box-approval />
-    <approval-posting-list v-if="tab && tab.includes('post_list')" />
-    <approval-review-list v-if="tab && tab.includes('review_list')" />
+    <approval-posting-list v-if="tab.includes('post_list')" />
+    <approval-review-list v-if="tab.includes('review_list')" />
   </div>
 </template>
 
@@ -19,13 +22,19 @@ export default {
   },
   data() {
     return {
-      tab: null,
+      tab: "",
+      tabDetail: null,
     };
   },
   methods: {
     setTab() {
       const url = this.$route.fullPath.split("/");
       this.tab = url[3];
+      if (this.tab.includes("post_list")) {
+        this.tabDetail = "승인목록";
+      } else if (this.tab.includes("review_list")) {
+        this.tabDetail = "리뷰목록";
+      }
     },
   },
   mounted() {

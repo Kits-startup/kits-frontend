@@ -1,7 +1,11 @@
 <template>
   <div>
-    <banner-list v-if="tab && tab.includes('list')" />
-    <banner-register v-if="tab && tab.includes('register')" />
+    <div class="topHelmet">
+      <div class="blue">배너 관리</div>
+      <div>홈 > 배너 관리 {{ tabDetail ? "> " : "" }}{{ tabDetail }}</div>
+    </div>
+    <banner-list v-if="tab.includes('list')" />
+    <banner-register v-if="tab.includes('register')" />
   </div>
 </template>
 
@@ -12,15 +16,19 @@ export default {
   components: { bannerList, BannerRegister },
   data() {
     return {
-      tab: null,
+      tab: "",
+      tabDetail: null,
     };
   },
   methods: {
     setTab() {
-      console.log("change!");
       const url = this.$route.fullPath.split("/");
-      console.log(url.slice(-1));
       this.tab = url.slice(-1)[0];
+      if (this.tab.includes("list")) {
+        this.tabDetail = "배너 목록";
+      } else if (this.tab.includes("register")) {
+        this.tabDetail = "배너 등록";
+      }
     },
   },
   mounted() {

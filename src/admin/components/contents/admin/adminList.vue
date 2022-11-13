@@ -1,14 +1,5 @@
 <template>
   <div>
-    <div class="topHeader">
-      <div class="main">관리자 관리</div>
-      <div class="optional" v-if="num">
-        <span
-          >홈 > 관리자관리 >
-          {{ this.edit ? "관리자수정(관리자)" : "관리자상세" }}</span
-        >
-      </div>
-    </div>
     <div class="adminDetail" v-if="num">
       <div class="top">•관리자 정보</div>
       <div class="infoBox">
@@ -20,16 +11,11 @@
               <b-form-radio
                 style="margin-right: 40px"
                 v-model="adminType"
-                :aria-describedby="ariaDescribedby"
                 name="basic"
                 value="basic"
                 >관리자</b-form-radio
               >
-              <b-form-radio
-                v-model="adminType"
-                :aria-describedby="ariaDescribedby"
-                name="second"
-                value="second"
+              <b-form-radio v-model="adminType" name="second" value="second"
                 >2차 관리자</b-form-radio
               >
             </div>
@@ -59,14 +45,12 @@
               <b-form-radio
                 style="margin-right: 40px"
                 v-model="adminState"
-                :aria-describedby="ariaDescribedby"
                 name="active"
                 value="active"
                 >활성</b-form-radio
               >
               <b-form-radio
                 v-model="adminState"
-                :aria-describedby="ariaDescribedby"
                 name="inactive"
                 value="inactive"
                 >비활성</b-form-radio
