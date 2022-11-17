@@ -1,4 +1,100 @@
+<template>
+  <Transition name="modal">
+    <div v-if="show" class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+          <div>
+            <button class="modal-close-button" @click="$emit('close')">
+              <img
+                src="@/assets/xBtn.png"
+                alt="close button"
+                width="24px"
+                height="24px"
+              />
+            </button>
+          </div>
+          <div>
+            <div class="logo">
+              <img
+                src="@/assets/kitsLogoNew.png"
+                width="134px"
+                height="42px"
+                alt="logo"
+              />
+            </div>
+          </div>
+          <div class="default">안녕하세요!</div>
+          <div class="title">키츠에 오신걸 환영합니다.</div>
+          <div>
+            <div class="emailForm" v-if="!getPwMode">
+              <input
+                class="input"
+                v-model="inputEmail"
+                v-bind:class="{ wrongEmailForm: this.test }"
+                placeholder="이메일로 바로가기"
+                type="text"
+              />
+              <div id="unvalidEmail">{{ validEmailMessage }}</div>
+              <input
+                class="submit"
+                type="submit"
+                @click="checkAccountExist()"
+                value="바로가기"
+              />
+            </div>
+            <div class="emailForm PW" v-else>
+              <input
+                class="input pw"
+                v-model="pw"
+                placeholder="비밀번호 입력"
+                type="password"
+              />
+              <div id="unvalidEmail" />
+              <input
+                class="submit"
+                type="submit"
+                @click="checkIDPW()"
+                value="바로가기"
+              />
+            </div>
+          </div>
+          <div class="EasyLoginContainer">
+            <div class="social">
+              <div class="logo">
+                <img src="@/assets/social/kakao.png" alt="kakao" />
+              </div>
+              <div class="label">카카오</div>
+            </div>
+            <div class="social">
+              <div class="logo">
+                <img src="@/assets/social/google.png" alt="google" />
+              </div>
+              <div class="label">구글</div>
+            </div>
+            <div class="social">
+              <div class="logo">
+                <img src="@/assets/social/naver.png" alt="naver" />
+              </div>
+              <div class="label">네이버</div>
+            </div>
+          </div>
+          <div class="changeLoginMode">
+            <div class="question">기업 고객이신가요?</div>
+            <div class="link">기업서비스 바로가기</div>
+          </div>
+          <div class="findIdPw">
+            <div class="find">아이디찾기</div>
+            <div class="sep">|</div>
+            <div class="find">비밀번호 찾기</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Transition>
+</template>
+
 <script>
+import { accountDB } from "../../data/login";
 export default {
   props: {
     show: Boolean,
@@ -6,6 +102,8 @@ export default {
   data() {
     return {
       inputEmail: "",
+      getPwMode: false,
+      pw: null,
     };
   },
   computed: {
@@ -44,70 +142,36 @@ export default {
           .catch(() => {});
       }
     },
+    checkAccountExist() {
+      if (!this.test) {
+        const found = accountDB.find(
+          (e) => e.email == this.inputEmail && !e.isCompany
+        );
+        if (found) {
+          console.log("user exists");
+          this.getPwMode = true;
+        } else {
+          console.log("no such user, go to register");
+        }
+      }
+    },
+    checkIDPW() {
+      const user = accountDB.find((e) => (e.pw = this.pw));
+      if (user) {
+        console.log(user);
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        this.pw = false;
+        this.$router.go();
+        // this.$emit("close");
+      } else {
+        console.log("wrong pw");
+      }
+    },
   },
 };
 </script>
 
-<template>
-  <Transition name="modal">
-    <div v-if="show" class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-          <div>
-            <button class="modal-close-button" @click="$emit('close')">
-              X
-            </button>
-          </div>
-          <div>
-            <div class="logo">Logo</div>
-          </div>
-          <div class="title">
-            안녕하세요! {{ $store.state.isEmployer ? "개인" : "기업" }} 고객님!
-          </div>
-          <div class="default">키츠에 오신걸 환영합니다.</div>
-          <div>
-            <div class="emailForm">
-              <input
-                class="input"
-                v-model="inputEmail"
-                v-bind:class="{ wrongEmailForm: this.test }"
-                type="text"
-              />
-              <div id="unvalidEmail">{{ validEmailMessage }}</div>
-              <input
-                class="submit"
-                type="submit"
-                @click="goResister()"
-                value="바로가기"
-              />
-            </div>
-          </div>
-          <div v-show="$store.state.isEmployer" class="EasyLoginContainer">
-            카카오 네이버 구글
-          </div>
-          <div class="EnterpriseSwitch">
-            <div>
-              {{ !$store.state.isEmployer ? "개인" : "기업" }}고객이 이렇습니까?
-            </div>
-            <div
-              @click="$store.commit('changeUserType')"
-              class="pointer"
-              id="Link"
-            >
-              {{ !$store.state.isEmployer ? "개인" : "기업" }}서비스 바로가기
-            </div>
-          </div>
-          <div class="EnterpriseSwitch" id="FindID">
-            <div>아이디/비밀번호를 기억하세요?</div>
-            <div class="pointer" id="Link">아이디/비밀번호 찾기</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </Transition>
-</template>
-
-<style scoped>
+<style scoped lang="scss">
 .pointer {
   cursor: pointer;
 }
@@ -129,10 +193,6 @@ export default {
 .EnterpriseSwitch #Link {
   color: #0376db;
   float: right;
-}
-.modal-container .EasyLoginContainer {
-  margin-top: 54px;
-  height: 87px;
 }
 
 .modal-container .logo {
@@ -157,7 +217,7 @@ export default {
   padding-left: 22px;
   background: #ffffff;
   /* 메인 */
-
+  outline: none;
   border: 1px solid #0376db;
   border-radius: 3px;
   font-weight: 400;
@@ -193,7 +253,9 @@ export default {
 }
 
 .modal-container .title {
-  font-size: 32px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 44px;
 
   margin: 0;
   margin-top: 7px;
@@ -231,7 +293,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 664px;
+  min-height: 664px;
   width: 628px;
   margin: 0px auto;
   background-color: #fff;
@@ -271,5 +333,58 @@ export default {
 .modal-leave-to .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.EasyLoginContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  .social {
+    cursor: pointer;
+    .logo {
+      img {
+        width: 56px;
+        height: 56px;
+      }
+    }
+    .label {
+      margin-top: 14px;
+      font-size: 15px;
+      line-height: 20px;
+      color: #515151;
+    }
+  }
+}
+.changeLoginMode {
+  display: flex;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  justify-content: center;
+  margin-top: 24px;
+  .question {
+    color: #515151;
+  }
+  .link {
+    text-decoration: underline;
+    color: #0376db;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+}
+.findIdPw {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #515151;
+  margin-bottom: 75px;
+  .find {
+    cursor: pointer;
+  }
+  .sep {
+    margin: 0 24px;
+  }
 }
 </style>

@@ -9,13 +9,10 @@
       />
       <!-- font -->
     </header>
-    <MainHeader
-      v-if="!isAdmin"
-      @toCompanyUser="changeToCompany"
-      :isCompany="isCompany"
-    />
+    <MainHeader v-if="userMode === 'user'" />
+    <company-header v-else />
     <router-view v-slot="{ MainPage }">
-      <componet :is="MainPage" :isCompany="isCompany" />
+      <componet :is="MainPage" />
     </router-view>
     <MainFooter></MainFooter>
   </div>
@@ -24,29 +21,17 @@
 <script>
 import MainHeader from "./components/EmployerUser/MainHeader/MainHeader.vue";
 import MainFooter from "./components/EmployerUser/MainHeader/MainFooter.vue";
+import CompanyHeader from "./components/company/CompanyHeader.vue";
 export default {
   components: {
     MainHeader,
     MainFooter,
+    CompanyHeader,
   },
   data() {
     return {
-      isAdmin: false,
-      isCompany: false,
+      userMode: localStorage.getItem("userMode") || "user",
     };
-  },
-  methods: {
-    changeToCompany(company) {
-      company ? (this.isCompany = true) : (this.isCompany = false);
-    },
-  },
-  mounted() {
-    const url = this.$route.fullPath.split("/");
-    if (url[1] === "admin") {
-      this.isAdmin = true;
-    } else if (url[1] === "company") {
-      this.isCompany = true;
-    }
   },
 };
 </script>

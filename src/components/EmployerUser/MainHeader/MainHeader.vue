@@ -18,9 +18,14 @@
       </div>
       <div id="right">
         <div id="R1search">
-          <button id="show-modal" @click="showModal = true">
+          <button
+            id="show-modal"
+            @click="showModal = true"
+            v-if="userInfo == null"
+          >
             회원가입/로그인
           </button>
+          <button v-else>프로필</button>
           <div>
             <!-- use the modal component, pass in the prop -->
             <modal :show="showModal" @close="showModal = false">
@@ -30,12 +35,8 @@
             </modal>
           </div>
         </div>
-        <div
-          id="R2search"
-          @click="$emit('toCompanyUser', isCompany ? false : true)"
-          style="cursor: pointer"
-        >
-          {{ isCompany ? "기업" : "개인" }}서비스
+        <div id="R2search" style="cursor: pointer" @click="changeMode()">
+          {{ userMode === "user" ? "기업" : "개인" }}서비스
         </div>
       </div>
     </div>
@@ -53,16 +54,42 @@ export default {
   data() {
     return {
       showModal: false,
+      userInfo: JSON.parse(localStorage.getItem("currentUser")) || null,
+      userMode: localStorage.getItem("userMode") || "user",
     };
   },
   methods: {
     gotoPostLists() {
       this.$router.push("/posting_list");
     },
+    changeMode() {
+      if (this.userMode === "user") {
+        console.log("usermode->companymode");
+        localStorage.setItem("userMode", "company");
+        this.$router.go();
+      } else {
+        console.log("company->usermode");
+        localStorage.setItem("userMode", "user");
+        this.$router.go();
+      }
+    },
   },
-  props: {
-    toCompanyUser: Function,
-    isCompany: Boolean,
+  props: {},
+  watch: {
+    userInfo: function (value, oldvalue) {
+      console.log(oldvalue);
+      console.log("to..");
+      console.log(value);
+    },
+    userMode: function (value, oldvalue) {
+      console.log(oldvalue);
+      console.log("to..");
+      console.log(value);
+    },
+  },
+  mounted() {
+    this.userInfo = JSON.parse(localStorage.getItem("currentUser")) || null;
+    console.log(localStorage.getItem("userMode"));
   },
 };
 </script>
@@ -126,6 +153,14 @@ export default {
 
 #R2search {
   margin-left: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+  background: #0376db;
+  width: 114px;
+  height: 42px;
+  border-radius: 99px;
 }
 #searchText {
   font-weight: 500;

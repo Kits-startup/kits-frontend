@@ -4,7 +4,7 @@ import CompanyDetail from "./pages/CompanyDetail.vue";
 import CompanyManagement from "./pages/CompanyManagement";
 import ApplierManagement from "./pages/ApplierManagement";
 import TalentSearch from "./pages/TalentSearch";
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/MainPage.vue";
 import CompanyRecruit from "./pages/CompanyRecruit.vue";
 import PostingLists from "./pages/PostingLists.vue";
 import CompanyRecruitRegister from "./pages/CompanyRecruitRegister.vue";

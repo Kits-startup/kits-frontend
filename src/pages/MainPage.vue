@@ -1,7 +1,6 @@
 <template>
   <div class="mainContainer">
-    {{ isCompany }}
-    <div class="forUser" v-if="!isCompany">
+    <div class="forUser" v-if="userMode === 'user'">
       <main-banner-vue /><theme-posting-vue />
       <div class="newsletter">
         뉴스레터를 구독해보시고 정보를 받아가세요!
@@ -9,7 +8,7 @@
       </div>
       <theme-posting-vue />
     </div>
-    <div class="forCompany" v-if="isCompany"><talent-search /></div>
+    <div class="forCompany" v-else><talent-search /></div>
   </div>
 </template>
 
@@ -23,11 +22,11 @@ export default {
     themePostingVue,
     TalentSearch,
   },
-  props: {
-    isCompany: Boolean,
-  },
+  props: {},
   data() {
-    return {};
+    return {
+      userMode: localStorage.getItem("userMode") || "user",
+    };
   },
 };
 </script>
