@@ -29,6 +29,8 @@ import payment_Management from "./admin/components/contents/payment/paymentManag
 import notice_Management from "./admin/components/contents/notice/noticeManagement.vue";
 import banner_Management from "./admin/components/contents/banner/bannerManagement.vue";
 import qna_Management from "./admin/components/contents/qna/qnaManagement.vue";
+import FindPW from "./pages/FindPW.vue";
+import FindId from "./pages/FindId.vue";
 Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: "history", //해쉬값 제거 방식
@@ -126,6 +128,18 @@ export const router = new VueRouter({
       path: "/resister-Enterprise-Info",
       component: ResisterBodyEnterpriseInfo,
       name: "ResisterEnterpriseInfo",
+      props: true,
+    },
+    {
+      path: "/find-pw",
+      component: FindPW,
+      name: "FindPw",
+      props: true,
+    },
+    {
+      path: "/find-id",
+      component: FindId,
+      name: "FindId",
       props: true,
     },
     {
