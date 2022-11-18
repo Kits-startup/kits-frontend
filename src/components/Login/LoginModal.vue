@@ -58,7 +58,7 @@
               />
             </div>
           </div>
-          <div class="EasyLoginContainer">
+          <div class="EasyLoginContainer" v-if="mode === 'user'">
             <div class="social">
               <div class="logo">
                 <img src="@/assets/social/kakao.png" alt="kakao" />
@@ -79,13 +79,22 @@
             </div>
           </div>
           <div class="changeLoginMode">
-            <div class="question">기업 고객이신가요?</div>
-            <div class="link">기업서비스 바로가기</div>
+            <div class="question">
+              {{ mode === "user" ? "기업" : "개인" }} 고객이신가요?
+            </div>
+            <div
+              class="link"
+              @click="
+                $emit('changeModalMode', mode === 'user' ? 'company' : 'user')
+              "
+            >
+              {{ mode === "user" ? "기업" : "개인" }}서비스 바로가기
+            </div>
           </div>
           <div class="findIdPw">
-            <div class="find">아이디찾기</div>
+            <div class="find" @click="goto('id')">아이디찾기</div>
             <div class="sep">|</div>
-            <div class="find">비밀번호 찾기</div>
+            <div class="find" @click="goto('pw')">비밀번호 찾기</div>
           </div>
         </div>
       </div>
@@ -98,6 +107,8 @@ import { accountDB } from "../../data/login";
 export default {
   props: {
     show: Boolean,
+    mode: String,
+    changeModalMode: Function,
   },
   data() {
     return {
@@ -143,29 +154,53 @@ export default {
       }
     },
     checkAccountExist() {
+      const isCompany = this.mode === "company";
       if (!this.test) {
         const found = accountDB.find(
-          (e) => e.email == this.inputEmail && !e.isCompany
+          (e) => e.email == this.inputEmail && e.isCompany == isCompany
         );
         if (found) {
           console.log("user exists");
           this.getPwMode = true;
         } else {
           console.log("no such user, go to register");
+          this.$emit("close");
+          if (isCompany) {
+            this.$router.push({
+              name: "ResisterEnterprise",
+              params: { emailFrom: this.inputEmail },
+            });
+          } else {
+            this.$router.push({
+              name: "Resister",
+              params: { email: this.inputEmail },
+            });
+          }
         }
       }
     },
     checkIDPW() {
-      const user = accountDB.find((e) => (e.pw = this.pw));
+      const user = accountDB.find(
+        (e) => e.email == this.inputEmail && e.pw == this.pw
+      );
       if (user) {
         console.log(user);
         localStorage.setItem("currentUser", JSON.stringify(user));
+        if (user.isCompany) {
+          localStorage.setItem("userMode", "company");
+        }
         this.pw = false;
         this.$router.go();
         // this.$emit("close");
       } else {
         console.log("wrong pw");
       }
+    },
+    goto(where) {
+      where === "id"
+        ? this.$router.push("/find-id")
+        : this.$router.push("/find-pw");
+      this.$emit("close");
     },
   },
 };
@@ -293,7 +328,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  min-height: 664px;
+  min-height: 564px;
   width: 628px;
   margin: 0px auto;
   background-color: #fff;

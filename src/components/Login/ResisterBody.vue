@@ -3,25 +3,39 @@
     <div class="title">간편가입</div>
     <div class="oneInputSet">
       <div class="inputTitle">이메일</div>
-      <input
-        type="text"
-        v-model="inputEmail"
-        class="inputBox"
-        v-bind:class="{ wrongEmailForm: this.test }"
-        placeholder="이메일을 입력해 주세요."
-      />
-      <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
+      <div class="flexDisplay">
+        <div class="inputContainer">
+          <input
+            type="text"
+            v-model="inputEmail"
+            class="inputBox"
+            v-bind:class="{ wrongEmailForm: this.test }"
+            placeholder="이메일을 입력해 주세요."
+          />
+          <div class="wrongFormWarn">
+            {{ test ? "올바른 이메일 부탁" : "" }}
+          </div>
+        </div>
+        <div class="certificateBtn" @click="certificateEmail = true">
+          {{ certificateEmail ? "재발송" : "메일인증" }}
+        </div>
+      </div>
     </div>
-    <div class="oneInputSet">
-      <div class="inputTitle">이메일 인증번호 입력</div>
-      <input
-        type="text"
-        class="inputBox"
-        placeholder="이메일 인증번호를 입력해 주세요."
-      />
-      <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
+    <div class="oneInputSet" v-if="certificateEmail">
+      <div class="flexDisplay">
+        <div class="inputContainer">
+          <input
+            type="text"
+            class="inputBox"
+            placeholder="이메일 인증번호를 입력해 주세요."
+          />
 
-      <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
+          <div class="wrongFormWarn">
+            {{ test ? "올바른 이메일 부탁" : "" }}
+          </div>
+        </div>
+        <div class="certificateBtn">인증하기</div>
+      </div>
     </div>
 
     <div class="oneInputSet">
@@ -33,13 +47,10 @@
       />
       <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
 
-      <div class="passwordCaution" v-bind:class="{ wrongFormWarn: this.test }">
-        {{
-          test
-            ? "비밀번호가 올바르지 않습니다"
-            : "영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."
-        }}
-      </div>
+      <div
+        class="passwordCaution"
+        v-bind:class="{ wrongFormWarn: this.test }"
+      ></div>
     </div>
 
     <div class="oneInputSet">
@@ -48,13 +59,12 @@
       <input
         type="password"
         class="inputBox"
-        placeholder="휴대폰 번호를 입력해 주세요."
+        placeholder="비밀번호를 재입력해 주세요."
       />
-      <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
     </div>
 
     <div class="phoneCertification">
-      <div class="title">휴대폰 인증</div>
+      <div class="inputTitle">휴대폰 인증</div>
       <div class="certificationBox">
         <div class="getCertificationBox">
           <input
@@ -62,10 +72,11 @@
             type="text"
             placeholder="예시) 01012345678"
           />
-          <input class="submit" type="submit" value="인증번호 받기" />
+          <div class="certificateBtn">휴대폰 인증</div>
         </div>
         <input
-          class="inputBox certificationInput"
+          class="inputBox"
+          style="width: 100%"
           type="text"
           placeholder="인증번호를 입력해 주세요"
         />
@@ -73,10 +84,29 @@
     </div>
 
     <div class="agree">
-      <div class="title">이용약관 내용동의</div>
-      <div class="checkBoxText agreeALlcss">
+      <div
+        class="inputTitle"
+        style="
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 30px;
+          margin-bottom: 12px;
+        "
+      >
+        이용약관 내용동의
+      </div>
+      <div class="checkBoxText" style="font-size: 18px; line-height: 30px">
         <input type="checkbox" v-model="allSelected" value="agreeAll" />전체동의
       </div>
+      <div
+        class="sepLine"
+        style="
+          width: 100%;
+          height: 1px;
+          background: #b7b7b7;
+          margin-bottom: 12px;
+        "
+      />
       <div class="checkBoxText">
         <input type="checkbox" v-model="selectList" value="age" />만 14세 이상
         입니다
@@ -84,7 +114,7 @@
       <div class="checkBoxText">
         <input type="checkbox" v-model="selectList" value="service" />
         <div class="flexForDetail">
-          서비스 이용 약관 동의 (필수)
+          <div>서비스 이용 약관 동의<span class="star"> *</span></div>
           <div class="detail pointer" @click="showServiceModal = true">
             상세보기
           </div>
@@ -93,7 +123,9 @@
       <div class="checkBoxText">
         <input type="checkbox" v-model="selectList" value="private" />
         <div class="flexForDetail">
-          개인 정보 수집. 이용에 대한 동의 (필수)
+          <div>
+            개인 정보 수집. 이용에 대한 동의<span class="star"> *</span>
+          </div>
           <div class="detail pointer" @click="showPersonalModal = true">
             상세보기
           </div>
@@ -102,19 +134,22 @@
       <div class="checkBoxText">
         <input type="checkbox" v-model="selectList" value="offer" />
         <div class="flexForDetail">
-          개인정보 제 3자 제공및 위탁사항 (선택)
+          <div>
+            개인정보 제 3자 제공및 위탁사항
+            <span style="color: #878787">(선택)</span>
+          </div>
           <div class="detail pointer" @click="showThirdPartyModal = true">
             상세보기
           </div>
         </div>
       </div>
-      <div class="checkBoxText">
+      <!-- <div class="checkBoxText">
         <input type="checkbox" v-model="selectList" value="agree" />
         <div class="textAlign">위내용을 확인하였으며 동의 합니다.</div>
-      </div>
+      </div> -->
 
       <button class="submit" id="finalSubmit" @click="checkArr()">
-        화원가입하기
+        회원가입하기
       </button>
 
       <div>
@@ -155,7 +190,7 @@ export default {
     ServiceTermAgree,
   },
   props: {
-    emailFrom: {
+    email: {
       type: String,
       default: "",
     },
@@ -165,9 +200,11 @@ export default {
       showServiceModal: false,
       showPersonalModal: false,
       showThirdPartyModal: false,
-      inputEmail: this.emailFrom,
+      inputEmail: this.email,
       selectList: [],
       checkList: ["age", "service", "private", "offer", "agree"],
+      pressSubmit: false,
+      certificateEmail: false,
     };
   },
   methods: {
@@ -186,19 +223,26 @@ export default {
       },
     },
     test() {
-      let re =
-        /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-      return (
-        this.inputEmail != "" &&
-        this.inputEmail != "undefined" &&
-        !re.test(this.inputEmail)
-      );
+      if (this.pressSubmit) {
+        let re =
+          /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        return (
+          this.inputEmail != "" &&
+          this.inputEmail != "undefined" &&
+          !re.test(this.inputEmail)
+        );
+      } else {
+        return null;
+      }
     },
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+input {
+  outline: none;
+}
 .body {
   display: flex;
   margin: auto;
@@ -209,25 +253,24 @@ export default {
 }
 
 .title {
-  font-size: 26px;
-
-  line-height: 38px;
   color: #000000;
-  margin-bottom: 8px;
+  margin-bottom: 32px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 47px;
 }
 
 .inputTitle {
-  font-weight: 400;
   font-size: 18px;
   line-height: 27px;
   margin-bottom: 10px;
-
+  font-weight: 500;
   color: #000000;
 }
 
 .inputBox {
   height: 55px;
-  border: 1px solid #0376db;
+  border: 1px solid #515151;
   border-radius: 3px;
 
   font-weight: 400;
@@ -267,26 +310,38 @@ export default {
 .getCertificationBox {
   display: flex;
   margin-bottom: 10px;
+  .certificateBtn {
+    width: 106px;
+    height: 56px;
+    background: #f3f3f3;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 27px;
+    color: #515151;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 12px;
+  }
 }
 .certificationInput {
-  width: 273px;
+  width: 322px;
   height: 55px;
   margin: 0;
 }
 
 .submit {
-  background: #0376db;
+  background: #f3f3f3;
   outline: 0;
   border: 0;
   border-radius: 3px;
-
   font-size: 18px;
   line-height: 27px;
-  color: #ffffff;
-
   margin-left: 6px;
   width: 139px;
   height: 57px;
+  margin: 120px 0;
+  font-weight: 700;
 }
 
 .agree {
@@ -298,10 +353,9 @@ export default {
 .checkBoxText {
   display: flex;
   margin-bottom: 10px;
-
   font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 16px;
+  line-height: 24px;
   color: #000000;
 }
 
@@ -320,12 +374,10 @@ export default {
 }
 
 .detail {
-  margin-right: 39px;
-
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 14px;
+  line-height: 21px;
   text-decoration-line: underline;
-  color: #0376db;
+  color: #878787;
 }
 
 #finalSubmit {
@@ -348,5 +400,28 @@ export default {
   margin-top: 4px;
   margin-bottom: 5px;
   color: #e60505;
+}
+.flexDisplay {
+  display: flex;
+  input {
+    width: 332px;
+  }
+  .certificateBtn {
+    width: 96px;
+    height: 56px;
+    background: #f3f3f3;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 12px;
+    font-size: 18px;
+    line-height: 27px;
+    color: #515151;
+    cursor: pointer;
+  }
+}
+.star {
+  color: red;
 }
 </style>

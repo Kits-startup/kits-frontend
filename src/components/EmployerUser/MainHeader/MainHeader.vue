@@ -28,7 +28,12 @@
           <button v-else>프로필</button>
           <div>
             <!-- use the modal component, pass in the prop -->
-            <modal :show="showModal" @close="showModal = false">
+            <modal
+              :show="showModal"
+              @close="showModal = false"
+              :mode="loginMode"
+              @changeModalMode="getChangeModeRequest"
+            >
               <!-- <template #header>
               <h3>custom header</h3>
             </template> -->
@@ -56,6 +61,7 @@ export default {
       showModal: false,
       userInfo: JSON.parse(localStorage.getItem("currentUser")) || null,
       userMode: localStorage.getItem("userMode") || "user",
+      loginMode: "user",
     };
   },
   methods: {
@@ -64,29 +70,26 @@ export default {
     },
     changeMode() {
       if (this.userMode === "user") {
-        console.log("usermode->companymode");
-        localStorage.setItem("userMode", "company");
-        this.$router.go();
+        console.log("usermode->companymode, need to login");
+        if (this.userInfo) {
+          localStorage.setItem("userMode", "company");
+          this.$router.go();
+        } else {
+          this.loginMode = "company";
+          this.showModal = true;
+        }
       } else {
         console.log("company->usermode");
         localStorage.setItem("userMode", "user");
         this.$router.go();
       }
     },
+    getChangeModeRequest(value) {
+      this.loginMode = value;
+    },
   },
   props: {},
-  watch: {
-    userInfo: function (value, oldvalue) {
-      console.log(oldvalue);
-      console.log("to..");
-      console.log(value);
-    },
-    userMode: function (value, oldvalue) {
-      console.log(oldvalue);
-      console.log("to..");
-      console.log(value);
-    },
-  },
+
   mounted() {
     this.userInfo = JSON.parse(localStorage.getItem("currentUser")) || null;
     console.log(localStorage.getItem("userMode"));
