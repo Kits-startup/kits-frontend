@@ -6,13 +6,11 @@
       :interval="10000"
       background="#ababab"
       style="text-shadow: 1px 1px 2px #333"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
     >
       <b-carousel-slide
         v-for="i in 9"
         :key="i"
-        :caption="i"
+        :caption="i.toString()"
         img-src="https://picsum.photos/1024/480/?image=52"
         img-width="740"
         img-height="400"
@@ -24,7 +22,7 @@
 <script>
 export default {
   data() {
-    return {};
+    return { slide: null };
   },
   components: {},
 };
