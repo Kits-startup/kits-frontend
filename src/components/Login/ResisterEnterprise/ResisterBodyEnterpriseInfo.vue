@@ -133,8 +133,13 @@
       </div>
     </div>
     <div class="finalContainer">
-      <button class="submit" id="finalSubmit" @click="checkArr()">
-        화원가입하기
+      <button
+        class="submit"
+        id="finalSubmit"
+        @click="checkArr()"
+        style="margin-bottom: 150px"
+      >
+        회원가입하기
       </button>
     </div>
   </div>
@@ -453,9 +458,9 @@ export default {
   margin-bottom: 16px;
 }
 
-.finalContainer{
-  width:100%;
-  display:flex;
+.finalContainer {
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
