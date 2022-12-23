@@ -10,8 +10,8 @@ import PostingLists from "./pages/PostingLists.vue";
 import CompanyRecruitRegister from "./pages/CompanyRecruitRegister.vue";
 import MyMainBody from "./components/EmployerUser/MyPage/MyPage.vue";
 import ResisterBody from "./components/Login/ResisterBody.vue";
-import ResisterBodyEnterprise from "./components/Login/ResisterEnterprise/ResisterBodyEnterprise";
-import ResisterBodyEnterpriseInfo from "./components/Login/ResisterEnterprise/ResisterBodyEnterpriseInfo";
+import RegisterBodyEnterprise from "./components/Login/RegisterEnterprise/RegisterBodyEnterprise";
+import RegisterBodyEnterpriseInfo from "./components/Login/RegisterEnterprise/RegisterBodyEnterpriseInfo";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
 import EditInfo from "./components/company/management/contents/EditInfo.vue";
 import JobPosting from "./components/company/management/contents/JobPosting.vue";
@@ -84,64 +84,64 @@ export const router = new VueRouter({
       ],
     },
     //for both(worker)
+    // {
+    //   path: "/",
+    //   redirect: "/home",
+    // },
     {
       path: "/",
-      redirect: "/home",
-    },
-    {
-      path: "/home",
       component: MainPage,
       props: true,
     },
     //for worker
-    {
-      path: "/mypage/profile",
-      component: BodyForProfile,
-      name: "Mypage-Profile",
-    },
-    {
-      path: "/mypage",
-      component: MyMainBody,
-      name: "Mypage",
-      children: [
-        { path: "activity", name: "Mypage-Activity", component: MyActivity },
-        // { path: "profile",name:"Mypage-Profile", component: MyProfile },
-        { path: "alarm", name: "Mypage-Alarm", component: MyAlarm },
-        { path: "setting", name: "Mypage-Setting", component: MySetting },
-      ],
-    },
+    // {
+    //   path: "/mypage/profile",
+    //   component: BodyForProfile,
+    //   name: "Mypage-Profile",
+    // },
+    // {
+    //   path: "/mypage",
+    //   component: MyMainBody,
+    //   name: "Mypage",
+    //   children: [
+    //     { path: "activity", name: "Mypage-Activity", component: MyActivity },
+    //     // { path: "profile",name:"Mypage-Profile", component: MyProfile },
+    //     { path: "alarm", name: "Mypage-Alarm", component: MyAlarm },
+    //     { path: "setting", name: "Mypage-Setting", component: MySetting },
+    //   ],
+    // },
     //for company
+    // {
+    //   //별칭 이용할 것 추후
+    //   path: "/resister",
+    //   component: ResisterBody,
+    //   name: "Resister",
+    //   props: true,
+    // },
     {
-      //별칭 이용할 것 추후
-      path: "/resister",
-      component: ResisterBody,
-      name: "Resister",
-      props: true,
-    },
-    {
-      path: "/resister-Enterprise",
-      component: ResisterBodyEnterprise,
+      path: "/register_enterprise",
+      component: RegisterBodyEnterprise,
       name: "ResisterEnterprise",
       props: true,
     },
     {
-      path: "/resister-Enterprise-Info",
-      component: ResisterBodyEnterpriseInfo,
+      path: "/register_enterprise_info",
+      component: RegisterBodyEnterpriseInfo,
       name: "ResisterEnterpriseInfo",
       props: true,
     },
-    {
-      path: "/find-pw",
-      component: FindPW,
-      name: "FindPw",
-      props: true,
-    },
-    {
-      path: "/find-id",
-      component: FindId,
-      name: "FindId",
-      props: true,
-    },
+    // {
+    //   path: "/find-pw",
+    //   component: FindPW,
+    //   name: "FindPw",
+    //   props: true,
+    // },
+    // {
+    //   path: "/find-id",
+    //   component: FindId,
+    //   name: "FindId",
+    //   props: true,
+    // },
     {
       path: "/company_detail/:id",
       component: CompanyDetail,
@@ -170,7 +170,7 @@ export const router = new VueRouter({
           name: "management-edit-info",
           component: EditInfo,
         },
-        { path: "payment", name: "management-payment", component: Payment },
+        // { path: "payment", name: "management-payment", component: Payment },
         { path: "setting", name: "management-setting", component: MSetting },
       ],
     },
@@ -180,18 +180,18 @@ export const router = new VueRouter({
       name: "Company Recruit Register",
       props: true,
     },
-    {
-      path: "/company_applier_management",
-      component: ApplierManagement,
-      name: "Company Applier Management",
-      props: true,
-    },
-    {
-      path: "/talent_search",
-      component: TalentSearch,
-      name: "Talent Search",
-      props: true,
-    },
+    // {
+    //   path: "/company_applier_management",
+    //   component: ApplierManagement,
+    //   name: "Company Applier Management",
+    //   props: true,
+    // },
+    // {
+    //   path: "/talent_search",
+    //   component: TalentSearch,
+    //   name: "Talent Search",
+    //   props: true,
+    // },
     {
       path: "/posting_list",
       component: PostingLists,
