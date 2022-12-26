@@ -9,11 +9,17 @@
             type="text"
             class="inputBox"
             placeholder="기업명을 입력해 주세요."
+            v-model="companyInfo.companyName"
           />
         </div>
         <div class="oneInputSet w-171px">
           <div class="inputTitle">설립년도</div>
-          <input type="text" class="inputBox" placeholder="예) 2020" />
+          <input
+            type="text"
+            class="inputBox"
+            placeholder="예) 2020"
+            v-model="companyInfo.companyYear"
+          />
         </div>
       </div>
       <div class="oneInputSet marginB18">
@@ -37,6 +43,7 @@
           type="text"
           class="inputBox"
           placeholder="상세주소를 입력해주세요"
+          v-model="companyInfo.addressDetail"
         />
       </div>
       <div class="oneInputSet marginB27">
@@ -45,12 +52,18 @@
           type="text"
           class="inputBox"
           placeholder="예)123456789 띄어쓰기없이 번호만 입력"
+          v-model="companyInfo.companyNumber"
         />
       </div>
 
       <div class="oneInputSet marginB27">
         <div class="inputTitle">매출액 또는 투자금(단위 만원)</div>
-        <input type="text" class="inputBox" placeholder="예) 200000000" />
+        <input
+          type="text"
+          class="inputBox"
+          placeholder="예) 200000000"
+          v-model="companyInfo.companyMoney"
+        />
       </div>
 
       <div class="oneInputSet marginB27">
@@ -59,26 +72,28 @@
           type="text"
           class="inputBox"
           placeholder="예) 5,10,15 숫자만입력"
+          v-model="companyInfo.companyPeople"
         />
       </div>
 
       <div class="oneInputSet marginB27">
         <div style="display: flex; flex-direction: row">
           <div class="oneInputSet" style="width: 50%; margin-right: 8px">
-            <div class="inputTitle">담장자 이름</div>
+            <div class="inputTitle">담당자 이름</div>
             <input
               type="text"
               class="inputBox"
               placeholder="담당자 이름을 입력해주세요."
+              v-model="companyInfo.companyPerson"
             />
           </div>
           <div class="oneInputSet" style="width: 50%">
             <div class="inputTitle">담당자 연락처</div>
-
             <input
               type="text"
               class="inputBox"
               placeholder="예) 01012345678 숫자만입력"
+              v-model="companyInfo.companyPhone"
             />
           </div>
         </div>
@@ -91,13 +106,15 @@
           class="inputBox"
           style="height: 276px; padding-top: 17px"
           placeholder="내용을 상세히 작성해주세요."
-          v-model="entpIntro"
+          v-model="companyInfo.companyDetail"
         ></textarea>
         <div
           class="introLimit"
-          v-bind:class="entpIntro.length <= 4000 ? '' : 'tooLong'"
+          v-bind:class="
+            companyInfo.companyDetail.length <= 4000 ? '' : 'tooLong'
+          "
         >
-          {{ entpIntro.length }}/4000
+          {{ companyInfo.companyDetail.length }}/4000
         </div>
       </div>
 
@@ -107,6 +124,7 @@
           type="text"
           class="inputBox"
           placeholder="홈페이지 URL 을 입력해주세요."
+          v-model="companyInfo.homepageURL"
         />
       </div>
     </div>
@@ -146,12 +164,21 @@
 </template>
 
 <script>
+import { makeCompanyUser } from "@/components/api/userApi";
 export default {
   components: {},
   props: {
-    emailFrom: {
+    email: {
       type: String,
       default: "",
+    },
+    password: {
+      type: String,
+      default: "",
+    },
+    selectList1: {
+      type: Array,
+      default: null,
     },
   },
   data() {
@@ -163,18 +190,62 @@ export default {
         final: "",
         extraAddress: "",
       },
-      entpIntro: "",
       showServiceModal: false,
       showPersonalModal: false,
       showThirdPartyModal: false,
       inputEmail: this.emailFrom,
       selectList: [],
       checkList: ["age", "service", "private", "offer", "agree"],
+      companyInfo: {
+        companyName: "",
+        companyYear: "",
+        addressDetail: "",
+        companyDetail: "",
+        companyNumber: "",
+        companyMoney: "",
+        companyPeople: "",
+        companyPerson: "",
+        companyPhone: "",
+        homepageURL: "",
+      },
     };
   },
   methods: {
     checkArr: function () {
-      console.log(this.selectList);
+      console.log(this.companyInfo);
+      console.log(this.addressSet.final);
+      if (
+        this.companyInfo.companyName != "" &&
+        this.companyInfo.companyYear &&
+        this.companyInfo.addressDetail &&
+        this.companyInfo.companyDetail &&
+        this.companyInfo.companyNumber &&
+        this.companyInfo.companyMoney &&
+        this.companyInfo.companyPeople &&
+        this.companyInfo.companyPerson &&
+        this.companyInfo.companyPhone &&
+        this.companyInfo.homepageURL
+      ) {
+        let info = {
+          ...this.companyInfo,
+          email: this.email,
+          password: this.password,
+        };
+        console.log(info);
+        makeCompanyUser(info)
+          .then((res) => {
+            if (res.status == 201) {
+              console.log("success");
+              localStorage.setItem("currentUser", JSON.stringify(res.data));
+              localStorage.setItem("userMode", "company");
+              this.$router.push("/");
+              this.$router.go();
+            }
+          })
+          .catch((error) => console.log(error));
+      } else {
+        alert("모든 란을 다 채워주세요.");
+      }
     },
     execDaumPostcode() {
       new window.daum.Postcode({
@@ -233,10 +304,10 @@ export default {
 };
 </script>
 
-<style scoped>
-/* * {
-} */
-
+<style scoped lang="scss">
+input {
+  outline: none;
+}
 .body {
   display: flex;
   margin: auto;

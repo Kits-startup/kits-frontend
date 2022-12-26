@@ -27,10 +27,10 @@
           </button>
           <div class="profile" v-else>
             <div class="profileImg">
-              <img :src="userInfo.profile" alt="profile image" />
+              <img :src="userInfo.logo" alt="profile image" />
             </div>
             <div class="name" @click="showDropDown = !showDropDown">
-              {{ userInfo.name }}
+              {{ userInfo.username }}
               <svg
                 width="15"
                 height="9"

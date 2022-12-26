@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="title">
-      간편가입<span style="font-size: 24px"> (이메일 인증)</span>
+      간편가입<span style="font-size: 24px"> (이메일)</span>
     </div>
     <div class="oneInputSet">
       <div class="inputTitle">이메일</div>
@@ -11,19 +11,21 @@
             type="text"
             v-model="inputEmail"
             class="inputBox"
-            v-bind:class="{ wrongEmailForm: this.test }"
+            v-bind:class="{ wrongEmailForm: this.test && this.submitClick }"
             placeholder="이메일을 입력해 주세요."
           />
           <div class="wrongFormWarn">
-            {{ test ? "올바른 이메일 부탁" : "" }}
+            {{
+              submitClick && test ? "올바른 이메일 주소를 입력해주세요." : ""
+            }}
           </div>
         </div>
-        <div class="certificateBtn" @click="certificateEmail = true">
+        <!-- <div class="certificateBtn" @click="certificateEmail = true">
           {{ certificateEmail ? "재발송" : "메일인증" }}
-        </div>
+        </div> -->
       </div>
     </div>
-    <div class="oneInputSet" v-if="certificateEmail">
+    <!-- <div class="oneInputSet" v-if="certificateEmail">
       <div class="flexDisplay">
         <div class="inputContainer">
           <input
@@ -38,7 +40,7 @@
         </div>
         <div class="certificateBtn">인증하기</div>
       </div>
-    </div>
+    </div> -->
 
     <div class="oneInputSet">
       <div class="inputTitle">비밀번호 입력</div>
@@ -46,14 +48,13 @@
         type="password"
         class="inputBox passwordBox"
         placeholder="비밀번호를 입력해 주세요."
+        v-model="password"
       />
       <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
 
-      <div class="passwordCaution" v-bind:class="{ wrongFormWarn: this.test }">
+      <div class="passwordCaution">
         {{
-          test
-            ? "비밀번호가 올바르지 않습니다"
-            : "영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."
+          "영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합하여 8자 이상 입력해주세요."
         }}
       </div>
     </div>
@@ -64,11 +65,23 @@
       <input
         type="password"
         class="inputBox"
-        placeholder="휴대폰 번호를 입력해 주세요."
+        placeholder="비밀번호를 한 번 더 입력해주세요."
+        v-model="password2"
       />
       <!-- v-bind:class="{ wrongEmailForm: this.test }" -->
 
-      <div class="wrongFormWarn">{{ test ? "올바른 이메일 부탁" : "" }}</div>
+      <div
+        class="wrongFormWarn"
+        v-bind:class="{
+          wrongFormWarn: this.submitClick && this.password != this.password2,
+        }"
+      >
+        {{
+          submitClick && password2 != password
+            ? "비밀번호가 동일하지 않습니다"
+            : ""
+        }}
+      </div>
     </div>
 
     <div class="agree">
@@ -184,13 +197,46 @@ export default {
       selectList: [],
       checkList: ["service", "private", "offer"],
       certificateEmail: false,
+      password: null,
+      password2: null,
+      submitClick: false,
+      // regPass :/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
     };
   },
   methods: {
     goInfoPage: function () {
-      this.$router
-        .push({ name: "ResisterEnterpriseInfo", params: {} })
-        .catch(() => {});
+      this.submitClick = true;
+      if (
+        this.selectList.includes("service") &&
+        this.selectList.includes("private")
+      ) {
+        if (
+          this.password == this.password2 &&
+          this.password != null &&
+          !this.test
+        ) {
+          let regPass = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+          if (regPass.test(this.password)) {
+            console.log(this.selectList);
+            this.$router
+              .push({
+                name: "ResisterEnterpriseInfo",
+                params: {
+                  email: this.inputEmail,
+                  password: this.password,
+                  selectList1: this.selectList,
+                },
+              })
+              .catch(() => {});
+          } else {
+            alert("비밀번호는 ...");
+          }
+        } else {
+          alert("이메일");
+        }
+      } else {
+        alert("이용약관에 동의되지 않은 항목이 있습니다!");
+      }
     },
   },
   computed: {
@@ -212,6 +258,10 @@ export default {
         !re.test(this.inputEmail)
       );
     },
+    // pwTest(){
+    //   let regPass = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    //   return (!regPass.pwTest(password))
+    // }
   },
 };
 </script>

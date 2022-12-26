@@ -14,10 +14,10 @@
         </div>
         <div class="profile">
           <div class="profileImg">
-            <img :src="userInfo.profile" alt="profile image" />
+            <img :src="userInfo.logo" alt="profile image" />
           </div>
           <div class="name" @click="showDropDown = !showDropDown">
-            {{ userInfo.name }}
+            {{ userInfo.username }}
             <svg
               width="15"
               height="9"
@@ -66,9 +66,6 @@ export default {
     };
   },
   methods: {
-    gotoPostLists() {
-      this.$router.push("/posting_list");
-    },
     changeMode() {
       if (this.userMode === "user") {
         console.log("usermode->companymode");
@@ -94,8 +91,8 @@ export default {
         if (ok) {
           localStorage.removeItem("currentUser");
           localStorage.removeItem("userMode");
-          this.$router.go();
           this.$router.push("/");
+          this.$router.go();
         }
       }
     },
