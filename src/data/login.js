@@ -12,5 +12,8 @@ export const accountDB = [
     pw: "1234",
     isCompany: true,
     token: "validToken",
+    profile:
+      "https://img.freepik.com/premium-vector/n-letter-business-company-logo-design_9955-450.jpg",
+    name: "회사",
   },
 ];
