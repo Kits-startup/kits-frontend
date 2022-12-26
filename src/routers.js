@@ -11,7 +11,7 @@ import CompanyRecruitRegister from "./pages/CompanyRecruitRegister.vue";
 import MyMainBody from "./components/EmployerUser/MyPage/MyPage.vue";
 import ResisterBody from "./components/Login/ResisterBody.vue";
 import RegisterBodyEnterprise from "./components/Login/RegisterEnterprise/RegisterBodyEnterprise";
-import RegisterBodyEnterpriseInfo from "./components/Login/RegisterEnterprise/RegisterBodyEnterpriseInfo";
+import RegisterBodyEnterpriseInfo from "./components/Login/RegisterEnterprise/RegisterBodyEnterpriseInfo.vue";
 import MyActivity from "./components/EmployerUser/MyPage/MyActivity/MyActivity.vue";
 import EditInfo from "./components/company/management/contents/EditInfo.vue";
 import JobPosting from "./components/company/management/contents/JobPosting.vue";
@@ -165,14 +165,14 @@ export const router = new VueRouter({
           name: "management-job-posting-detail",
           component: JobPosting,
         },
-        {
-          path: "edit-info",
-          name: "management-edit-info",
-          component: EditInfo,
-        },
         // { path: "payment", name: "management-payment", component: Payment },
         { path: "setting", name: "management-setting", component: MSetting },
       ],
+    },
+    {
+      path: "/company_edit_info",
+      name: "management-edit-info",
+      component: EditInfo,
     },
     {
       path: "/company_recruit_register",

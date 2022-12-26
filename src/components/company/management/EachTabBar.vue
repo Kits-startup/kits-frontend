@@ -74,7 +74,7 @@ export default {
         { label: "진행중인 채용정보", id: "in-progress" },
         { label: "마감된 채용정보", id: "finish" },
         { label: "임시보관함", id: "temp" },
-        { label: "지원자관리", id: "applicant" },
+        // { label: "지원자관리", id: "applicant" },
       ],
     };
   },

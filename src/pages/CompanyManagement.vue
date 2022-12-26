@@ -1,5 +1,8 @@
 <template>
-  <div class="managementContainer"><tab-bar-vue /><router-view /></div>
+  <div class="managementContainer">
+    <tab-bar-vue />
+    <router-view style="min-width: 1000px" />
+  </div>
 </template>
 
 <script>
