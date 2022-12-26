@@ -20,9 +20,20 @@ export const makeCompanyUser = (info) =>
     registerationNumber: info.companyNumber,
     revenue: info.companyMoney,
     investment: 1,
-    employeescount: info.companyPeople,
+    employeesCount: info.companyPeople,
     managerName: info.companyPerson,
-    managerContact: info.comapnyPhone,
+    managerContact: info.companyPhone,
     logo: "",
     detailImage: "",
   });
+export const findUserByEmail = async (email) =>
+  api
+    .get(`/email/${email}`)
+    .then((res) => res.data)
+    .catch(console.error);
+
+export const updateUser = (id, edit) =>
+  api
+    .patch(`/${id}`, { ...edit })
+    .then((res) => res.data)
+    .catch(console.error);

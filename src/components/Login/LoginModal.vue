@@ -104,6 +104,7 @@
 
 <script>
 import { accountDB } from "../../data/login";
+import { findUserByEmail } from "../api/userApi";
 export default {
   props: {
     show: Boolean,
@@ -153,12 +154,15 @@ export default {
           .catch(() => {});
       }
     },
-    checkAccountExist() {
+    async checkAccountExist() {
       const isCompany = this.mode === "company";
       if (!this.test) {
-        const found = accountDB.find(
-          (e) => e.email == this.inputEmail && e.isCompany == isCompany
-        );
+        console.log(this.inputEmail);
+        const found = await findUserByEmail(this.inputEmail);
+        console.log(found);
+        // const found = accountDB.find(
+        //   (e) => e.email == this.inputEmail && e.isCompany == isCompany
+        // );
         if (found) {
           console.log("user exists");
           this.getPwMode = true;
@@ -179,16 +183,16 @@ export default {
         }
       }
     },
-    checkIDPW() {
-      const user = accountDB.find(
-        (e) => e.email == this.inputEmail && e.pw == this.pw
-      );
-      if (user) {
+    async checkIDPW() {
+      // const user = accountDB.find(
+      //   (e) => e.email == this.inputEmail && e.pw == this.pw
+      // );
+      const user = await findUserByEmail(this.inputEmail);
+      console.log(user);
+      if (user.password == this.pw) {
         console.log(user);
         localStorage.setItem("currentUser", JSON.stringify(user));
-        if (user.isCompany) {
-          localStorage.setItem("userMode", "company");
-        }
+        localStorage.setItem("userMode", "company");
         this.pw = false;
         this.$router.go();
         // this.$emit("close");

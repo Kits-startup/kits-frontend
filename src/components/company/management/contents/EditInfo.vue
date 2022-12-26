@@ -9,11 +9,17 @@
             type="text"
             class="inputBox"
             placeholder="기업명을 입력해 주세요."
+            v-model="companyInfo.companyName"
           />
         </div>
         <div class="oneInputSet w-171px">
           <div class="inputTitle">설립년도</div>
-          <input type="text" class="inputBox" placeholder="예) 2020" />
+          <input
+            type="text"
+            class="inputBox"
+            placeholder="예) 2020"
+            v-model="companyInfo.companyYear"
+          />
         </div>
       </div>
       <div class="oneInputSet marginB18">
@@ -37,6 +43,7 @@
           type="text"
           class="inputBox"
           placeholder="상세주소를 입력해주세요"
+          v-model="companyInfo.addressDetail"
         />
       </div>
       <div class="oneInputSet marginB27">
@@ -45,12 +52,18 @@
           type="text"
           class="inputBox"
           placeholder="예)123456789 띄어쓰기없이 번호만 입력"
+          v-model="companyInfo.companyNumber"
         />
       </div>
 
       <div class="oneInputSet marginB27">
         <div class="inputTitle">매출액 또는 투자금(단위 만원)</div>
-        <input type="text" class="inputBox" placeholder="예) 200000000" />
+        <input
+          type="text"
+          class="inputBox"
+          placeholder="예) 200000000"
+          v-model="companyInfo.companyMoney"
+        />
       </div>
 
       <div class="oneInputSet marginB27">
@@ -59,26 +72,28 @@
           type="text"
           class="inputBox"
           placeholder="예) 5,10,15 숫자만입력"
+          v-model="companyInfo.companyPeople"
         />
       </div>
 
       <div class="oneInputSet marginB27">
         <div style="display: flex; flex-direction: row">
           <div class="oneInputSet" style="width: 50%; margin-right: 8px">
-            <div class="inputTitle">담장자 이름</div>
+            <div class="inputTitle">담당자 이름</div>
             <input
               type="text"
               class="inputBox"
               placeholder="담당자 이름을 입력해주세요."
+              v-model="companyInfo.companyPerson"
             />
           </div>
           <div class="oneInputSet" style="width: 50%">
             <div class="inputTitle">담당자 연락처</div>
-
             <input
               type="text"
               class="inputBox"
               placeholder="예) 01012345678 숫자만입력"
+              v-model="companyInfo.companyPhone"
             />
           </div>
         </div>
@@ -91,13 +106,15 @@
           class="inputBox"
           style="height: 276px; padding-top: 17px"
           placeholder="내용을 상세히 작성해주세요."
-          v-model="entpIntro"
+          v-model="companyInfo.companyDetail"
         ></textarea>
         <div
           class="introLimit"
-          v-bind:class="entpIntro.length <= 4000 ? '' : 'tooLong'"
+          v-bind:class="
+            companyInfo.companyDetail.length <= 4000 ? '' : 'tooLong'
+          "
         >
-          {{ entpIntro.length }}/4000
+          {{ companyInfo.companyDetail.length }}/4000
         </div>
       </div>
 
@@ -107,6 +124,7 @@
           type="text"
           class="inputBox"
           placeholder="홈페이지 URL 을 입력해주세요."
+          v-model="companyInfo.homepageURL"
         />
       </div>
     </div>
@@ -136,26 +154,23 @@
       <button
         class="submit"
         id="finalSubmit"
-        @click="checkArr()"
+        @click="changeInfo()"
         style="margin-bottom: 150px"
       >
-        기업정보변경
+        기업 정보변경
       </button>
     </div>
   </div>
 </template>
 
 <script>
+import { updateUser } from "@/components/api/userApi";
 export default {
   components: {},
-  props: {
-    emailFrom: {
-      type: String,
-      default: "",
-    },
-  },
+  props: {},
   data() {
     return {
+      userInfo: JSON.parse(localStorage.getItem("currentUser")) || null,
       addressSet: {
         inputDisable: false,
         postcode: "",
@@ -163,19 +178,26 @@ export default {
         final: "",
         extraAddress: "",
       },
-      entpIntro: "",
       showServiceModal: false,
       showPersonalModal: false,
       showThirdPartyModal: false,
-      inputEmail: this.emailFrom,
       selectList: [],
       checkList: ["age", "service", "private", "offer", "agree"],
+      companyInfo: {
+        companyName: "",
+        companyYear: "",
+        addressDetail: "",
+        companyDetail: "",
+        companyNumber: "",
+        companyMoney: "",
+        companyPeople: "",
+        companyPerson: "",
+        companyPhone: "",
+        homepageURL: "",
+      },
     };
   },
   methods: {
-    checkArr: function () {
-      console.log(this.selectList);
-    },
     execDaumPostcode() {
       new window.daum.Postcode({
         oncomplete: (data) => {
@@ -218,6 +240,27 @@ export default {
         },
       }).open();
     },
+    async changeInfo() {
+      console.log("???");
+      const edit = {
+        username: this.companyInfo.companyName,
+        address: `${this.addressSet.final} ${this.companyInfo.addressDetail}`,
+        establishmentDate: this.companyInfo.companyYear,
+        registerationNumber: this.companyInfo.companyNumber,
+        revenue: this.companyInfo.companyMoney,
+        investment: 1,
+        employeesCount: this.companyInfo.companyPeople,
+        managerName: this.companyInfo.companyPerson,
+        managerContact: this.companyInfo.companyPhone,
+        logo: "https://i.ytimg.com/vi/dwxHy5ngJLk/maxresdefault.jpg",
+        detailImage: "",
+      };
+      console.log(edit);
+      const res = await updateUser(this.userInfo._id, edit);
+      localStorage.setItem("currentUser", JSON.stringify(res));
+      this.$router.push("/");
+      this.$router.go();
+    },
   },
   computed: {
     allSelected: {
@@ -230,13 +273,28 @@ export default {
       },
     },
   },
+  mounted() {
+    const establishYear = new Date(
+      this.userInfo.establishmentDate
+    ).getFullYear();
+    this.companyInfo.companyName = this.userInfo.username;
+    this.companyInfo.companyYear = establishYear;
+    // (this.companyInfo.addressDetail = this.userInfo.address),
+    // this.companyInfo.companyDetail=this.userInfo. ,
+    this.companyInfo.companyNumber = this.userInfo.registerationNumber;
+    this.companyInfo.companyMoney = this.userInfo.revenue;
+    this.companyInfo.companyPeople = this.userInfo.employeesCount;
+    this.companyInfo.companyPerson = this.userInfo.managerName;
+    this.companyInfo.companyPhone = this.userInfo.managerContact;
+    // this.companyInfo.homepageURL=this.userInfo. ,
+  },
 };
 </script>
 
 <style scoped lang="scss">
-/* * {
-} */
-
+input {
+  outline: none;
+}
 .body {
   display: flex;
   margin: auto;
