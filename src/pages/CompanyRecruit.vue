@@ -25,7 +25,7 @@ export default {
         name: "아비즈",
         sub_name: "온라인 쇼핑몰",
         location: "경기 한국",
-        tags: ["태그1", "태그2", "태그3"],
+        tags: ["재택근무", "자율출근제", "자율복장"],
         descriptions: [
           {
             label: "주요업무",

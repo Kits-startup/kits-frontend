@@ -31,14 +31,16 @@ export default {
       slide: null,
       slideInfo: [
         {
-          src: "https://cdn.travie.com/news/photo/first/201705/img_19694_12.jpg",
+          src: "https://static-cse.canva.com/blob/649373/createbanners.jpg",
         },
         {
-          src: "https://mblogthumb-phinf.pstatic.net/MjAxODAzMzFfMTUg/MDAxNTIyNDg4NDQ1ODAx.SykBPNfjfWsBXyo87j56KVJp_qiaLuyUUOJQjcKRotwg.DXrnutpLdfHr_ly8rh5Ne3xEooJbmBEdqegntXo_7i0g.JPEG.myrikason/KakaoTalk_Moim_5qpBqAjsVPmB3swqW7wgUdr3kBGruh.jpg?type=w800",
+          src: "https://yozm.wishket.com/media/news/985/image001.png",
         },
-        { src: "https://t1.daumcdn.net/cfile/tistory/206FFA024CDA899150" },
         {
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAVWjQ0HcLm7p0PJWCS2XTYPlfwpmQ2Hp_UA&usqp=CAU",
+          src: "https://static-cse.canva.com/blob/649373/createbanners.82908296.jpg",
+        },
+        {
+          src: "https://cdn.pixabay.com/photo/2016/05/27/08/51/mobile-phone-1419275__480.jpg",
         },
       ],
     };
