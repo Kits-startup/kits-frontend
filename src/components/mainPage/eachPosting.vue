@@ -35,6 +35,7 @@ export default {
   methods: {
     gotoDetail() {
       this.$router.push(`/company_detail/${this.id}`);
+      window.scroll(0, 0);
     },
   },
 };

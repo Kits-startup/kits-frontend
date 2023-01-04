@@ -23,6 +23,7 @@ export default {
   methods: {
     gotoDetail() {
       this.$router.push(`/company_recruit/${this.jobInfo.id}`);
+      window.scrollTo(0, 0);
     },
   },
 };
