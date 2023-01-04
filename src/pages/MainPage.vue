@@ -4,7 +4,9 @@
       <main-banner-vue /><theme-posting-vue />
       <div class="newsletter">
         뉴스레터를 구독해보시고 정보를 받아가세요!
-        <div class="subscribe">뉴스레터 구독하기</div>
+        <div class="subscribe" @click="onBetaBlock" style="cursor: pointer">
+          뉴스레터 구독하기
+        </div>
       </div>
       <theme-posting-vue />
     </div>
@@ -27,6 +29,11 @@ export default {
     return {
       userMode: localStorage.getItem("userMode") || "user",
     };
+  },
+  methods: {
+    onBetaBlock() {
+      window.alert("준비중인 기능입니다. 정식 업데이트를 기다려주세요!");
+    },
   },
 };
 </script>

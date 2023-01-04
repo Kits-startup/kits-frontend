@@ -50,7 +50,7 @@
             됩니다.
           </p>
           <div class="btnContainer">
-            <div class="editBtn butn">프로필수정 하기</div>
+            <div class="editBtn butn" @click="betaBlock">프로필수정 하기</div>
             <div class="submitBtn butn" @click="onFinalSubmit">
               최종제출 하기
             </div>
@@ -144,6 +144,9 @@ export default {
         this.showCancelModal = false;
       }, 2000);
       this.applyed = false;
+    },
+    betaBlock() {
+      window.alert("아직 준비중인 기능입니다. 정식 오픈을 기다려주세요!");
     },
   },
   components: {
