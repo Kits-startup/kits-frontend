@@ -194,7 +194,7 @@ import DeleteReviewModal from "../../../modal/DeleteReviewModal.vue";
 import { companyInfoEx } from "../../../../data/example";
 export default {
   props: {
-    data: Array,
+    data: Object,
   },
   data() {
     return {

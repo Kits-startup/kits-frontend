@@ -22,7 +22,6 @@ export default {
   },
   mounted() {
     if (window.kakao && window.kakao.maps) {
-      console.log("hi");
       this.initMap();
     } else {
       const script = document.createElement("script");
@@ -83,7 +82,7 @@ export default {
       }
 
       var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-        iwPosition = new kakao.maps.LatLng(33.450701, 126.570667), //인포윈도우 표시 위치입니다
+        iwPosition = new kakao.maps.LatLng(this.mapInfo[0], this.mapInfo[1]), //인포윈도우 표시 위치입니다
         iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
       this.infowindow = new kakao.maps.InfoWindow({
@@ -94,6 +93,21 @@ export default {
       });
 
       this.map.setCenter(iwPosition);
+    },
+  },
+  watch: {
+    mapInfo() {
+      this.markerPositions1 = [[this.mapInfo[0], this.mapInfo[1]]];
+      // if (window.kakao && window.kakao.maps) {
+      //   this.initMap();
+      // } else {
+      //   const script = document.createElement("script");
+      //   script.onload = () => kakao.maps.load(this.initMap);
+      //   script.src =
+      //     "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0";
+      //   document.head.appendChild(script);
+      // }
+      this.initMap();
     },
   },
 };
