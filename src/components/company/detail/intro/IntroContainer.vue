@@ -94,7 +94,7 @@
         </div>
       </div>
     </b-modal>
-    <IntroInfoContainer :companyInfo="companyInfo" />
+    <IntroInfoContainer :companyInfo="data" />
     <div class="rateContainer">
       <div class="rate">
         <div class="rateNum">{{ companyInfo.rateNum }}</div>
@@ -193,6 +193,9 @@ import ReviewComplete from "../../../modal/CompleteModal.vue";
 import DeleteReviewModal from "../../../modal/DeleteReviewModal.vue";
 import { companyInfoEx } from "../../../../data/example";
 export default {
+  props: {
+    data: Array,
+  },
   data() {
     return {
       companyInfo: companyInfoEx,

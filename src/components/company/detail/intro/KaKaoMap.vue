@@ -10,9 +10,12 @@
 
 <script>
 export default {
+  props: {
+    mapInfo: Array,
+  },
   data() {
     return {
-      markerPositions1: [[33.452278, 126.567803]],
+      markerPositions1: [[this.mapInfo[0], this.mapInfo[1]]],
       markers: [],
       infowindow: null,
     };
@@ -34,7 +37,7 @@ export default {
     initMap() {
       const container = document.getElementById("map");
       const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        center: new kakao.maps.LatLng(this.mapInfo[0], this.mapInfo[1]),
         level: 5,
       };
       this.map = new kakao.maps.Map(container, options);

@@ -19,7 +19,7 @@ export const theme_posting_1 = [
     src: "https://jpassets.jobplanet.co.kr/production/uploads/company_story/contents/2021/04/02/184f70b6-1fb3-48d5-991f-f8f6fcb5b05c.jpg",
     name: "카카오",
     category: "소셜미디어",
-    location: "서울",
+    location: "제주",
   },
   {
     id: 4,

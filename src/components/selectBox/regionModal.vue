@@ -30,7 +30,7 @@
             class="checkAll"
             >전체 선택</b-form-checkbox
           >
-          <div class="reset" @click="selectAll(false)">
+          <div class="reset" @click="selectAll(false)" style="cursor: pointer">
             지역초기화<svg
               width="17"
               height="17"

@@ -17,7 +17,8 @@
       {{ companyInfo.description }}<br />홈페이지:
       <a v-bind:href="companyInfo.link" class="link">{{ companyInfo.link }}</a>
     </p>
-    <KaKaoMap />
+    {{ companyInfo.mapInfo[0] }}/ {{ companyInfo.mapInfo[1] }}
+    <KaKaoMap :mapInfo="companyInfo.mapInfo" />
     <!-- <CompanyMap /> -->
   </div>
 </template>

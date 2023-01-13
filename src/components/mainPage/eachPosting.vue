@@ -50,6 +50,7 @@ export default {
     border-radius: 15px;
     overflow: hidden;
     margin-bottom: 17px;
+    cursor: pointer;
     .heart {
       position: absolute;
       top: 15px;

@@ -7,7 +7,7 @@
     <div class="contentContainer">
       <b-row>
         <b-col cols="3" v-for="(item, index) in theme_posting" :key="index">
-          <each-posting-vue :id="index" :companyInfo="item" />
+          <each-posting-vue :id="item.id" :companyInfo="item" />
         </b-col>
       </b-row>
     </div>
