@@ -6,8 +6,8 @@
     </div>
     <div class="contentContainer">
       <b-row>
-        <b-col cols="3" v-for="(item, index) in 8" :key="index">
-          <each-posting-vue :id="index" />
+        <b-col cols="3" v-for="(item, index) in theme_posting" :key="index">
+          <each-posting-vue :id="index" :companyInfo="item" />
         </b-col>
       </b-row>
     </div>
@@ -24,6 +24,9 @@ export default {
     gotoPostingLists() {
       this.$router.push("/posting_list");
     },
+  },
+  props: {
+    theme_posting: Array,
   },
 };
 </script>

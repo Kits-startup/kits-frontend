@@ -1,14 +1,14 @@
 <template>
   <div class="mainContainer">
     <div class="forUser" v-if="userMode === 'user'">
-      <main-banner-vue /><theme-posting-vue />
+      <main-banner-vue /><theme-posting-vue :theme_posting="theme_1" />
       <div class="newsletter">
         뉴스레터를 구독해보시고 정보를 받아가세요!
         <div class="subscribe" @click="onBetaBlock" style="cursor: pointer">
           뉴스레터 구독하기
         </div>
       </div>
-      <theme-posting-vue />
+      <theme-posting-vue :theme_posting="theme_2" />
     </div>
     <div class="forCompany" v-else><talent-search /></div>
   </div>
@@ -18,6 +18,7 @@
 import mainBannerVue from "@/components/mainPage/mainBanner.vue";
 import themePostingVue from "@/components/mainPage/themePosting.vue";
 import TalentSearch from "./TalentSearch.vue";
+import { theme_posting_1, theme_posting_2 } from "@/data/mainpage_example";
 export default {
   components: {
     mainBannerVue,
@@ -28,6 +29,8 @@ export default {
   data() {
     return {
       userMode: localStorage.getItem("userMode") || "user",
+      theme_1: theme_posting_1,
+      theme_2: theme_posting_2,
     };
   },
   methods: {

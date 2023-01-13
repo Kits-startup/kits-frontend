@@ -1,16 +1,16 @@
 <template>
   <div class="eContainer" @click="gotoDetail">
     <div class="thumbnail">
-      <img class="kImage" :src="exam.src" alt="thumbnail" />
+      <img class="kImage" :src="companyInfo.src" alt="thumbnail" />
       <div class="heart">
         <img class="logo" src="@/assets/favorite_border.png" alt="heart" />
       </div>
     </div>
     <div class="info">
-      <div class="name">{{ exam.name }}</div>
+      <div class="name">{{ companyInfo.name }}</div>
       <div class="subscription">
-        <span class="category">{{ exam.category }}</span
-        ><span class="location">{{ exam.location }}</span>
+        <span class="category">{{ companyInfo.category }}</span
+        ><span class="location">{{ companyInfo.location }}</span>
       </div>
     </div>
   </div>
@@ -59,6 +59,7 @@ export default {
   .kImage {
     height: 234px;
     width: 100%;
+    object-fit: cover;
   }
   .info {
     .name {
