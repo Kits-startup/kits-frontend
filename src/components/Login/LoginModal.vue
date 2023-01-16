@@ -158,11 +158,10 @@ export default {
       const isCompany = this.mode === "company";
       if (!this.test) {
         console.log(this.inputEmail);
-        const found = await findUserByEmail(this.inputEmail);
-        console.log(found);
-        // const found = accountDB.find(
-        //   (e) => e.email == this.inputEmail && e.isCompany == isCompany
-        // );
+        // const found = await findUserByEmail(this.inputEmail);
+        const found = accountDB.find(
+          (e) => e.email == this.inputEmail && e.isCompany == isCompany
+        );
         if (found) {
           console.log("user exists");
           this.getPwMode = true;
@@ -184,10 +183,10 @@ export default {
       }
     },
     async checkIDPW() {
-      // const user = accountDB.find(
-      //   (e) => e.email == this.inputEmail && e.pw == this.pw
-      // );
-      const user = await findUserByEmail(this.inputEmail);
+      const user = accountDB.find(
+        (e) => e.email == this.inputEmail && e.password == this.pw
+      );
+      // const user = await findUserByEmail(this.inputEmail);
       console.log(user);
       if (user.password == this.pw) {
         console.log(user);

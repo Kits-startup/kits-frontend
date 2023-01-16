@@ -14,7 +14,7 @@
         </div>
         <div class="profile">
           <div class="profileImg">
-            <img :src="userInfo.logo" alt="profile image" />
+            <img :src="userInfo.profile" alt="profile image" />
           </div>
           <div class="name" @click="showDropDown = !showDropDown">
             {{ userInfo.username }}

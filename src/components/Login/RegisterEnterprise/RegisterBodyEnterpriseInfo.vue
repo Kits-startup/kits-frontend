@@ -232,17 +232,20 @@ export default {
           password: this.password,
         };
         console.log(info);
-        makeCompanyUser(info)
-          .then((res) => {
-            if (res.status == 201) {
-              console.log("success");
-              localStorage.setItem("currentUser", JSON.stringify(res.data));
-              localStorage.setItem("userMode", "company");
-              this.$router.push("/");
-              this.$router.go();
-            }
-          })
-          .catch((error) => console.log(error));
+        // makeCompanyUser(info)
+        //   .then((res) => {
+        //     if (res.status == 201) {
+        //       console.log("success");
+        //       localStorage.setItem("currentUser", JSON.stringify(res.data));
+        //       localStorage.setItem("userMode", "company");
+        //       this.$router.push("/");
+        //       this.$router.go();
+        //     }
+        //   })
+        //   .catch((error) => console.log(error));
+        localStorage.setItem("currentUser", JSON.stringify(info));
+        this.$router.push("/");
+        this.$router.go();
       } else {
         alert("모든 란을 다 채워주세요.");
       }

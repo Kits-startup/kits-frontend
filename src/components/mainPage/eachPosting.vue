@@ -29,8 +29,18 @@ export default {
     };
   },
   props: {
-    companyInfo: Object,
-    id: Number,
+    companyInfo: {
+      type: Object,
+      default: () => {
+        return {
+          src: "https://picsum.photos/1024/480/?image=52",
+          name: "아비즈",
+          category: "온라인 쇼핑몰",
+          location: "경기 한국",
+        };
+      },
+    },
+    id: { type: Number, default: 1 },
   },
   methods: {
     gotoDetail() {
