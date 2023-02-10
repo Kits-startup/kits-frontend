@@ -11,7 +11,15 @@
     >
       <b-carousel-slide v-for="(e, i) in slideInfo" :key="i">
         <template #img>
-          <img class="" width="1324" height="480" :src="e" alt="image slot" />
+          <img
+            class=""
+            width="1324"
+            height="480"
+            :src="`https://picsum.photos/id/${
+              (i + 1) * 37 + (i + 1) * 11
+            }/1324/480`"
+            alt="image slot"
+          />
         </template>
       </b-carousel-slide>
     </b-carousel>
