@@ -21,7 +21,7 @@
         </div>
         <div class="title">지원하기</div>
         <div class="title">
-          프로필 완성도: <span class="blue" style="color: #0376db">80%</span>
+          프로필 완성도: <span class="blue" style="color: #0376db">100%</span>
         </div>
         <div class="paddingPart">
           <div class="skillBox">
@@ -30,10 +30,10 @@
                 '경력',
                 '학력',
                 '기술',
-                '기술',
-                '학력',
-                '기술',
-                '기술',
+                '자격증',
+                '수상경력',
+                '성향',
+                '증빙서류',
               ]"
               v-bind:key="idx"
               class="skill"

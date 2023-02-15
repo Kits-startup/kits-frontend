@@ -70,8 +70,8 @@
         <div class="profile">사진 첨부</div>
         <div class="basicInfo">
           <div class="name">이종빈<span>서울</span></div>
-          <div class="mail">abc@naver.com</div>
-          <div class="phone">010-0000-0000</div>
+          <div class="mail">ttdrb@naver.com</div>
+          <div class="phone">010-4565-5801</div>
           <div class="iconContainer">
             <img src="@/assets/github.png" alt="github link" class="icon" />
             <img src="@/assets/insta.png" alt="insta link" class="icon" />
@@ -93,16 +93,7 @@
           <span>자기소개</span>
           <!-- <span class="blue">+더보기</span> -->
         </div>
-        <p>
-          안녕하세요저는 이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.
-        </p>
+        <p>안녕하세요 저는 이종빈입니다 최선을 다하겠습니다</p>
         <div class="label">학력</div>
         <div class="content">
           <span class="name">대한국민대학교</span>
@@ -176,24 +167,14 @@
           </b-row>
         </div>
         <div class="label">수상경력</div>
+
         <div class="content" style="display: flex">
-          <div
-            class="name"
-            style="
-              width: 140px;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              white-space: nowrap;
-              margin-right: 5px;
-            "
-          >
-            네이버 클라우드
-          </div>
-          <span class="date_spec">2022.01~2023.04</span>
-          <span class="state" style="margin-left: 10px">재직중</span>
+          <div class="name" style="">카카오대회 우수상 수상</div>
+          <!-- <span class="date_spec">2022.01~2023.04</span>
+          <span class="state" style="margin-left: 10px">재직중</span> -->
         </div>
         <div class="content" style="display: flex">
-          <div
+          <!-- <div
             class="name"
             style="
               width: 140px;
@@ -204,8 +185,9 @@
             "
           >
             카카오 웹툰
-          </div>
-          <span class="date_spec">2022.01~2023.04</span>
+          </div> -->
+          <!-- <span class="date_spec">2022.01~2023.04</span> -->
+          <div class="name">삼성대회 입상</div>
         </div>
         <div class="label">성향</div>
         <div class="eachMBTI" v-for="(e, i) in mbti" :key="i">
@@ -246,7 +228,7 @@
           </span>
         </div>
         <div class="file">
-          <span class="file_name">이종빈_이력서.pdf</span
+          <span class="file_name">이종빈_경력증명서.pdf</span
           ><span class="downloadBtn"
             >다운로드<svg
               width="14"
@@ -456,7 +438,7 @@ export default {
       position: relative;
       .stateModal {
         top: 5px;
-        left: 140px;
+        left: -380px;
         position: absolute;
         background: #ffffff;
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);

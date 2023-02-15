@@ -6,8 +6,8 @@
         <div class="profile">사진 첨부</div>
         <div class="basicInfo">
           <div class="name">이종빈<span>서울</span></div>
-          <div class="mail">abc@naver.com</div>
-          <div class="phone">010-0000-0000</div>
+          <div class="mail">ttdrb@naver.com</div>
+          <div class="phone">010-4565-5801</div>
           <div class="iconContainer">
             <img src="@/assets/github.png" alt="github link" class="icon" />
             <img src="@/assets/insta.png" alt="insta link" class="icon" />
@@ -35,16 +35,7 @@
           <span>자기소개</span>
           <!-- <span class="blue">+더보기</span> -->
         </div>
-        <p>
-          안녕하세요저는 이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.안녕하세요저는
-          이종빈입니다.안녕하세요저는 이종빈입니다.
-        </p>
+        <p>안녕하세요 저는 이종빈입니다 최선을 다하겠습니다</p>
         <div class="label">학력</div>
         <div class="content">
           <span class="name">대한국민대학교</span>
